@@ -16,8 +16,8 @@
 </head>
 <body>
 
-<div class="header-top">
-	<div class="container">
+<div class="container">
+	<div class="header-top">
 		<div class="row">
 			<div class="col-xs-8 header-top-left">
 				<div class="col-xs-3 logo">

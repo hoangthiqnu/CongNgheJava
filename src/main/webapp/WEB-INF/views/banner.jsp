@@ -47,19 +47,21 @@
 	  to {opacity: 1}
 	}
 </style>
-<div class="slideshow-container">
-	<div class="mySlides fade">
-	    <img src="<c:url value="/resources/image/banner2.gif" />" alt="">
+<div class="container-fuild">
+	<div class="slideshow-container">
+		<div class="mySlides fade">
+		    <img src="<c:url value="/resources/image/banner2.gif" />" alt="">
+		</div>
+		<div class="mySlides fade">
+		    <img src="<c:url value="/resources/image/banner3.gif" />" alt="">
+		</div>
+		<div class="mySlides fade">
+		    <img src="<c:url value="/resources/image/banner4.gif" />" alt="">
+		</div>
 	</div>
-	<div class="mySlides fade">
-	    <img src="<c:url value="/resources/image/banner3.gif" />" alt="">
+	<div style="text-align:center">
+		<span class="dot" onclick="currentSlide(0)"></span> 
+		<span class="dot" onclick="currentSlide(1)"></span> 
+		<span class="dot" onclick="currentSlide(2)"></span> 
 	</div>
-	<div class="mySlides fade">
-	    <img src="<c:url value="/resources/image/banner4.gif" />" alt="">
-	</div>
-</div>
-<div style="text-align:center">
-	<span class="dot" onclick="currentSlide(0)"></span> 
-	<span class="dot" onclick="currentSlide(1)"></span> 
-	<span class="dot" onclick="currentSlide(2)"></span> 
 </div>
