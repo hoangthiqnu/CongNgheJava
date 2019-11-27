@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<div class="footer">
-	<div class="container">
+<div class="container-fuild">
+	<div class="footer">
 	   <div class="footer_top">
-		<div class="col-md-4 box_3">
+		<div class="col-xs-4 box_3">
 			<h3>Thông tin liên hệ</h3>
 			<address class="address">
               <dl>
@@ -21,14 +21,14 @@
 			  <li><a href=""><i class="instagram"> </i> </a></li>
 		   </ul>
 		</div>
-		<div class="col-md-4 box_3">
+		<div class="col-xs-4 box_3">
 			<h3>Tin tức</h3>
 			<h4><a href="#">Thông tin cửa hàng </a></h4>
 			<p>Những thông tin về trà sữa</p>
 			<h4><a href="#">Thông tin khuyến mãi</a></h4>
 			<p>Những thông tin khuyến mãi sản phẩm</p>
 		</div>
-		<div class="col-md-4 box_3">
+		<div class="col-xs-4 box_3">
 			<h3>Hỗ trợ khách hàng</h3>
 			<ul class="list_1">
 				<li><a href="#">Hướng dẫn đặt món</a></li>
