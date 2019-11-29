@@ -19,4 +19,6 @@
 	<!-- Cau hinh Spring MVC Annotation -->
 	<mvc:resources mapping="/resources/**" location="/resources/giaodien/" />
     <mvc:annotation-driven />
+    
+    <import resource="classpath:IoC.xml"/>
 </beans>
