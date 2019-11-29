@@ -78,9 +78,10 @@ skyblue .megapanel img:hover,.skyblue form.contact input[type="text"]:focus,.sky
 .box-cart-1 h4{
   border:none;
   color: #fff;
-  font-size: 0.85em;
   margin-bottom: 0;
   padding:0;
+  font-weight:bold; 
+  font-size:14px;
 }
 .box-cart-1 p{
 	float:left;
@@ -103,16 +104,12 @@ skyblue .megapanel img:hover,.skyblue form.contact input[type="text"]:focus,.sky
 	border: none;
 	outline: none;
 	background: none;
-	font-size:0.85em;
+	font-size:14px;
     color:#999;
-	width:200px;
+	width:175px;
+	height:43px;
 	padding:7px;
-	-webkit-apperance:none;
 	margin:0;
-	-webkit-transition: all 0.5s ease-out;
-	-moz-transition: all 0.5s ease-out;
-	-ms-transition: all 0.5s ease-out;
-	-o-transition: all 0.5s ease-out;
 }
 .search input[type="submit"] {
 	  border: none;
@@ -133,7 +130,7 @@ skyblue .megapanel img:hover,.skyblue form.contact input[type="text"]:focus,.sky
 	-o-background-size: cover;
 	background-size: cover;
 	background-position: center;
-	min-height:540px;
+	height:280px;
 }
 .banner_desc{
 	padding-top:9em;
@@ -246,7 +243,7 @@ ul.footer_social li a i:hover{
 
 /*css cho trang chu*/	
 .content-index{
-	padding: 20px 80px 0px 80px;
+	padding: 20px 70px 0px 70px;
 }
 .title-pro{
 	font-size:23px;
@@ -254,9 +251,11 @@ ul.footer_social li a i:hover{
 	color:#63aa9c;
 	border-bottom:5px solid #000;
 	padding-bottom: 5px;
+	margin-left:10px;
 }
 .btn-all {
   	float:right;
+  	margin-right:10px;
 }
 
 .btn-all  a {
@@ -293,7 +292,7 @@ ul.footer_social li a i:hover{
   position: absolute;
   left: 0;
   top: 0;
-  height: 490%;
+  height: 510%;
   width: 140%;
   background: #ffffff;
   -webkit-transition: all .5s ease-in-out;
@@ -307,13 +306,11 @@ ul.footer_social li a i:hover{
   -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
   transform: translateX(-9%) translateY(-25%) rotate(45deg);
 }
-/* Danh sach san pham */
+/* Danh sach san pham trang chu */
 
 .products {
 	overflow: hidden;
 	float: left;
-	border-top: 1px solid #ddd;
-	border-left: 1px solid #ddd;
 	list-style: none;
 	margin-top: 30px;
 	margin-bottom: 30px;
@@ -325,13 +322,13 @@ ul.products{
 .products li {
 	float: left;
 	position: relative;
-	width: 326px;
+	width: 312px;
 	height: 370px;
-	border-right: 1px solid #ddd;
-	border-bottom: 1px solid #ddd;
+	border: 1px solid #ddd;
 	background: #fff;
 	overflow: hidden;
-	margin: 0px;
+	margin:10px;
+	box-shadow: 0 5px 15px rgba(0,0,0,0.20);
 
 }
 
@@ -346,9 +343,9 @@ ul.products{
 }
 
 
-.each-pro a.cart {
+.info-pro {
 	display: table-cell;
-	width: 326px;
+	width: 312px;
 	height: 280px;
 	padding: 0px 15px;
 	overflow: hidden;
@@ -360,7 +357,7 @@ ul.products{
 }
 
 .each-pro h3 {
-	font-size: 17px;
+	font-size: 18px;
 	font-weight: bold;
 	color: #333;
 	line-height: 20px;
@@ -374,7 +371,10 @@ ul.products{
 	position: relative;
 	margin: 0px;
 	display: block;
-	padding:0px 25px 0px 0px;
+	padding:0px 23px 0px 0px;
+}
+li.col-md-4.each-pro{
+	padding:0px 7px;
 }
 
 .each-pro h4 {
@@ -438,6 +438,143 @@ ul.products{
   -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
   transform: translateX(-9%) translateY(-25%) rotate(45deg);
 }
+
+/* css trang san pham*/
+.danh_muc{
+	margin-top:30px;
+}
+
+.danh_muc ul li{
+	display: block;
+	margin: 30px 0px;
+	padding:0px 30px;
+}
+.danh_muc ul{
+	padding:0px;
+	float: left;
+	position: relative;
+	width:250px;
+	border: 1px solid #ddd;
+	background: #fff;
+	overflow: hidden;
+	box-shadow: 0 5px 15px rgba(0,0,0,0.20);
+}
+.danh_muc ul li a{
+	display:block;
+	font-size:15px;
+	font-weight: 200;
+	color:#000000;
+	line-height:5px;
+}
+.danh_muc ul li a:hover{
+	color:#e9633b;
+	text-decoration:none;
+	font-weight: bold;
+}
+.title-danhmuc{
+	margin-top:30px;
+	border-left: 3px solid #e9633b;
+	padding-bottom:20px;
+}
+.title-danhmuc span{
+	font-size:23px;
+	font-weight:bold;
+	color:#63aa9c;
+	border-bottom:5px solid #000;
+	padding-bottom: 5px;
+}
+.products-menu {
+	overflow: hidden;
+	float: left;
+	list-style: none;
+	margin-bottom: 30px;
+}
+ul.products-menu{
+	padding:0px;
+}
+.products-menu {
+	border-left: 3px solid #e9633b;
+
+}
+
+.products-menu li {
+	float: left;
+	position: relative;
+	width: 256px;
+	height: 320px;
+	border: 1px solid #ddd;
+	background: #fff;
+	overflow: hidden;
+	margin:10px;
+	box-shadow: 0 5px 15px rgba(0,0,0,0.20);
+
+}
+
+.each-pro-menu{
+	position: relative;
+	border-right: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	background: #fff;
+	overflow: hidden;
+	margin: 0
+	
+}
+.info-pro-menu {
+	display: table-cell;
+	width: 256px;
+	height: 256px;
+	padding: 0px 15px;
+	overflow: hidden;
+	vertical-align: bottom
+}
+.each-pro-menu a:hover
+{
+	text-decoration:none;
+}
+
+.each-pro-menu h3 {
+	font-size: 17px;
+	font-weight: bold;
+	color: #333;
+	line-height: 18px;
+	display: block;
+	margin:0px;
+}
+
+.each-pro-menu img {
+	max-width: 256px;
+	max-height: 256px;
+	position: relative;
+	margin: 0px;
+	display: block;
+	padding:0px 23px 0px 0px;
+}
+li.col-md-3.each-pro-menu{
+	padding:0px 7px;
+}
+
+.each-pro-menu h4 {
+	color: #e9633b;
+	font-size: 18px;
+	font-weight: bold;
+	line-height: inherit;
+	margin:0px;
+}
+.btn-pro-menu {
+  	float:center;
+  	width:165px;
+  	padding-left:90px;
+}
+
+.btn-pro-menu  a {
+  	 text-decoration:none;
+}
+.btn-pro-menu a:hover {
+  	 text-decoration:none;
+  	 color:#e9633b;
+  	 
+}
+
 
 
 
