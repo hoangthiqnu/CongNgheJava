@@ -33,6 +33,12 @@ public class DMMonDAO {
 			}
 		});
 		return dsDMMon;
-	}	
+	}
+	
+	public String layTenDanhMuc(String idDMMon){	
+		String sql = "select TenDMMon from dmmon where idDMMon =?";
+		String tenDM = jdbcTemplate.queryForObject(sql, String.class,idDMMon);
+		return tenDM;
+	}
 
 }

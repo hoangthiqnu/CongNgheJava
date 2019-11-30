@@ -496,6 +496,12 @@ ul.products-menu{
 	border-left: 3px solid #e9633b;
 
 }
+.title-tim{
+	display: block;
+	text-align:center;
+	font-size:25px;
+
+}
 
 .products-menu li {
 	float: left;
