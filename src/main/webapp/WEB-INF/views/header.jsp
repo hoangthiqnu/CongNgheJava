@@ -32,11 +32,12 @@
 					</ul> 
 				</div>
 			</div>
-			<div class="col-md-4 header-top-right">
-				
-			    <div class="search">	  
-					<input type="text" name="s" class="textbox" placeholder="Tìm thức uống">
-					<input type="submit" id="submit" name="submit">
+			<div class="col-md-4 header-top-right">	
+			    <div class="search">
+				 	<form name ="timkiem" action="timkiem" method="post" onsubmit="return checkTim()" >	  
+						<input type="text" name="tim" class="textbox" placeholder="Tìm thức uống">
+						<input type="submit" id="submit" name="submit">
+					</form>
 				</div>
 				<div class="box-cart">
 					<div class="box-cart-1">

@@ -82,5 +82,15 @@
   function currentSlide(n) {
     showSlides(slideIndex = n);
   }
+  
+  function checkTim(){
+	  var value = document.forms["timkiem"]["tim"].value;
+	  console.log(value);
+	  if(value === "")
+	  {
+	        alert("Vui lòng nhập tên món cần tìm");
+	        return false;
+	  }
+  }
 </script>
 </html>

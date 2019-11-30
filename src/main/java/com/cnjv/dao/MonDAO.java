@@ -93,5 +93,23 @@ public class MonDAO {
 		});
 		return dsMonBanChay;
 	}
+	public List<Mon> timKiemMon(String key) {
+		String sql = "SELECT * FROM mon  WHERE 	TenMon LIKE '%"+key+"%'";
+		List<Mon> dsMon = jdbcTemplate.query(sql, new RowMapper<Mon>() {
+
+			public Mon mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Mon mon = new Mon();
+				mon.setIdMon(rs.getInt("idMon"));
+				mon.setIdDMMon(rs.getString("idDMMon"));
+				mon.setTenMon(rs.getString("TenMon"));
+				mon.setDonGiaMon(rs.getInt("DonGiaMon"));
+				mon.setHinhAnh(rs.getString("HinhAnh"));
+				mon.setMoTa(rs.getString("MoTa"));
+				mon.setChiDa(rs.getBoolean("ChiDa"));
+				return mon;
+			}
+		});
+		return dsMon;
+	}
 
 }
