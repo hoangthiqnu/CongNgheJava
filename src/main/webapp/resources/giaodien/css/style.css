@@ -918,8 +918,15 @@ li.col-md-3.each-pro-menu{
 	background-color:#e9633b;
 	
 }
+
 .pagination-0 nav{
-	margin-left: 320px;
+	display: flex;
+    justify-content: center;
+	
+}
+.tranghientai{
+	font-weight:bold;
+	color:#000;
 }
 
 

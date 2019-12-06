@@ -15,10 +15,10 @@
 			<div class="col-md-3">
 				<div class="danh_muc">
 					<ul>
-						<li><a href="/MilkTea/thucdon?iddm=tatcamon">TẤT CẢ</a></li>
+						<li><a href="/MilkTea/thucdon?iddm=tatcamon&page=1">TẤT CẢ</a></li>
 						<c:set var="dsDMMon" value="${DanhSachDanhMuc}"></c:set>	
 						<c:forEach items="${dsDMMon}" var="danhmuc">
-							<li><a href="/MilkTea/thucdon?iddm=${danhmuc.getIdDMMon()}">${danhmuc.getTenDMMon()}</a></li> 
+							<li><a href="/MilkTea/thucdon?iddm=${danhmuc.getIdDMMon()}&page=1">${danhmuc.getTenDMMon()}</a></li> 
 						</c:forEach>
 					</ul>	
 				</div>
@@ -54,27 +54,54 @@
 				</c:if>
 			</ul>
 			<div class="col-md-3"></div>
+			<c:if test ="${DanhSachMonTimKiem == null && SoTrang != 1 }">
 			<div class="col-md-9 pagination-0">
 				<nav aria-label="Page navigation example">
 				  <ul class="pagination">
 				    <li class="page-item">
-				      <a class="page-link" href="#" aria-label="Previous">
-				        <span aria-hidden="true">&laquo;</span>
-				        <span class="sr-only">Previous</span>
-				      </a>
+				    <c:choose>
+    					<c:when test="${TrangHienTai <= 1}">
+      						<a class="page-link" href="/MilkTea/thucdon?iddm=${idDMMon}&page=1" aria-label="Previous">
+				        		<span aria-hidden="true">&laquo;</span>
+				        		<span class="sr-only">Previous</span>
+				      		</a>
+    					</c:when>    
+    					<c:otherwise>
+    						<a class="page-link" href="/MilkTea/thucdon?iddm=${idDMMon}&page=${TrangHienTai-1}" aria-label="Previous">
+				        		<span aria-hidden="true">&laquo;</span>
+				        		<span class="sr-only">Previous</span>
+				      		</a>
+    					</c:otherwise>
+					</c:choose>
 				    </li>
-				    <li class="page-item"><a class="page-link" href="#" >1</a></li>
-				    <li class="page-item"><a class="page-link" href="#">2</a></li>
-				    <li class="page-item"><a class="page-link" href="#">3</a></li>
+				    <c:forEach var="i" begin = "1" end = "${SoTrang}" step="1">
+				    	<c:if test ="${TrangHienTai==i}">
+				    	<li class="page-item"><a class="page-link" href="/MilkTea/thucdon?iddm=${idDMMon}&page=${i}" ><span class="tranghientai">${i}</span></a></li>
+				    	</c:if>
+				    	<c:if test ="${TrangHienTai!=i}">
+				    	<li class="page-item"><a class="page-link" href="/MilkTea/thucdon?iddm=${idDMMon}&page=${i}" >${i}</a></li>
+				    	</c:if>
+				    </c:forEach>
 				    <li class="page-item">
-				      <a class="page-link" href="#" aria-label="Next">
-				        <span aria-hidden="true">&raquo;</span>
-				        <span class="sr-only">Next</span>
-				      </a>
+				    <c:choose>
+	    				<c:when test="${TrangHienTai >= SoTrang}">
+	      					<a class="page-link" href="/MilkTea/thucdon?iddm=${idDMMon}&page=${SoTrang}" aria-label="Next">
+					        	<span aria-hidden="true">&raquo;</span>
+					        	<span class="sr-only">Next</span>
+					      	</a>
+	    				</c:when>    
+	    				<c:otherwise>
+	    					<a class="page-link" href="/MilkTea/thucdon?iddm=${idDMMon}&page=${TrangHienTai+1}" aria-label="Next">
+					        	<span aria-hidden="true">&raquo;</span>
+					        	<span class="sr-only">Next</span>
+					      	</a>
+	    				</c:otherwise>
+					</c:choose>
 				    </li>
 				  </ul>
 				</nav>
 			</div>
+			</c:if>
 		</div>
 </div>
 <%@ include file="footer.jsp" %>

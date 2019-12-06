@@ -26,7 +26,7 @@
 				    <ul class="megamenu skyblue">
 						<li><a class="color1" href="/MilkTea">Trang chủ</a></li>				
 						<li><a class="color1" href="#">Giới thiệu</a></li>
-						<li><a class="color1" href="/MilkTea/thucdon?iddm=tatcamon">Thực đơn</a></li>
+						<li><a class="color1" href="/MilkTea/thucdon?iddm=tatcamon&page=1">Thực đơn</a></li>
 					    <li><a class="color1" href="#">Liên hệ</a></li>
 					</ul> 
 				</div>

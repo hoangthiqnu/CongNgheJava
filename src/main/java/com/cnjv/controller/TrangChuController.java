@@ -2,7 +2,6 @@ package com.cnjv.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -19,7 +18,7 @@ public class TrangChuController {
 	ApplicationContext context = new ClassPathXmlApplicationContext("IoC.xml");
 	MonDAO mondao = (MonDAO) context.getBean("dbmon");
 	@RequestMapping("/")
-	public String hienThiDanhSachMonMoi(HttpSession session, ModelMap modelMap) {
+	public String hienThiTrangChu(ModelMap modelMap) {
 		List<Mon> dsMonMoi = mondao.layDanhSachMonMoi();
 		modelMap.addAttribute("DanhSachMonMoi", dsMonMoi);
 		List<Mon> dsMonBanChay = mondao.layDanhSachMonBanChay();

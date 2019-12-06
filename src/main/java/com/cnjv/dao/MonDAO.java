@@ -21,42 +21,6 @@ public class MonDAO {
 		this.jdbcTemplate = new JdbcTemplate(dbTraSua);
 	}
 
-	public List<Mon> layDanhSachMon() {
-		String sql = "select * from mon";
-		List<Mon> dsMon = jdbcTemplate.query(sql, new RowMapper<Mon>() {
-
-			public Mon mapRow(ResultSet rs, int rowNum) throws SQLException {
-				Mon mon = new Mon();
-				mon.setIdMon(rs.getInt("idMon"));
-				mon.setIdDMMon(rs.getString("idDMMon"));
-				mon.setTenMon(rs.getString("TenMon"));
-				mon.setDonGiaMon(rs.getInt("DonGiaMon"));
-				mon.setHinhAnh(rs.getString("HinhAnh"));
-				mon.setMoTa(rs.getString("MoTa"));
-				mon.setChiDa(rs.getBoolean("ChiDa"));
-				return mon;
-			}
-		});
-		return dsMon;
-	}
-	public List<Mon> layDanhSachMon(String idDM) {
-		String sql = "SELECT * FROM mon  where 	idDMMon=?;";
-		List<Mon> dsMon = jdbcTemplate.query(sql, new RowMapper<Mon>() {
-
-			public Mon mapRow(ResultSet rs, int rowNum) throws SQLException {
-				Mon mon = new Mon();
-				mon.setIdMon(rs.getInt("idMon"));
-				mon.setIdDMMon(rs.getString("idDMMon"));
-				mon.setTenMon(rs.getString("TenMon"));
-				mon.setDonGiaMon(rs.getInt("DonGiaMon"));
-				mon.setHinhAnh(rs.getString("HinhAnh"));
-				mon.setMoTa(rs.getString("MoTa"));
-				mon.setChiDa(rs.getBoolean("ChiDa"));
-				return mon;
-			}
-		},idDM);
-		return dsMon;
-	}
 	public List<Mon> layDanhSachMonMoi() {
 		String sql = "select * from mon order by idMon DESC limit 6";
 		List<Mon> dsMonMoi = jdbcTemplate.query(sql, new RowMapper<Mon>() {
@@ -111,5 +75,63 @@ public class MonDAO {
 		});
 		return dsMon;
 	}
+	public List<Mon> layDanhSachMonTrenTrang(String idDMMon, int viTriBatDau, int soMonTrenTrang) {
+		String sql;
+		List<Mon> dsMon;
+		if (idDMMon == "tatcamon")
+		{
+			sql = "SELECT * FROM mon LIMIT ?,?";
+			dsMon = jdbcTemplate.query(sql, new RowMapper<Mon>() {
+
+				public Mon mapRow(ResultSet rs, int rowNum) throws SQLException {
+					Mon mon = new Mon();
+					mon.setIdMon(rs.getInt("idMon"));
+					mon.setIdDMMon(rs.getString("idDMMon"));
+					mon.setTenMon(rs.getString("TenMon"));
+					mon.setDonGiaMon(rs.getInt("DonGiaMon"));
+					mon.setHinhAnh(rs.getString("HinhAnh"));
+					mon.setMoTa(rs.getString("MoTa"));
+					mon.setChiDa(rs.getBoolean("ChiDa"));
+					return mon;
+				}
+			},viTriBatDau,soMonTrenTrang);
+		}
+		else
+		{
+			sql = "SELECT * FROM mon where idDMMon = ? LIMIT ?,?";
+			dsMon = jdbcTemplate.query(sql, new RowMapper<Mon>() {
+
+				public Mon mapRow(ResultSet rs, int rowNum) throws SQLException {
+					Mon mon = new Mon();
+					mon.setIdMon(rs.getInt("idMon"));
+					mon.setIdDMMon(rs.getString("idDMMon"));
+					mon.setTenMon(rs.getString("TenMon"));
+					mon.setDonGiaMon(rs.getInt("DonGiaMon"));
+					mon.setHinhAnh(rs.getString("HinhAnh"));
+					mon.setMoTa(rs.getString("MoTa"));
+					mon.setChiDa(rs.getBoolean("ChiDa"));
+					return mon;
+				}
+			},idDMMon,viTriBatDau,soMonTrenTrang);
+
+		}
+		return dsMon;
+	}
+	public int demSoMon(String idDMMon) {
+		int dem = 0;
+		String sql;
+		if(idDMMon == "tatcamon") {
+			sql = "select count(*) from trasua.mon";
+			dem = jdbcTemplate.queryForObject(sql, Integer.class);
+		}
+		else
+		{
+			sql = "select count(*) from trasua.mon where idDMMon = ?";	
+			dem = jdbcTemplate.queryForObject(sql, Integer.class,idDMMon);
+		}
+		
+		return dem;
+	}
+	
 
 }

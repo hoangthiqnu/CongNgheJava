@@ -10,7 +10,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="col-md-6 chonthem-cart">
-					<a href="/MilkTea/thucdon?iddm=tatcamon"><button type="button" class="btn btn-default"> << Chọn thêm thức uống khác</button></a>
+					<a href="/MilkTea/thucdon?iddm=tatcamon&page=1"><button type="button" class="btn btn-default"> << Chọn thêm thức uống khác</button></a>
 				</div>
 				<div class="col-md-6 tieude-cart">
 					<span>Giỏ hàng của bạn</span>

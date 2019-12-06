@@ -13,7 +13,7 @@
 			</div>
 			<div class="col-xs-4">
 				<div class="btn-all">
-				     <a href="/MilkTea/thucdon?iddm=tatcamon" class="btn-all-css"><span>XEM THÊM TẤT CẢ MÓN</span></a>
+				     <a href="/MilkTea/thucdon?iddm=tatcamon&page=1" class="btn-all-css"><span>XEM THÊM TẤT CẢ MÓN</span></a>
 				</div>
 			</div>
 		</div>

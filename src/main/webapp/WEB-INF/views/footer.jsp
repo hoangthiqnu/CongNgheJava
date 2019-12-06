@@ -88,7 +88,7 @@
 	  console.log(value);
 	  if(value === "")
 	  {
-	        alert("Vui lòng nhập tên món cần tìm");
+	        alert("Vui lòng nhập tên món cần tìm!");
 	        return false;
 	  }
   }

@@ -40,5 +40,5 @@ public class DMMonDAO {
 		String tenDM = jdbcTemplate.queryForObject(sql, String.class,idDMMon);
 		return tenDM;
 	}
-
+	
 }

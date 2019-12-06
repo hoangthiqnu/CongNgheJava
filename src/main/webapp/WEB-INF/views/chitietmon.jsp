@@ -8,7 +8,7 @@
 <div class="container">
 	<div class="content-index">
 		<div class="chonthem">
-			<a href="/MilkTea/thucdon?iddm=tatcamon"><button type="button" class="btn btn-default"> << Chọn thức uống khác</button></a>
+			<a href="/MilkTea/thucdon?iddm=tatcamon&page=1"><button type="button" class="btn btn-default"> << Chọn thức uống khác</button></a>
 		</div>
 		<div class="row">
 			<div class="col-md-12">
