@@ -29,7 +29,7 @@
 							<h4><fmt:formatNumber type = "number" maxFractionDigits = "3" value ="${mon.getDonGiaMon()}"/> Đ</h4>	
 						</div>
 						<div class="btn-pro">
-						<a href="#" class="btn-pro-css"><span>CHỌN</span></a>
+						<a href="/MilkTea/chitietmon" class="btn-pro-css"><span>CHỌN</span></a>
 						</div>
 					</li>
 					</c:forEach>
@@ -53,7 +53,7 @@
 							<h4><fmt:formatNumber type = "number" maxFractionDigits = "3" value ="${mon.getDonGiaMon()}"/> Đ</h4>	
 						</div>
 						<div class="btn-pro">
-						<a href="#" class="btn-pro-css"><span>CHỌN</span></a>
+						<a href="/MilkTea/chitietmon" class="btn-pro-css"><span>CHỌN</span></a>
 						</div>
 					</li>
 					</c:forEach>

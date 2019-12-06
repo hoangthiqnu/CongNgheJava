@@ -3,7 +3,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,10 +40,11 @@
 				</div>
 				<div class="box-cart">
 					<div class="box-cart-1">
-				     	<a href="#"><h4><p>Giỏ hàng (0)</p><img src="<c:url value="/resources/image/cart.png" />" alt=""><div class="clearfix"></div></h4></a>
+				     	<a href="/MilkTea/giohang"><h4><p>Giỏ hàng (0)</p><img src="<c:url value="/resources/image/cart.png" />" alt=""><div class="clearfix"></div></h4></a>
 				    </div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+

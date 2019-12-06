@@ -2,9 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
-<%@page import="com.cnjv.model.DMMon"%>
-<%@page import="com.cnjv.model.Mon"%>
-<%@page import="java.util.List"%>
 
 <%@ include file="header.jsp" %>
 <div class="container-fuild">
@@ -33,7 +30,7 @@
 			<div class="col-md-9 title-danhmuc">
 				<span>${tieude}</span>
 			</div>
-			<ul class=" col-md-9 products-menu">
+			<ul class="col-md-9 products-menu">
 				<c:if test ="${DanhSachMon != null}">
 					<c:set var="dsMon" value="${DanhSachMon}"></c:set>	
 				</c:if>
@@ -48,7 +45,7 @@
 							<h4><fmt:formatNumber type = "number" maxFractionDigits = "3" value ="${mon.getDonGiaMon()}"/> Đ</h4>
 						</div>
 						<div class="btn-pro-menu">
-							<a href="#" class="btn-pro-css"><span>CHỌN</span></a>
+							<a href="/MilkTea/chitietmon" class="btn-pro-css"><span>CHỌN</span></a>
 						</div>
 					</li>		
 				</c:forEach>
@@ -56,6 +53,28 @@
 			 		<span class="title-tim">Không tìm thấy kết quả!</span>
 				</c:if>
 			</ul>
+			<div class="col-md-3"></div>
+			<div class="col-md-9 pagination-0">
+				<nav aria-label="Page navigation example">
+				  <ul class="pagination">
+				    <li class="page-item">
+				      <a class="page-link" href="#" aria-label="Previous">
+				        <span aria-hidden="true">&laquo;</span>
+				        <span class="sr-only">Previous</span>
+				      </a>
+				    </li>
+				    <li class="page-item"><a class="page-link" href="#" >1</a></li>
+				    <li class="page-item"><a class="page-link" href="#">2</a></li>
+				    <li class="page-item"><a class="page-link" href="#">3</a></li>
+				    <li class="page-item">
+				      <a class="page-link" href="#" aria-label="Next">
+				        <span aria-hidden="true">&raquo;</span>
+				        <span class="sr-only">Next</span>
+				      </a>
+				    </li>
+				  </ul>
+				</nav>
+			</div>
 		</div>
 </div>
 <%@ include file="footer.jsp" %>
