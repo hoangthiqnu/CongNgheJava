@@ -3,7 +3,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +26,7 @@
 				    <ul class="megamenu skyblue">
 						<li><a class="color1" href="/MilkTea">Trang chủ</a></li>				
 						<li><a class="color1" href="#">Giới thiệu</a></li>
-						<li><a class="color1" href="/MilkTea/thucdon?iddm=tatcamon">Thực đơn</a></li>
+						<li><a class="color1" href="/MilkTea/thucdon?iddm=tatcamon&page=1">Thực đơn</a></li>
 					    <li><a class="color1" href="#">Liên hệ</a></li>
 					</ul> 
 				</div>
@@ -41,10 +40,11 @@
 				</div>
 				<div class="box-cart">
 					<div class="box-cart-1">
-				     	<a href="#"><h4><p>Giỏ hàng (0)</p><img src="<c:url value="/resources/image/cart.png" />" alt=""><div class="clearfix"></div></h4></a>
+				     	<a href="/MilkTea/giohang"><h4><p>Giỏ hàng (0)</p><img src="<c:url value="/resources/image/cart.png" />" alt=""><div class="clearfix"></div></h4></a>
 				    </div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
