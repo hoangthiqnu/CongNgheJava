@@ -8,10 +8,10 @@
 <div class="container">
 	<div class="content-index">
 		<div class="row">
-			<div class="col-xs-8">
+			<div class="col-md-8">
 				<span class="title-pro">MÓN MỚI</span>
 			</div>
-			<div class="col-xs-4">
+			<div class="col-md-4">
 				<div class="btn-all">
 				     <a href="/MilkTea/thucdon?iddm=tatcamon&page=1" class="btn-all-css"><span>XEM THÊM TẤT CẢ MÓN</span></a>
 				</div>
@@ -29,7 +29,7 @@
 							<h4><fmt:formatNumber type = "number" maxFractionDigits = "3" value ="${mon.getDonGiaMon()}"/> Đ</h4>	
 						</div>
 						<div class="btn-pro">
-						<a href="/MilkTea/chitietmon" class="btn-pro-css"><span>CHỌN</span></a>
+						<a href="/MilkTea/chitietmon?idmon=${mon.getIdMon()}" class="btn-pro-css"><span>CHỌN</span></a>
 						</div>
 					</li>
 					</c:forEach>
@@ -53,7 +53,7 @@
 							<h4><fmt:formatNumber type = "number" maxFractionDigits = "3" value ="${mon.getDonGiaMon()}"/> Đ</h4>	
 						</div>
 						<div class="btn-pro">
-						<a href="/MilkTea/chitietmon" class="btn-pro-css"><span>CHỌN</span></a>
+						<a href="/MilkTea/chitietmon?idmon=${mon.getIdMon()}" class="btn-pro-css"><span>CHỌN</span></a>
 						</div>
 					</li>
 					</c:forEach>
