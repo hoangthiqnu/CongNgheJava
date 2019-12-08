@@ -17,6 +17,13 @@
 		<property name="dataSource" ref="dbTraSua" />
 	</bean>
 	
+	<bean name="dbsize" class="com.cnjv.dao.SizeDAO">
+		<property name="dataSource" ref="dbTraSua" />
+	</bean>
+	
+	<bean name="dbtopping" class="com.cnjv.dao.ToppingDAO">
+		<property name="dataSource" ref="dbTraSua" />
+	</bean>
 	
 	
 	<bean name="dbTraSua" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">

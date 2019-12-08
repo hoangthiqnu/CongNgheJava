@@ -8,9 +8,9 @@
 <div class="container">
 	<div class="giohangtrong">
 		<img src="resources/image/clearcart.png">
-		<h4>Không có món nào trong giỏ hàng</h4>
+		<h3>Không có món nào trong giỏ hàng!</h3>
 		<div class="chonthem">
-			<a href="/MilkTea/thucdon?iddm=tatcamon"><button type="button" class="btn btn-success"> << Về trang thực đơn</button></a>
+			<a href="/MilkTea/thucdon?iddm=tatcamon&page=1"><button type="button" class="btn btn-success"> << Về trang thực đơn</button></a>
 		</div>
 	</div>
 </div>
