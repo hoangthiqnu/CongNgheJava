@@ -17,8 +17,13 @@
 		<property name="dataSource" ref="dbTraSua" />
 	</bean>
 	
+	<bean name="dbhoadon" class="com.cnjv.dao.HoaDonDAO">
+		<property name="dataSource" ref="dbTraSua" />
+	</bean>	
 	
-	
+	<bean name="dbchitiethoadon" class="com.cnjv.dao.ChiTietHoaDonDAO">
+		<property name="dataSource" ref="dbTraSua" />
+	</bean>	
 	<bean name="dbTraSua" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 	    <property name="url" value="jdbc:mysql://localhost:3306/trasua" />

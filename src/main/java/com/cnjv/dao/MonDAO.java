@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
+import com.cnjv.model.HoaDon;
 import com.cnjv.model.Mon;
+import com.cnjv.model.TinhTrangHD;
 
 
 public class MonDAO {
@@ -131,6 +133,18 @@ public class MonDAO {
 		}
 		
 		return dem;
+	}
+	
+	public int getDonGiaByID(int id) {
+		String sql = "SELECT DonGia FROM mon where idMon = ?;";
+		int donGia = jdbcTemplate.queryForObject(sql, Integer.class, id);
+		return donGia;
+	}
+	
+	public int getIdMonByID(int id) {
+		String sql = "SELECT idDMMon FROM mon where idMon = ?;";
+		int idDMMon = jdbcTemplate.queryForObject(sql, Integer.class, id);
+		return idDMMon;
 	}
 	
 
