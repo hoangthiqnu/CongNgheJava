@@ -24,10 +24,15 @@
 	<bean name="dbchitiethoadon" class="com.cnjv.dao.ChiTietHoaDonDAO">
 		<property name="dataSource" ref="dbTraSua" />
 	</bean>	
+	
+	<bean name="dbsize" class="com.cnjv.dao.SizeDAO">
+		<property name="dataSource" ref="dbTraSua" />
+	</bean>	
+	
 	<bean name="dbTraSua" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 	    <property name="url" value="jdbc:mysql://localhost:3306/trasua" />
 	    <property name="username" value="root" />
-	    <property name="password" value="kimhanbin29" />
+	    <property name="password" value="0000" />
 	</bean>	
 </beans>

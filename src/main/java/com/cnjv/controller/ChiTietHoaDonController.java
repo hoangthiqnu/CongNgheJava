@@ -5,9 +5,11 @@ import java.util.List;
 import com.cnjv.dao.ChiTietHoaDonDAO;
 import com.cnjv.dao.DMMonDAO;
 import com.cnjv.dao.HoaDonDAO;
+import com.cnjv.dao.MonDAO;
 import com.cnjv.dao.SizeDAO;
 import com.cnjv.model.ChiTietHoaDon;
 import com.cnjv.model.HoaDon;
+import com.cnjv.model.TinhTrangHD;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -24,11 +26,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ChiTietHoaDonController {
 	ApplicationContext context = new ClassPathXmlApplicationContext("IoC.xml");
 	ChiTietHoaDonDAO db = (ChiTietHoaDonDAO) context.getBean("dbchitiethoadon");
+	MonDAO mondao = (MonDAO) context.getBean("dbmon");
+	SizeDAO sizeDAO = (SizeDAO) context.getBean("dbsize");
+	DMMonDAO dmMonDAO = (DMMonDAO) context.getBean("dbdmmon");
+	HoaDonDAO HoaDonDAO = (HoaDonDAO) context.getBean("dbhoadon");
 	
 	@GetMapping("chitiethoadon/{id}")
 	public String trangChiTietHD(@PathVariable int id, ModelMap modelMap) {
 		
-		HoaDon hd = db.getHoaDonByIDHoaDon(id);
+		HoaDon hd = HoaDonDAO.getHoaDonByIDHoaDon(id);
 		List<ChiTietHoaDon> listChiTietHoaDon = db.getChiTietHDById(id);
 		modelMap.addAttribute("hoaDon", hd);
 		modelMap.addAttribute("listChiTietHoaDon", listChiTietHoaDon);

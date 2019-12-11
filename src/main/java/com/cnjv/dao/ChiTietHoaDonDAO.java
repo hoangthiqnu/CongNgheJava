@@ -37,7 +37,7 @@ private JdbcTemplate jdbcTemplate;
 		}, id);
 		return tthd;
 	}
-	
+
 	 public List<ChiTietHoaDon> getListChiTietHoaDon() {
 			String sql = "select * from chitiethd ;";
 			List<ChiTietHoaDon> dscthd = jdbcTemplate.query(sql, new RowMapper<ChiTietHoaDon>() {
@@ -56,24 +56,6 @@ private JdbcTemplate jdbcTemplate;
 			return dscthd;
 		}
 			
-	 
-	 public HoaDon getHoaDonByIDHoaDon(int idHoaDon) {
-			String sql = "SELECT * FROM hoadon where idHoaDon = ?;";
-			HoaDon hd = jdbcTemplate.queryForObject(sql, new RowMapper<HoaDon>() {
-				public HoaDon mapRow(ResultSet rs, int rowNum) throws SQLException {
-					HoaDon hoaDon = new HoaDon();
-					hoaDon.setIdHoaDon(rs.getInt("idHoaDon"));
-					hoaDon.setThoiGianTao(rs.getDate("ThoiGianTao"));
-					hoaDon.setTenKH(rs.getString("TenKH"));
-					hoaDon.setsDT(rs.getString("SDT"));
-					hoaDon.setDiaChiGiao(rs.getString("DiaChiGiao"));
-					hoaDon.setGhiChu(rs.getString("GhiChu"));
-					hoaDon.setTinhtranghd(getTinhTrangHDByID(rs.getInt("idTinhTrangHD")));
-					return hoaDon;
-	            }
-			}, idHoaDon);
-			return hd;
-		}
 	 /*
 	 public Mon getMonByIDMon(int idMon) {
 			String sql = "SELECT * FROM Mon where idMon = ?;";
@@ -110,5 +92,23 @@ private JdbcTemplate jdbcTemplate;
 			}
 		}, id);
 		return dscthd;
+	}
+	
+	public HoaDon getHoaDonByIDHoaDon(int idHoaDon) {
+		String sql = "SELECT * FROM hoadon where idHoaDon = ?;";
+		HoaDon hd = jdbcTemplate.queryForObject(sql, new RowMapper<HoaDon>() {
+			public HoaDon mapRow(ResultSet rs, int rowNum) throws SQLException {
+				HoaDon hoaDon = new HoaDon();
+				hoaDon.setIdHoaDon(rs.getInt("idHoaDon"));
+				hoaDon.setThoiGianTao(rs.getDate("ThoiGianTao"));
+				hoaDon.setTenKH(rs.getString("TenKH"));
+				hoaDon.setsDT(rs.getString("SDT"));
+				hoaDon.setDiaChiGiao(rs.getString("DiaChiGiao"));
+				hoaDon.setGhiChu(rs.getString("GhiChu"));
+				hoaDon.setTinhtranghd(getTinhTrangHDByID(rs.getInt("idTinhTrangHD")));
+				return hoaDon;
+            }
+		}, idHoaDon);
+		return hd;
 	}
 }

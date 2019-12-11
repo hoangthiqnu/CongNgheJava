@@ -22,35 +22,36 @@
 <div class="content_top">
 	<div class="container">
 	   <div class="content-index" style="display: flex; justify-content: center;">
-		  <div class="form-group"  style="width: 30%;">
-			<select id="menuTinhTrang" class="form-control">
-			   <option value=4>Tất cả</option>
-			   <option value=0>Chờ xác nhận</option>
-			   <option value=1>Đã xác nhận</option>
-			   <option value=2>Đã thanh toán</option>
-			   <option value=3>Đã hủy</option>
-			</select>
-		  </div>
+	   <div class="btn-group" style="width:20%">
+			<a href="/MilkTea/qldonhang?tinhtrang=4" ><button type="button" class="btn btn-success">Tất cả</button></a>
 		</div>
-		<script>
-		 	let menuTinhTrang = document.querySelector("#menuTinhTrang");
-		 	menuTinhTrang.addEventListener("change",()=>{
-		 		let tinhTrang = menuTinhTrang.value;
-		 		console.log(tinhTrang);
-		 		window.location.href= "qldonhang?tinhtrang="+tinhTrang;
-		 	})
-		</script>
+	   <div class="btn-group" style="width:20%">
+			<a href="/MilkTea/qldonhang?tinhtrang=0" ><button type="button" class="btn btn-success">Chờ xác nhận</button></a>
+		</div>
+		<div class="btn-group" style="width:20%">
+			<a href="/MilkTea/qldonhang?tinhtrang=1" ><button type="button" class="btn btn-success">Đã Xác nhận</button></a>
+		</div>
+		<div class="btn-group" style="width:20%">
+			<a href="/MilkTea/qldonhang?tinhtrang=2" ><button type="button" class="btn btn-success">Đã thanh toán</button></a>
+		</div>
+		<div class="btn-group" style="width:20%">
+			<a href="/MilkTea/qldonhang?tinhtrang=3" ><button type="button" class="btn btn-success">Đã hủy</button></a>
+		</div>
+		  
+		</div>
+		
 			<table class="table table-striped">
 			  <thead>
 			    <tr>
-			      <th scope="col" style="width: 10%">ID</th>
+			      <th scope="col" >ID</th>
 			      <th scope="col" >Thời gian tạo</th>
 			      <th scope="col" >Tên KH</th>
 			      <th scope="col" >SĐT</th>
-			      <th scope="col" style="width: 15%" >Địa chỉ giao</th>
-			      <th scope="col" style="width: 15%">Ghi chú</th>
+			      <th scope="col" >Địa chỉ giao</th>
+			      <th scope="col">Ghi chú</th>
 			      <th scope="col" >Tình Trạng</th>
 			      <th scope="col" >Thành tiền</th>
+			      <th scope="col" >Action</th>
 			    </tr>
 			  </thead>
 			  <%
@@ -67,6 +68,14 @@
 						<td><%= hd.getGhiChu() %></td>
 						<td ><%= (hd.getTinhtranghd()).getTenTinhTrang() %></td>
 						<td>75000</td>
+						<td>
+							<div class="btn-group">
+					      		<a href="/MilkTea/qlhoadon/xacnhan?id=<%= hd.getIdHoaDon() %>" ><button type="button" class="btn btn-success">Xác nhận</button></a>
+					      	</div>
+					      	<div class="btn-group">
+					      		<a href="/MilkTea/qlhoadon/huy?id=<%= hd.getIdHoaDon() %>"><button type="button" class="btn btn-danger">Hủy</button></a>
+					      	</div>
+				      	</td>
 					</tr>
 					<%
 						}

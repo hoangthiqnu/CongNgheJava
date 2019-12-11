@@ -85,18 +85,18 @@
 				<span>Thông tin khách hàng</span>
 			</div>
 		
-				<form name ="donhang" action="chitiethoadon/${id}" method="post">
+				<form name ="thongtin" action="/MilkTea/chitiethoadon/${id}" method="post" onsubmit="return Check()">
 					<div class="col-md-4 form-group"> 
 	    				<label>Tên người nhận</label>
-	    				<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nhập họ và tên" value="${hoaDon.getTenKH()}">
+	    				<input type="text" class="form-control" name="tenKH" id="exampleInputEmail1" placeholder="Nhập họ và tên" value="${hoaDon.getTenKH()}">
 					</div>
 					<div class="col-md-4 form-group"> 
 	    				<label>Điện thoại</label>
-	    				<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nhập số điện thoại" value="${hoaDon.getsDT()}">
+	    				<input type="text" class="form-control" name="sdt" id="exampleInputEmail1" placeholder="Nhập số điện thoại" value="${hoaDon.getsDT()}">
 					</div>
 					<div class="col-md-8 form-group">
 					    <label>Địa chỉ giao hàng (Số nhà, tên đường, phường)</label>
-					    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Nhập địa chỉ" value="${hoaDon.getDiaChiGiao()}">
+					    <input type="text" class="form-control"  name="diaChi" id="exampleInputPassword1" placeholder="Nhập địa chỉ" value="${hoaDon.getDiaChiGiao()}">
 					</div>
 					<div class="col-md-8 form-group">
 					    <label>Ghi chú (nếu có)</label>
@@ -107,7 +107,18 @@
 						<button type="button" class="btn btn-danger ">Hủy Đơn Hàng</button>	
 					</div>
 				</form>
-			
+			<script>
+			 	function Check(){
+			 		let tenKH = document.forms["thongtin"]["tenKH"].value;
+			 		let sdt = document.forms["thongtin"]["sdt"].value;
+			 		let diaChi = document.forms["thongtin"]["diaChi"].value;
+			 		if(tenKH === "" || sdt === "" || diaChi === ""  ){
+			 			alert("Vui lòng nhập đầy đủ nội dung");
+			 			return false;
+			 		}
+			 		return true;
+			 	}
+			</script>
 		</div>
 	</div>
 </div>

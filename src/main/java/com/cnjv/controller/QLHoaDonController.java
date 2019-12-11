@@ -55,15 +55,24 @@ public class QLHoaDonController {
 		List<DanhMuc> listDanhMuc = db.getListDanhMuc();
 		modelMap.addAttribute("listDanhMuc", listDanhMuc);
 		return "QLDanhMuc";
-	}/*
-	
-	@GetMapping("/qldanhmuc/{id}")
-	public String xoaDanhMuc(@PathVariable String id, ModelMap modelMap) {
-		
-		db.xoaDanhMuc(id);
-		List<DanhMuc> listDanhMuc = db.getListDanhMuc();
-		modelMap.addAttribute("listDanhMuc", listDanhMuc);
-		modelMap.addAttribute("result", 1); // attribute cho alert
-		return "QLDanhMuc";
 	}*/
+	
+	@GetMapping("/qldonhang?tinhtrang={id}")
+	public String xoaDanhMuc(@PathVariable int id, ModelMap modelMap) {
+		List<HoaDon> listhd = db.getListHoaDonByIDTinhTrang(id);
+		modelMap.addAttribute("idTinhTrang", id);
+		modelMap.addAttribute("listHoaDon", listhd);
+		if(id==0)									//Chua xac nhan
+		{
+			
+		}else if (id == 1) {					 // Da xac nhan
+			
+		}else if (id == 2) { 					//Da thanh toan
+			
+		}else if (id == 3) { 					//Da huy
+			
+		}
+		
+		return "QLDonHang";
+	}
 }
