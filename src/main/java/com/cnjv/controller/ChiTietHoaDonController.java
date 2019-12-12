@@ -9,6 +9,7 @@ import com.cnjv.dao.MonDAO;
 import com.cnjv.dao.SizeDAO;
 import com.cnjv.model.ChiTietHoaDon;
 import com.cnjv.model.HoaDon;
+import com.cnjv.model.Mon;
 import com.cnjv.model.TinhTrangHD;
 
 import org.springframework.context.ApplicationContext;
@@ -34,10 +35,13 @@ public class ChiTietHoaDonController {
 	@GetMapping("chitiethoadon/{id}")
 	public String trangChiTietHD(@PathVariable int id, ModelMap modelMap) {
 		
+		List<Mon> listMon = mondao.getMonByIdHoaDon(id);
 		HoaDon hd = HoaDonDAO.getHoaDonByIDHoaDon(id);
 		List<ChiTietHoaDon> listChiTietHoaDon = db.getChiTietHDById(id);
+		
 		modelMap.addAttribute("hoaDon", hd);
 		modelMap.addAttribute("listChiTietHoaDon", listChiTietHoaDon);
+		modelMap.addAttribute("listMon", listMon);
 		modelMap.addAttribute("id", id);
 		return "ChiTietDonHang";
 /*

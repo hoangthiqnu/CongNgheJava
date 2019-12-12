@@ -56,22 +56,45 @@ private JdbcTemplate jdbcTemplate;
 	}
 	
 	public List<HoaDon> getListHoaDonByIDTinhTrang(int id) {
-		String sql = "select * from hoadon where idTinhTrangHD = ? order by ThoiGianTao;";
-		List<HoaDon> dsHoaDon = jdbcTemplate.query(sql, new RowMapper<HoaDon>() {
+		String sql ="";
+		if(id == 4) { // id == 4 lay tat ca cac tinh trang hoa don
+			sql = "select * from hoadon order by ThoiGianTao;";
+			List<HoaDon> dsHoaDon = jdbcTemplate.query(sql, new RowMapper<HoaDon>() {
 
-			public HoaDon mapRow(ResultSet rs, int rowNum) throws SQLException {
-				HoaDon hoaDon = new HoaDon();
-				hoaDon.setIdHoaDon(rs.getInt("idHoaDon"));
-				hoaDon.setThoiGianTao(rs.getDate("ThoiGianTao"));
-				hoaDon.setTenKH(rs.getString("TenKH"));
-				hoaDon.setsDT(rs.getString("SDT"));
-				hoaDon.setDiaChiGiao(rs.getString("DiaChiGiao"));
-				hoaDon.setGhiChu(rs.getString("GhiChu"));
-				hoaDon.setTinhtranghd(getTinhTrangHDByID(rs.getInt("idTinhTrangHD")));
-				return hoaDon;
-			}
-		}, id);
-		return dsHoaDon;
+				public HoaDon mapRow(ResultSet rs, int rowNum) throws SQLException {
+					HoaDon hoaDon = new HoaDon();
+					hoaDon.setIdHoaDon(rs.getInt("idHoaDon"));
+					hoaDon.setThoiGianTao(rs.getDate("ThoiGianTao"));
+					hoaDon.setTenKH(rs.getString("TenKH"));
+					hoaDon.setsDT(rs.getString("SDT"));
+					hoaDon.setDiaChiGiao(rs.getString("DiaChiGiao"));
+					hoaDon.setGhiChu(rs.getString("GhiChu"));
+					hoaDon.setTinhtranghd(getTinhTrangHDByID(rs.getInt("idTinhTrangHD")));
+					return hoaDon;
+				}
+			});
+			return dsHoaDon;
+		}
+		else {
+			sql = "select * from hoadon where idTinhTrangHD = ? order by ThoiGianTao;";
+			List<HoaDon> dsHoaDon = jdbcTemplate.query(sql, new RowMapper<HoaDon>() {
+
+				public HoaDon mapRow(ResultSet rs, int rowNum) throws SQLException {
+					HoaDon hoaDon = new HoaDon();
+					hoaDon.setIdHoaDon(rs.getInt("idHoaDon"));
+					hoaDon.setThoiGianTao(rs.getDate("ThoiGianTao"));
+					hoaDon.setTenKH(rs.getString("TenKH"));
+					hoaDon.setsDT(rs.getString("SDT"));
+					hoaDon.setDiaChiGiao(rs.getString("DiaChiGiao"));
+					hoaDon.setGhiChu(rs.getString("GhiChu"));
+					hoaDon.setTinhtranghd(getTinhTrangHDByID(rs.getInt("idTinhTrangHD")));
+					return hoaDon;
+				}
+			}, id);
+			return dsHoaDon;
+		}
+		
+		
 	}
 	
 	public HoaDon getHoaDonByIDHoaDon(int idHoaDon) {

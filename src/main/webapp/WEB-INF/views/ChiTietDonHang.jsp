@@ -25,13 +25,19 @@
 <div class="content-index">
 		<div class="row">
 			<div class="col-md-12">
-				<div class="col-md-6 chonthem-cart">
-					<a href="/MilkTea/qldonhang"><button type="button" class="btn btn-default"> << Trở lại trang quản lý đơn hàng</button></a>
+				<div class="col-md-4 chonthem-cart">
+					<a href="/MilkTea/qldonhang?tinhtrang=4"><button type="button" class="btn btn-default"> << Trở lại trang quản lý đơn hàng</button></a>
 				</div>
 				
+				<%
+					HoaDon hd = (HoaDon) request.getAttribute("hoaDon");
+				%>
+				<div class="col-md-4 tieude-chitiet">
+					<span>Tình trạng đơn hàng:&nbsp;<%= (hd.getTinhtranghd()).getTenTinhTrang() %></span>
+				</div>
 				
-				<div class="col-md-6 tieude-cart">
-					<span>Mã đơn hàng:<%= (Integer) request.getAttribute("id") %> </span>
+				<div class="col-md-4 tieude-cart">
+					<span>Mã đơn hàng:&nbsp;<%= (Integer) request.getAttribute("id") %> </span>
 				</div>
 			</div>
 		</div>
@@ -84,7 +90,6 @@
 				<img src="resources/image/check.png">
 				<span>Thông tin khách hàng</span>
 			</div>
-		
 				<form name ="thongtin" action="/MilkTea/chitiethoadon/${id}" method="post" onsubmit="return Check()">
 					<div class="col-md-4 form-group"> 
 	    				<label>Tên người nhận</label>
@@ -100,9 +105,10 @@
 					</div>
 					<div class="col-md-8 form-group">
 					    <label>Ghi chú (nếu có)</label>
-					    <textarea class="form-control" rows="3" value="${hoaDon.getGhiChu()}"></textarea>
+					    <textarea class="form-control" rows="3">${hoaDon.getGhiChu()}</textarea>
 					</div>
 					<div class="col-md-4 btnempty">
+					
 						<button type="submit" class="btn btn-warning ">Cập nhật</button>
 						<button type="button" class="btn btn-danger ">Hủy Đơn Hàng</button>	
 					</div>

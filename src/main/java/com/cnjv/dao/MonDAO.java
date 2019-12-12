@@ -141,11 +141,28 @@ public class MonDAO {
 		return donGia;
 	}
 	
-	public int getIdMonByID(int id) {
+	public int getIdDMMonByID(int id) {
 		String sql = "SELECT idDMMon FROM mon where idMon = ?;";
 		int idDMMon = jdbcTemplate.queryForObject(sql, Integer.class, id);
 		return idDMMon;
 	}
 	
+	 public List<Mon> getMonByIdHoaDon(int idHoaDon) {
+			String sql = "SELECT * FROM mon, chitiethd  where mon.idMon = chitiethd.idMon and chitiethd.idHoaDon= ?;";
+			List<Mon> mon1 = jdbcTemplate.query(sql, new RowMapper<Mon>() {
+				public Mon mapRow(ResultSet rs, int rowNum) throws SQLException {
+					Mon mon = new Mon();
+					mon.setIdMon(rs.getInt("idMon"));
+					mon.setIdDMMon(rs.getString("idDMMon"));
+					mon.setTenMon(rs.getString("TenMon"));
+					mon.setDonGiaMon(rs.getInt("DonGia"));
+					mon.setHinhAnh(rs.getString("HinhAnh"));
+					mon.setMoTa(rs.getString("MoTa"));
+					mon.setChiDa(rs.getBoolean("ChiDa"));
+					return mon;
+	            }
+			}, idHoaDon);
+			return mon1;
+		}
 
 }

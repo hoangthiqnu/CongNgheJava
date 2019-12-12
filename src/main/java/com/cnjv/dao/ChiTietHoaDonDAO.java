@@ -55,25 +55,6 @@ private JdbcTemplate jdbcTemplate;
 			});
 			return dscthd;
 		}
-			
-	 /*
-	 public Mon getMonByIDMon(int idMon) {
-			String sql = "SELECT * FROM Mon where idMon = ?;";
-			Mon mon1 = jdbcTemplate.queryForObject(sql, new RowMapper<Mon>() {
-				public Mon mapRow(ResultSet rs, int rowNum) throws SQLException {
-					Mon mon = new Mon();
-					mon.setIdMon(rs.getInt("idMon"));
-					mon.setIdDMMon(getDanhMucByID(rs.getInt("idDMMon")));
-					mon.setTenMon(rs.getString("TenMon"));
-					mon.setDonGiaMon(rs.getInt("DonGia"));
-					mon.setHinhAnh(rs.getString("HinhAnh"));
-					mon.setMoTa(rs.getString("MoTa"));
-					mon.setChiDa(rs.getBoolean("ChiDa"));
-					return mon;
-	            }
-			}, idMon);
-			return mon1;
-		}*/
 
 	public List<ChiTietHoaDon> getChiTietHDById(int id) {
 		

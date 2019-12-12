@@ -21,14 +21,13 @@ public class QLHoaDonController {
 	HoaDonDAO db = (HoaDonDAO) context.getBean("dbhoadon");
 
 	@GetMapping("/qldonhang")
-	public String trangQLMon(ModelMap modelMap) {
+	public String hienThiHoaDonbyIDTinhTrang(@RequestParam("tinhtrang") int id, ModelMap modelMap) {
 		
-		List<HoaDon> listHoaDon = db.getListHoaDon();
-		modelMap.addAttribute("listHoaDon", listHoaDon);
-		//modelMap.addAttribute("result", 1);
+		List<HoaDon> listhd = db.getListHoaDonByIDTinhTrang(id);
+		modelMap.addAttribute("idTinhTrang", id);
+		modelMap.addAttribute("listHoaDon", listhd);
 		return "QLDonHang";
 	}
-	
 	
 	/*@PostMapping("/qldonhang")
 	public String xemTinhTrang(@RequestParam String maDanhMuc, String tenDanhMuc, ModelMap modelMap) {
@@ -57,22 +56,4 @@ public class QLHoaDonController {
 		return "QLDanhMuc";
 	}*/
 	
-	@GetMapping("/qldonhang?tinhtrang={id}")
-	public String xoaDanhMuc(@PathVariable int id, ModelMap modelMap) {
-		List<HoaDon> listhd = db.getListHoaDonByIDTinhTrang(id);
-		modelMap.addAttribute("idTinhTrang", id);
-		modelMap.addAttribute("listHoaDon", listhd);
-		if(id==0)									//Chua xac nhan
-		{
-			
-		}else if (id == 1) {					 // Da xac nhan
-			
-		}else if (id == 2) { 					//Da thanh toan
-			
-		}else if (id == 3) { 					//Da huy
-			
-		}
-		
-		return "QLDonHang";
-	}
 }

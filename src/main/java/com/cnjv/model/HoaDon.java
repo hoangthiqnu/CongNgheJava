@@ -1,6 +1,7 @@
 package com.cnjv.model;
 
 import java.sql.Date;
+import java.util.List;
 
 import com.cnjv.model.ChiTietHoaDon;
 
@@ -83,5 +84,4 @@ public class HoaDon {
     public void setTinhtranghd(TinhTrangHD tinhtranghd) {
         this.tinhtranghd = tinhtranghd;
     }
-    
 }

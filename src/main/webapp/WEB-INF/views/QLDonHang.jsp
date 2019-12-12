@@ -21,22 +21,23 @@
 	</div>
 <div class="content_top">
 	<div class="container">
-	   <div class="content-index" style="display: flex; justify-content: center;">
+	   <div class="content-index" style="display: flex; justify-content: center; padding-bottom: 20px">
 	   <div class="btn-group" style="width:20%">
-			<a href="/MilkTea/qldonhang?tinhtrang=4" ><button type="button" class="btn btn-success">Tất cả</button></a>
+			<a href="/MilkTea/qldonhang?tinhtrang=4" ><button type="button" class="btn btn-danger">Tất cả</button></a>
 		</div>
 	   <div class="btn-group" style="width:20%">
-			<a href="/MilkTea/qldonhang?tinhtrang=0" ><button type="button" class="btn btn-success">Chờ xác nhận</button></a>
+			<a href="/MilkTea/qldonhang?tinhtrang=0" ><button type="button" class="btn btn-warning">Chờ xác nhận</button></a>
 		</div>
 		<div class="btn-group" style="width:20%">
-			<a href="/MilkTea/qldonhang?tinhtrang=1" ><button type="button" class="btn btn-success">Đã Xác nhận</button></a>
+			<a href="/MilkTea/qldonhang?tinhtrang=1" ><button type="button" class="btn btn-default">Đã Xác nhận</button></a>
 		</div>
 		<div class="btn-group" style="width:20%">
-			<a href="/MilkTea/qldonhang?tinhtrang=2" ><button type="button" class="btn btn-success">Đã thanh toán</button></a>
+			<a href="/MilkTea/qldonhang?tinhtrang=2" ><button type="button" class="btn btn-primary">Đã thanh toán</button></a>
 		</div>
 		<div class="btn-group" style="width:20%">
-			<a href="/MilkTea/qldonhang?tinhtrang=3" ><button type="button" class="btn btn-success">Đã hủy</button></a>
+			<a href="/MilkTea/qldonhang?tinhtrang=3" ><button type="button" class="btn btn-info">Đã hủy</button></a>
 		</div>
+		<div class="clearfix"></div>
 		  
 		</div>
 		
@@ -54,32 +55,41 @@
 			      <th scope="col" >Action</th>
 			    </tr>
 			  </thead>
-			  <%
-			  			List<HoaDon> listHoaDon = (List<HoaDon>) request.getAttribute("listHoaDon");
-		    				for(HoaDon hd : listHoaDon){ 
-		    	%>	  
+  
+		    	<c:forEach var = "hd" items="${listHoaDon}">
+		    	
 			   <tbody>
 					<tr>
-						<th scope="row" ><a href="chitiethoadon/<%=hd.getIdHoaDon()%>"><%= hd.getIdHoaDon() %></a></td>
-						<td><%= hd.getThoiGianTao() %></td>
-						<td><%= hd.getTenKH() %></td>
-						<td><%= hd.getsDT() %></td>
-						<td><%= hd.getDiaChiGiao() %></td>
-						<td><%= hd.getGhiChu() %></td>
-						<td ><%= (hd.getTinhtranghd()).getTenTinhTrang() %></td>
+						<th scope="row" ><a href="chitiethoadon/${hd.getIdHoaDon()}">${ hd.getIdHoaDon()}</a></td>
+						<td>${hd.getThoiGianTao()}</td>
+						<td>${hd.getTenKH()}</td>
+						<td>${hd.getsDT()}</td>
+						<td>${hd.getDiaChiGiao()}</td>
+						<td>${hd.getGhiChu()}</td>
+						<td >${hd.getTinhtranghd().getTenTinhTrang()}</td>
 						<td>75000</td>
+						
 						<td>
-							<div class="btn-group">
-					      		<a href="/MilkTea/qlhoadon/xacnhan?id=<%= hd.getIdHoaDon() %>" ><button type="button" class="btn btn-success">Xác nhận</button></a>
-					      	</div>
+						<c:if test="${hd.getTinhtranghd().getIdTinhTrangHD() == 1 || hd.getTinhtranghd().getIdTinhTrangHD()==0 || hd.getTinhtranghd().getIdTinhTrangHD()== 2}">
 					      	<div class="btn-group">
-					      		<a href="/MilkTea/qlhoadon/huy?id=<%= hd.getIdHoaDon() %>"><button type="button" class="btn btn-danger">Hủy</button></a>
+					      		<a href="/MilkTea/qlhoadon/huy?id=${ hd.getIdHoaDon()}"><button type="button" class="btn btn-danger">Hủy</button></a>
 					      	</div>
+					      	</c:if>
+						<c:if test="${ hd.getTinhtranghd().getIdTinhTrangHD()==0}">
+							<div class="btn-group">
+					      		<a href="/MilkTea/qlhoadon/xacnhan?id=${ hd.getIdHoaDon()}"><button type="button" class="btn btn-success">Xác nhận</button></a>
+					      	</div>
+					      </c:if>
+					     <c:if test="${hd.getTinhtranghd().getIdTinhTrangHD()==1}">
+					      	<div class="btn-group">
+					      		<a href="/MilkTea/qlhoadon/thanhtoan?id=${ hd.getIdHoaDon()}"><button type="button" class="btn btn-primary">Thanh Toán</button></a>
+					      	</div>
+					      	</c:if>
+					      	
+						
 				      	</td>
 					</tr>
-					<%
-						}
-					%>
+					</c:forEach>
 			  </tbody>
 			</table>
 		
