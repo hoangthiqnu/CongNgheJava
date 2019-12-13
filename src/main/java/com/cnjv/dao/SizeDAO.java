@@ -35,5 +35,10 @@ private JdbcTemplate jdbcTemplate;
 		},idDMMon);
 		return dsSize;
 	}
+	public int layGiaThem(String idDMMon, String loaiSize){	
+		String sql = "select GiaThem from size where idDMMon = ? and LoaiSize = ?";
+		int giaThem = jdbcTemplate.queryForObject(sql, Integer.class,idDMMon, loaiSize);
+		return giaThem;
+	}
 
 }
