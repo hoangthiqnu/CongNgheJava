@@ -64,6 +64,27 @@ public class Mon {
 	public void setChiDa(boolean chiDa) {
 		this.chiDa = chiDa;
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + idMon;
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Mon other = (Mon) obj;
+		if (idMon != other.idMon)
+			return false;
+		return true;
+	}
+	
 	
 	
 

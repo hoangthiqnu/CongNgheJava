@@ -784,6 +784,15 @@ li.col-md-3.each-pro-menu{
 	width:20px;
 	
 }
+.xoa-cart button{
+	border:none;
+	
+}
+.xoa-cart span{
+	font-size:16px;
+	color:#ca0000;
+	
+}
 .colimg a{
 	color:#686868;
 	font-size:16px;

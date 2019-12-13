@@ -34,5 +34,20 @@ public class ToppingDAO {
 		});
 		return dsTopping;
 	}
+	public Topping layToppingTheoId(int idTopping) {
+		String sql = "select * from topping where idTopping = ?";
+		Topping topping = jdbcTemplate.queryForObject(sql, new RowMapper<Topping>() {
+
+			public Topping mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Topping topping = new Topping();
+				topping.setIdTopping(rs.getInt("idTopping"));
+				topping.setTenTopping(rs.getString("TenTopping"));
+				topping.setDonGiaTopping(rs.getInt("DonGiaTopping"));
+				return topping;
+			}
+		},idTopping);
+		return topping;
+	}
+	
 
 }
