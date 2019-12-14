@@ -151,8 +151,20 @@ public class GioHang {
 		}
 		return (donGiaMon + tienTopping + giaThem)*soLuongMua;		
 	}
-	
-	
-	
-	
+	public String danhSachTopping()
+	{
+		String danhSach = "";
+		if (dsToppingMua.size()==0)
+		{
+			danhSach = "Không";
+		}
+		else
+		{
+			for (Topping tp:dsToppingMua)
+			{
+				danhSach += tp.getTenTopping() +", ";
+			}		
+		}
+		return danhSach;
+	}	
 }

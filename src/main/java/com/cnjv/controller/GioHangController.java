@@ -17,7 +17,7 @@ public class GioHangController {
 	GioHangService gioHangService = new GioHangService();
 	
 	@RequestMapping("/giohang")
-	public String hienThiGioHang(HttpSession session) {
+	public String hienThiGioHang() {
 		return "giohang";
 	}
 	@RequestMapping("/xoagiohang")
