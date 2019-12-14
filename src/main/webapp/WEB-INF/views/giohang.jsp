@@ -7,7 +7,7 @@
 <div class="duongvien"></div>
 <div class="container">
 	<div class="content-index">
-	<c:if test="${sessionScope.tongMon==0}">
+	<c:if test="${sessionScope.tongMon==0 || sessionScope.tongMon==null }">
 		<div class="giohangtrong">
 			<img src="resources/image/clearcart.png">
 			<h3>Không có món nào trong giỏ hàng!</h3>
@@ -95,19 +95,19 @@
 			<form name ="donhang" action="dathang" method="post">
 				<div class="col-md-4 form-group"> 
     				<label>Tên người nhận</label>
-    				<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nhập họ và tên" required>
+    				<input type="text" class="form-control" name="tenNguoiNhan" value="${sessionScope.tenNguoiNhan}" id="exampleFormControlInput1" placeholder="Nhập họ và tên" required>
 				</div>
 				<div class="col-md-4 form-group"> 
     				<label>Điện thoại</label>
-    				<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nhập số điện thoại" required>
+    				<input type="text" class="form-control" name="soDienThoai" value="${sessionScope.soDienThoai}" id="exampleFormControlInput1" placeholder="Nhập số điện thoại" required>
 				</div>
 				<div class="col-md-8 form-group">
 				    <label>Địa chỉ giao hàng (Số nhà, tên đường, phường)</label>
-				    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nhập địa chỉ" required>
+				    <input type="text" class="form-control" name="diaChi" value="${sessionScope.diaChi}" id="exampleFormControlInput1" placeholder="Nhập địa chỉ" required>
 				</div>
 				<div class="col-md-8 form-group">
 				    <label>Ghi chú (nếu có)</label>
-				    <textarea class="form-control" rows="3"></textarea>
+				    <input type="text" class="form-control" name="ghiChu" value="${sessionScope.ghiChu}" id="exampleFormControlInput1" style="height:72px;">
 				</div>
 				<div class="col-md-4 btndat">
 					<button type="submit" class="btn btn-danger ">ĐẶT HÀNG&nbsp;&nbsp;&nbsp;&nbsp;<fmt:formatNumber type = "number" maxFractionDigits = "3" value ="${sessionScope.tongTien}"/> Đ</button>	

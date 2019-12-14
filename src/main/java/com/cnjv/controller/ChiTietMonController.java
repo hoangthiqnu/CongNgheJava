@@ -9,7 +9,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -81,9 +80,7 @@ public class ChiTietMonController {
         session.setAttribute("dsGioHang", dsGioHang);
         session.setAttribute("tongTien", tongTien);
         session.setAttribute("tongMon",tongMon);
-        return "chitietmon";
-		
-		
+        return "chitietmon";	
 	}
 
 }
