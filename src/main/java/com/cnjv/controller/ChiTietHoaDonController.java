@@ -2,15 +2,19 @@ package com.cnjv.controller;
 
 import java.util.List;
 
+import javax.print.attribute.HashDocAttributeSet;
+
 import com.cnjv.dao.ChiTietHoaDonDAO;
 import com.cnjv.dao.DMMonDAO;
 import com.cnjv.dao.HoaDonDAO;
 import com.cnjv.dao.MonDAO;
 import com.cnjv.dao.SizeDAO;
+import com.cnjv.dao.XuLyHoaDonDAO;
 import com.cnjv.model.ChiTietHoaDon;
 import com.cnjv.model.HoaDon;
 import com.cnjv.model.Mon;
 import com.cnjv.model.TinhTrangHD;
+import com.cnjv.model.XuLyHoaDon;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -27,23 +31,28 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ChiTietHoaDonController {
 	ApplicationContext context = new ClassPathXmlApplicationContext("IoC.xml");
 	ChiTietHoaDonDAO db = (ChiTietHoaDonDAO) context.getBean("dbchitiethoadon");
-	MonDAO mondao = (MonDAO) context.getBean("dbmon");
 	SizeDAO sizeDAO = (SizeDAO) context.getBean("dbsize");
-	DMMonDAO dmMonDAO = (DMMonDAO) context.getBean("dbdmmon");
 	HoaDonDAO HoaDonDAO = (HoaDonDAO) context.getBean("dbhoadon");
+	XuLyHoaDonDAO xlhdDAO = (XuLyHoaDonDAO) context.getBean("dbxulyhoadon");
+	MonDAO monDao =  (MonDAO)  context.getBean("dbmon");
 	
 	@GetMapping("chitiethoadon/{id}")
 	public String trangChiTietHD(@PathVariable int id, ModelMap modelMap) {
+
+		List<XuLyHoaDon> listChiTietHoaDon = xlhdDAO.layHoaDonTheoIdHoaDon(id);
+
+		HoaDon hoaDon = HoaDonDAO.getHoaDonByIDHoaDon(id);
+		/*List<Mon> mons = monDao.getMonByIdHoaDon(id); // Danh sach mon 1 hoa don
+		cthd.setListMon(mons);
+		List<ChiTietHoaDon> listcthd = db.getChiTietHDById(id); // Chi tiet hoa don
+		cthd.setListChiTietHD(listcthd);*/
+		//int tongTien= xlhdDAO.TongTienTrenMotHoaDon(id); // Tinh tien 1 hoa don
 		
-		List<Mon> listMon = mondao.getMonByIdHoaDon(id);
-		HoaDon hd = HoaDonDAO.getHoaDonByIDHoaDon(id);
-		List<ChiTietHoaDon> listChiTietHoaDon = db.getChiTietHDById(id);
-		
-		modelMap.addAttribute("hoaDon", hd);
-		modelMap.addAttribute("listChiTietHoaDon", listChiTietHoaDon);
-		modelMap.addAttribute("listMon", listMon);
-		modelMap.addAttribute("id", id);
+		modelMap.addAttribute("ChiTietHoaDon", listChiTietHoaDon);
+		modelMap.addAttribute("hoaDon", hoaDon);
+	//	modelMap.addAttribute("tongTien", tongTien);
 		return "ChiTietDonHang";
+	}
 /*
 	@GetMapping("/chitiethoadon")
 	public String trangQLMon(ModelMap modelMap) {
@@ -82,7 +91,4 @@ public class ChiTietHoaDonController {
 		return "QLDanhMuc";
 	}*/
 	
-	
-		
-	}
 }

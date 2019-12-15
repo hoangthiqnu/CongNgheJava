@@ -14,6 +14,7 @@ public class HoaDon {
     private String diaChiGiao;
     private String ghiChu;
     private TinhTrangHD tinhtranghd;
+    private int TongTien;
     
     public HoaDon() {
 		
@@ -84,4 +85,14 @@ public class HoaDon {
     public void setTinhtranghd(TinhTrangHD tinhtranghd) {
         this.tinhtranghd = tinhtranghd;
     }
+
+	public int getTongTien() {
+		return TongTien;
+	}
+
+	public void setTongTien(int tongTien) {
+		TongTien = tongTien;
+	}
+    
+    
 }

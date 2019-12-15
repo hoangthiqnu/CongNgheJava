@@ -23,24 +23,23 @@
 	<div class="container">
 	   <div class="content-index" style="display: flex; justify-content: center; padding-bottom: 20px">
 	   <div class="btn-group" style="width:20%">
-			<a href="/MilkTea/qldonhang?tinhtrang=4" ><button type="button" class="btn btn-danger">Tất cả</button></a>
+			<a href="/MilkTea/qldonhang?tinhtrang=4" ><button type="button" class="btn btn-default">Tất cả</button></a>
 		</div>
 	   <div class="btn-group" style="width:20%">
 			<a href="/MilkTea/qldonhang?tinhtrang=0" ><button type="button" class="btn btn-warning">Chờ xác nhận</button></a>
 		</div>
 		<div class="btn-group" style="width:20%">
-			<a href="/MilkTea/qldonhang?tinhtrang=1" ><button type="button" class="btn btn-default">Đã Xác nhận</button></a>
+			<a href="/MilkTea/qldonhang?tinhtrang=1" ><button type="button" class="btn btn-success">Đã Xác nhận</button></a>
 		</div>
 		<div class="btn-group" style="width:20%">
 			<a href="/MilkTea/qldonhang?tinhtrang=2" ><button type="button" class="btn btn-primary">Đã thanh toán</button></a>
 		</div>
 		<div class="btn-group" style="width:20%">
-			<a href="/MilkTea/qldonhang?tinhtrang=3" ><button type="button" class="btn btn-info">Đã hủy</button></a>
+			<a href="/MilkTea/qldonhang?tinhtrang=3" ><button type="button" class="btn btn-danger">Đã hủy</button></a>
 		</div>
 		<div class="clearfix"></div>
 		  
 		</div>
-		
 			<table class="table table-striped">
 			  <thead>
 			    <tr>
@@ -50,12 +49,11 @@
 			      <th scope="col" >SĐT</th>
 			      <th scope="col" >Địa chỉ giao</th>
 			      <th scope="col">Ghi chú</th>
-			      <th scope="col" >Tình Trạng</th>
 			      <th scope="col" >Thành tiền</th>
+			      <th scope="col" >Tình Trạng</th>
 			      <th scope="col" >Action</th>
 			    </tr>
 			  </thead>
-  
 		    	<c:forEach var = "hd" items="${listHoaDon}">
 		    	
 			   <tbody>
@@ -66,27 +64,26 @@
 						<td>${hd.getsDT()}</td>
 						<td>${hd.getDiaChiGiao()}</td>
 						<td>${hd.getGhiChu()}</td>
-						<td >${hd.getTinhtranghd().getTenTinhTrang()}</td>
-						<td>75000</td>
+						<td>${hd.getTongTien()}</td>
+						<td>${hd.getTinhtranghd().getTenTinhTrang()}</td>
+						
 						
 						<td>
-						<c:if test="${hd.getTinhtranghd().getIdTinhTrangHD() == 1 || hd.getTinhtranghd().getIdTinhTrangHD()==0 || hd.getTinhtranghd().getIdTinhTrangHD()== 2}">
+						<c:if test="${hd.getTinhtranghd().getIdTinhTrangHD() == 1 || hd.getTinhtranghd().getIdTinhTrangHD()==0}">
 					      	<div class="btn-group">
-					      		<a href="/MilkTea/qlhoadon/huy?id=${ hd.getIdHoaDon()}"><button type="button" class="btn btn-danger">Hủy</button></a>
+					      		<a href="/MilkTea/qldonhang/huy?id=${ hd.getIdHoaDon()}"><button type="button" class="btn btn-danger">Hủy</button></a>
 					      	</div>
 					      	</c:if>
 						<c:if test="${ hd.getTinhtranghd().getIdTinhTrangHD()==0}">
 							<div class="btn-group">
-					      		<a href="/MilkTea/qlhoadon/xacnhan?id=${ hd.getIdHoaDon()}"><button type="button" class="btn btn-success">Xác nhận</button></a>
+					      		<a href="/MilkTea/qldonhang/xacnhan?id=${ hd.getIdHoaDon()}"><button type="button" class="btn btn-success">Xác nhận</button></a>
 					      	</div>
 					      </c:if>
 					     <c:if test="${hd.getTinhtranghd().getIdTinhTrangHD()==1}">
 					      	<div class="btn-group">
-					      		<a href="/MilkTea/qlhoadon/thanhtoan?id=${ hd.getIdHoaDon()}"><button type="button" class="btn btn-primary">Thanh Toán</button></a>
+					      		<a href="/MilkTea/qldonhang/thanhtoan?id=${ hd.getIdHoaDon()}"><button type="button" class="btn btn-primary">Thanh Toán</button></a>
 					      	</div>
 					      	</c:if>
-					      	
-						
 				      	</td>
 					</tr>
 					</c:forEach>

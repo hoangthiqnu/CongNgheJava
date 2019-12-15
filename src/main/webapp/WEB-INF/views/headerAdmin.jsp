@@ -24,7 +24,7 @@
 				    <ul class="megamenu skyblue">
 						<li><a class="color1" href="/MilkTea">QL LOẠI MÓN</a></li>				
 						<li><a class="color1" href="#">QL MÓN</a></li>
-						<li><a class="color1" href="/MilkTea/thucdon?iddm=tatcamon">QL ĐƠN HÀNG</a></li>
+						<li><a class="color1" href="/MilkTea/qldonhang?tinhtrang=4">QL ĐƠN HÀNG</a></li>
 					    <li><a class="color1" href="#">THỐNG KÊ</a></li>
 					</ul> 
 				</div>

@@ -1,3 +1,4 @@
+<%@page import="com.cnjv.model.XuLyHoaDon"%>
 <%@page import="com.cnjv.model.ChiTietHoaDon"%>
 <%@page import="com.cnjv.model.TinhTrangHD"%>
 <%@page import="com.cnjv.model.HoaDon"%>
@@ -21,6 +22,7 @@
 	<div style="background-color: #63aa9c;height:35px;color:#fff; font-size:18px; padding:5px; text-align:center;">
 	<span>Thông tin chi tiết Đơn Hàng</span>
 	</div>
+	
 <div class="content_top">
 <div class="content-index">
 		<div class="row">
@@ -28,16 +30,12 @@
 				<div class="col-md-4 chonthem-cart">
 					<a href="/MilkTea/qldonhang?tinhtrang=4"><button type="button" class="btn btn-default"> << Trở lại trang quản lý đơn hàng</button></a>
 				</div>
-				
-				<%
-					HoaDon hd = (HoaDon) request.getAttribute("hoaDon");
-				%>
 				<div class="col-md-4 tieude-chitiet">
-					<span>Tình trạng đơn hàng:&nbsp;<%= (hd.getTinhtranghd()).getTenTinhTrang() %></span>
+					<span>Tình trạng đơn hàng:&nbsp;${hoaDon.getTinhtranghd().getTenTinhTrang()}</span>
 				</div>
 				
 				<div class="col-md-4 tieude-cart">
-					<span>Mã đơn hàng:&nbsp;<%= (Integer) request.getAttribute("id") %> </span>
+					<span>Mã đơn hàng:&nbsp;${hoaDon.getIdHoaDon()}</span>
 				</div>
 			</div>
 		</div>
@@ -46,6 +44,7 @@
                 <table class="table">
                     <thead>
                         <tr>
+                        <th>STT</th>
                             <th>&nbsp;</th>
                             <th>Tên món</th>
                             <th>Đơn giá</th>
@@ -53,35 +52,36 @@
                             <th>Thành tiền</th>
                         </tr>
                     </thead>
-                    
-                    <c:forEach items="${listChiTietHoaDon}" var="cthd">
+
                     <tbody>
+                    <c:forEach var="cthd" items="${ChiTietHoaDon}">
                         <tr>
                             <td class="colimg">
                             	<div class="hinh-cart">
-                            		<a href="/MilkTea/chitietmon"><img src="resources/image/traden.png" class="img-thumbnail"></a>
+                            		<a href="/MilkTea/chitietmon"><img src="resources/image/${cthd.getHinhAnh()}" class="img-thumbnail"></a>
                             	</div>
                             </td>
                             <td class="coltenmon" style="width:40%">
-                            	<a href="/MilkTea/chitietmon">Trà Sữa Xoài Trân Châu Đen</a>
+                            	<a href="/MilkTea/chitietmon">${cthd.getTenMon()}&nbsp;(${cthd.getIdMon()})</a>
                             	<h5>${cthd.getGhiChuMon()} , Size ${cthd.getLoaiSize()}</h5>
-                            	<h5>+Kem sữa +Pudding +Thạch dừa +Trân châu đen +Trân châu trắng +Thạch đen +Thạch trái cây +Nha đam</h5>
-                            	<h5>50% đá, 50% đường</h5>
+                            	<h5>${cthd.getDsTopping()}</h5>	
                             </td>
-                            <td class="colgia">100.000₫</td>
+                            
+                            <td class="colgia">${cthd.getDonGia()}</td>
                             <td class="colsl">${cthd.getSoLuong()}</td>
-                            <td class="colgia">1.100.000₫</td>
+                            <td class="colgia">${cthd.getThanhTien()}</td>
                         </tr>
-                       </c:forEach>
-                        
+                        </c:forEach>
                         <tr>
+                        <td></td>
                             <td class="colimg">&nbsp;</td>
                             <td class="coltenmon">&nbsp;</td>
                             <td class="colgia">&nbsp;</td>
                             <td class="colsl"><span>Tổng cộng:</span></td>
-                            <td class="colgia"><span>10.100.000₫</span></td>
+                            <td class="colgia"><span>${tongTien}</span></td>
                         </tr>
                     </tbody>
+                    
                 </table>
             </div>
 		</div>
@@ -90,24 +90,83 @@
 				<img src="resources/image/check.png">
 				<span>Thông tin khách hàng</span>
 			</div>
-				<form name ="thongtin" action="/MilkTea/chitiethoadon/${id}" method="post" onsubmit="return Check()">
-					<div class="col-md-4 form-group"> 
-	    				<label>Tên người nhận</label>
-	    				<input type="text" class="form-control" name="tenKH" id="exampleInputEmail1" placeholder="Nhập họ và tên" value="${hoaDon.getTenKH()}">
+				<form name ="thongtin" action="/MilkTea/chitiethoadon/${hoaDon.getIdHoaDon()}" method="post" onsubmit="return Check()">
+				<table class="table table-striped">
+			  <thead>
+			    <tr>
+			      <th scope="col" >ID</th>
+			      <th scope="col" >Thời gian tạo</th>
+			      <th scope="col" >Tên KH</th>
+			      <th scope="col" >SĐT</th>
+			      <th scope="col" >Địa chỉ giao</th>
+			      <th scope="col">Ghi chú</th>
+			      <th scope="col" >Thành tiền</th>
+			      <th scope="col" >Tình Trạng</th>
+			      <th scope="col" >Action</th>
+			    </tr>
+			  </thead>
+		    	<c:forEach var = "hd" items="${listHoaDon}">
+		    	
+			   <tbody>
+					<tr>
+						<th scope="row" ><a href="chitiethoadon/${hd.getIdHoaDon()}">${ hd.getIdHoaDon()}</a></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td>
+						<c:if test="${hd.getTinhtranghd().getIdTinhTrangHD() == 1 || hd.getTinhtranghd().getIdTinhTrangHD()==0}">
+					      	<div class="btn-group">
+					      		<a href="/MilkTea/qldonhang/huy?id=${ hd.getIdHoaDon()}"><button type="button" class="btn btn-danger">Hủy</button></a>
+					      	</div>
+					      	</c:if>
+						<c:if test="${ hd.getTinhtranghd().getIdTinhTrangHD()==0}">
+							<div class="btn-group">
+					      		<a href="/MilkTea/qldonhang/xacnhan?id=${ hd.getIdHoaDon()}"><button type="button" class="btn btn-success">Xác nhận</button></a>
+					      	</div>
+					      </c:if>
+					     <c:if test="${hd.getTinhtranghd().getIdTinhTrangHD()==1}">
+					      	<div class="btn-group">
+					      		<a href="/MilkTea/qldonhang/thanhtoan?id=${ hd.getIdHoaDon()}"><button type="button" class="btn btn-primary">Thanh Toán</button></a>
+					      	</div>
+					      	</c:if>
+				      	</td>
+					</tr>
+					</c:forEach>
+			  </tbody>
+			</table>
+					<div class="col-md-3 form-group">
+	    				<label>Tên người nhận:</label>
 					</div>
-					<div class="col-md-4 form-group"> 
-	    				<label>Điện thoại</label>
-	    				<input type="text" class="form-control" name="sdt" id="exampleInputEmail1" placeholder="Nhập số điện thoại" value="${hoaDon.getsDT()}">
+					<div class="col-md-7 form-group" style="font-weight: 100;">
+	    				<p>${hoaDon.getTenKH()}</p>
 					</div>
-					<div class="col-md-8 form-group">
-					    <label>Địa chỉ giao hàng (Số nhà, tên đường, phường)</label>
-					    <input type="text" class="form-control"  name="diaChi" id="exampleInputPassword1" placeholder="Nhập địa chỉ" value="${hoaDon.getDiaChiGiao()}">
+
+					<div class="col-md-3 form-group"> 
+	    				<label>Điện thoại:</label>
 					</div>
-					<div class="col-md-8 form-group">
-					    <label>Ghi chú (nếu có)</label>
-					    <textarea class="form-control" rows="3">${hoaDon.getGhiChu()}</textarea>
+					<div class="col-md-7 form-group" style="font-weight: 100;">
+	    				<p>${hoaDon.getsDT()}</p>
 					</div>
-					<div class="col-md-4 btnempty">
+
+					<div class="col-md-3 form-group">
+					    <label>Địa chỉ giao hàng:</label>
+					</div>
+					<div class="col-md-7 form-group" style="font-weight: 100;">
+	    				<p>${hoaDon.getDiaChiGiao()}</p>
+					</div>
+					
+					<div class="col-md-3 form-group">
+					    <label>Ghi chú:</label>
+					</div>
+					<div class="col-md-7 form-group" style="font-weight: 100;">
+	    				<p>${hoaDon.getGhiChu()}</p>
+					</div>
+					
+					<div class="col-md-8 btnempty">
 					
 						<button type="submit" class="btn btn-warning ">Cập nhật</button>
 						<button type="button" class="btn btn-danger ">Hủy Đơn Hàng</button>	
@@ -128,5 +187,7 @@
 		</div>
 	</div>
 </div>
+<div class="clearfix"></div>
 </body>
+<%@ include file="footer.jsp" %>
 </html>		

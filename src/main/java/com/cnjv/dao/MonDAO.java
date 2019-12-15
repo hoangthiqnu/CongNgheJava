@@ -17,7 +17,7 @@ import com.cnjv.model.TinhTrangHD;
 
 public class MonDAO {
 	private JdbcTemplate jdbcTemplate;
-	
+
 	@Autowired
 	public void setDataSource(DataSource dbTraSua) {
 		this.jdbcTemplate = new JdbcTemplate(dbTraSua);
@@ -148,14 +148,14 @@ public class MonDAO {
 	}
 	
 	 public List<Mon> getMonByIdHoaDon(int idHoaDon) {
-			String sql = "SELECT * FROM mon, chitiethd  where mon.idMon = chitiethd.idMon and chitiethd.idHoaDon= ?;";
+			String sql = "SELECT * FROM mon, chitiethd  where mon.idMon = chitiethd.idMon and chitiethd.idHoaDon = ?";
 			List<Mon> mon1 = jdbcTemplate.query(sql, new RowMapper<Mon>() {
 				public Mon mapRow(ResultSet rs, int rowNum) throws SQLException {
 					Mon mon = new Mon();
 					mon.setIdMon(rs.getInt("idMon"));
 					mon.setIdDMMon(rs.getString("idDMMon"));
 					mon.setTenMon(rs.getString("TenMon"));
-					mon.setDonGiaMon(rs.getInt("DonGia"));
+					mon.setDonGiaMon(rs.getInt("DonGiaMon"));
 					mon.setHinhAnh(rs.getString("HinhAnh"));
 					mon.setMoTa(rs.getString("MoTa"));
 					mon.setChiDa(rs.getBoolean("ChiDa"));
@@ -164,5 +164,4 @@ public class MonDAO {
 			}, idHoaDon);
 			return mon1;
 		}
-
 }

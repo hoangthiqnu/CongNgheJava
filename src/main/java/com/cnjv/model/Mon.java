@@ -65,6 +65,4 @@ public class Mon {
 		this.chiDa = chiDa;
 	}
 	
-	
-
 }

@@ -2,33 +2,33 @@ package com.cnjv.model;
 
 public class ChiTietHoaDon {
 
-	private HoaDon hoaDon;
+	private int idhoaDon;
     private int idMon;
     private String loaiSize;
     private String ghiChuMon;
     private int soLuong;
-    private int toppingMon;
+    private String dsTopping;
+    private int thanhTien;
     
    public ChiTietHoaDon(){}
 
-    public ChiTietHoaDon(HoaDon hoaDon, int idMon, String loaiSize, String ghiChuMon, int soLuong, int toppingMon) {
-        this.hoaDon = hoaDon;
-        this.idMon = idMon;
-        this.loaiSize = loaiSize;
-        this.ghiChuMon = ghiChuMon;
-        this.soLuong = soLuong;
-        this.toppingMon = toppingMon;
-    }
+	public int getIdhoaDon() {
+		return idhoaDon;
+	}
+	
+	public void setIdhoaDon(int idhoaDon) {
+		this.idhoaDon = idhoaDon;
+	}
+	
+	public int getThanhTien() {
+		return thanhTien;
+	}
+	
+	public void setThanhTien(int thanhTien) {
+		this.thanhTien = thanhTien;
+	}
 
-    public HoaDon getHoaDon() {
-        return hoaDon;
-    }
-
-    public void setHoaDon(HoaDon hoaDon) {
-        this.hoaDon = hoaDon;
-    }
-
-    public int getIdMon() {
+	public int getIdMon() {
         return idMon;
     }
 
@@ -60,12 +60,15 @@ public class ChiTietHoaDon {
         this.soLuong = soLuong;
     }
 
-    public int getToppingMon() {
-        return toppingMon;
-    }
+	public String getDsTopping() {
+		return dsTopping;
+	}
 
-    public void setToppingMon(int toppingMon) {
-        this.toppingMon = toppingMon;
-    }
+	public void setDsTopping(String dsTopping) {
+		this.dsTopping = dsTopping;
+	}
+
+    
 }
+
 

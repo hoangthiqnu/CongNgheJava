@@ -44,12 +44,12 @@ private JdbcTemplate jdbcTemplate;
 
 				public ChiTietHoaDon mapRow(ResultSet rs, int rowNum) throws SQLException {
 					ChiTietHoaDon cthd = new ChiTietHoaDon();
-					cthd.setHoaDon(getHoaDonByIDHoaDon(rs.getInt("idHoaDon")));
+					cthd.setIdhoaDon(rs.getInt("idHoaDon"));
 					cthd.setIdMon(rs.getInt("idMon")); /// edit fail
 					cthd.setLoaiSize(rs.getString("LoaiSize"));
 					cthd.setGhiChuMon(rs.getString("GhiChuMon"));
 					cthd.setSoLuong(rs.getInt("SoLuong"));
-					cthd.setToppingMon(rs.getInt("idToppingMon"));
+					//cthd.setToppingMon(rs.getInt("idToppingMon")); SAI CHUA SUA
 					return cthd;
 				}
 			});
@@ -63,12 +63,13 @@ private JdbcTemplate jdbcTemplate;
 
 			public ChiTietHoaDon mapRow(ResultSet rs, int rowNum) throws SQLException {
 				ChiTietHoaDon cthd = new ChiTietHoaDon();
-				cthd.setHoaDon(getHoaDonByIDHoaDon(rs.getInt("idHoaDon")));
+				cthd.setIdhoaDon(rs.getInt("idHoaDon"));
 				cthd.setIdMon(rs.getInt("idMon")); /// edit fail
 				cthd.setLoaiSize(rs.getString("LoaiSize"));
 				cthd.setGhiChuMon(rs.getString("GhiChuMon"));
 				cthd.setSoLuong(rs.getInt("SoLuong"));
-				cthd.setToppingMon(rs.getInt("idToppingMon"));
+				cthd.setDsTopping(rs.getString("DSTopping"));
+				cthd.setThanhTien(rs.getInt("ThanhTien"));
 				return cthd;
 			}
 		}, id);
@@ -92,4 +93,6 @@ private JdbcTemplate jdbcTemplate;
 		}, idHoaDon);
 		return hd;
 	}
+	
+	
 }
