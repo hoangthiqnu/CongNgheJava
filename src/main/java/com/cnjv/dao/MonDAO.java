@@ -132,31 +132,6 @@ public class MonDAO {
 		
 		return dem;
 	}
-	public int demSoMonTimKiem(String key) {
-		int dem = 0;
-		String sql = "SELECT count(*) FROM trasua.mon WHERE TenMon LIKE '%"+key+"%'";
-		dem = jdbcTemplate.queryForObject(sql, Integer.class);
-		return dem;
-	}
-	public List<Mon> timKiemMon(String key, int viTriBatDau, int soMonTrenTrang) {
-		String sql;
-		sql = "SELECT * FROM trasua.mon WHERE TenMon LIKE '%"+key+"%' LIMIT ?,? ";
-		List<Mon> dsMon = jdbcTemplate.query(sql, new RowMapper<Mon>() {
-
-			public Mon mapRow(ResultSet rs, int rowNum) throws SQLException {
-				Mon mon = new Mon();
-				mon.setIdMon(rs.getInt("idMon"));
-				mon.setIdDMMon(rs.getString("idDMMon"));
-				mon.setTenMon(rs.getString("TenMon"));
-				mon.setDonGiaMon(rs.getInt("DonGiaMon"));
-				mon.setHinhAnh(rs.getString("HinhAnh"));
-				mon.setMoTa(rs.getString("MoTa"));
-				mon.setChiDa(rs.getBoolean("ChiDa"));
-				return mon;
-			}
-		},viTriBatDau,soMonTrenTrang);
-		return dsMon;
-	}
 	public Mon layMonTheoId(int id) {
 		String sql = "SELECT * FROM mon  WHERE 	idMon = ?";
 		Mon mon = jdbcTemplate.queryForObject(sql, new RowMapper<Mon>() {
@@ -174,6 +149,24 @@ public class MonDAO {
 			}
 		},id);
 		return mon;
+	}
+	public List<Mon> layDanhSachMonCungLoai(String idDMMon, int idMon) {
+		String sql = "SELECT * FROM mon WHERE idDMMon = ? and idMon <> ? LIMIT 3";
+		List<Mon> dsMonCungLoai = jdbcTemplate.query(sql, new RowMapper<Mon>() {
+
+			public Mon mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Mon mon = new Mon();
+				mon.setIdMon(rs.getInt("idMon"));
+				mon.setIdDMMon(rs.getString("idDMMon"));
+				mon.setTenMon(rs.getString("TenMon"));
+				mon.setDonGiaMon(rs.getInt("DonGiaMon"));
+				mon.setHinhAnh(rs.getString("HinhAnh"));
+				mon.setMoTa(rs.getString("MoTa"));
+				mon.setChiDa(rs.getBoolean("ChiDa"));
+				return mon;
+			}
+		},idDMMon,idMon);
+		return dsMonCungLoai;
 	}
 	
 

@@ -15,10 +15,9 @@ public class ChiTietHoaDonDAO {
 	public void setDataSource(DataSource dbTraSua) {
 		this.jdbcTemplate = new JdbcTemplate(dbTraSua);
 	}
-	public int themChiTietHoaDon(ChiTietHoaDon chiTietHoaDon) {
+	public void themChiTietHoaDon(ChiTietHoaDon chiTietHoaDon) {
 		String sql = "INSERT INTO `trasua`.`chitiethd` (`idHoaDon`, `idMon`, `LoaiSize`, `GhiChuMon`, `DSTopping`, `SoLuong`, `ThanhTien`) VALUES (?, ?, ?, ?, ?, ?, ?)";
-		int result = jdbcTemplate.update(sql, chiTietHoaDon.getIdHoaDon(), chiTietHoaDon.getIdMon(), chiTietHoaDon.getLoaiSize(),chiTietHoaDon.getGhiChuMon(),chiTietHoaDon.getDSTopping(),chiTietHoaDon.getSoLuong(),chiTietHoaDon.getThanhTien());
-		return result;
+		jdbcTemplate.update(sql, chiTietHoaDon.getIdHoaDon(), chiTietHoaDon.getIdMon(), chiTietHoaDon.getLoaiSize(),chiTietHoaDon.getGhiChuMon(),chiTietHoaDon.getDSTopping(),chiTietHoaDon.getSoLuong(),chiTietHoaDon.getThanhTien());
 	}
 
 }
