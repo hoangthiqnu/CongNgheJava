@@ -51,24 +51,19 @@ public class ThongTinDonHangController {
 		hoaDon.setDiaChiGiao(diaChi);
 		hoaDon.setGhiChu(ghiChu);
 		hoaDon.setIdTinhTrangHD(0);
-		int result = hoadondao.themHoaDon(hoaDon);
-		if (result == 1)
+		hoadondao.themHoaDon(hoaDon);
+		int idHoaDon = hoadondao.layMaHoaDon();
+		for (GioHang gh:dsGioHang)
 		{
-			int idHoaDon = hoadondao.layMaHoaDon();
-			for (GioHang gh:dsGioHang)
-			{
-				ChiTietHoaDon chiTiet = new ChiTietHoaDon();
-				chiTiet.setIdHoaDon(idHoaDon);
-				chiTiet.setIdMon(gh.getMon().getIdMon());
-				chiTiet.setLoaiSize(gh.getLoaiSizeMua());
-				chiTiet.setGhiChuMon(gh.ghiChu());
-				chiTiet.setDSTopping(gh.danhSachTopping());
-				chiTiet.setSoLuong(gh.getSoLuongMua());
-				chiTiet.setThanhTien(gh.getThanhTien());
-				chitietdao.themChiTietHoaDon(chiTiet);
-				
-			}
-			
+			ChiTietHoaDon chiTiet = new ChiTietHoaDon();
+			chiTiet.setIdHoaDon(idHoaDon);
+			chiTiet.setIdMon(gh.getMon().getIdMon());
+			chiTiet.setLoaiSize(gh.getLoaiSizeMua());
+			chiTiet.setGhiChuMon(gh.ghiChu());
+			chiTiet.setDSTopping(gh.danhSachTopping());
+			chiTiet.setSoLuong(gh.getSoLuongMua());
+			chiTiet.setThanhTien(gh.getThanhTien());
+			chitietdao.themChiTietHoaDon(chiTiet);
 		}
 		session.invalidate();
 		return "thongbao";

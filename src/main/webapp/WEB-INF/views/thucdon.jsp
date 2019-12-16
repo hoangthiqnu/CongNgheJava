@@ -15,9 +15,8 @@
 			<div class="col-md-3">
 				<div class="danh_muc">
 					<ul>
-						<li><a href="/MilkTea/thucdon?iddm=tatcamon&page=1">TẤT CẢ</a></li>
-						<c:set var="dsDMMon" value="${DanhSachDanhMuc}"></c:set>	
-						<c:forEach items="${dsDMMon}" var="danhmuc">
+						<li><a href="/MilkTea/thucdon?iddm=tatcamon&page=1">TẤT CẢ</a></li>	
+						<c:forEach items="${DanhSachDanhMuc}" var="danhmuc">
 							<li><a href="/MilkTea/thucdon?iddm=${danhmuc.getIdDMMon()}&page=1">${danhmuc.getTenDMMon()}</a></li> 
 						</c:forEach>
 					</ul>	
@@ -27,8 +26,7 @@
 				<span>${TenDM}</span>
 			</div>
 			<ul class="col-md-9 products-menu">
-			<c:set var="dsMon" value="${DanhSachMon}"></c:set>	
-				<c:forEach items="${dsMon}" var="mon">
+				<c:forEach items="${DanhSachMon}" var="mon">
 					<li class="col-md-3 each-pro-menu"> 
 						<div class="info-pro-menu" >
 							<img src="resources/image/${mon.getHinhAnh()}" alt="">

@@ -20,8 +20,7 @@
 		<div class="row">
 			<div class="col-md-12 ">
 				<ul class="products">
-					<c:set var="dsMonMoi" value="${DanhSachMonMoi}"></c:set>	
-					<c:forEach items="${dsMonMoi}" var="mon">
+					<c:forEach items="${DanhSachMonMoi}" var="mon">
 					<li class="col-md-4 each-pro"> 
 						<div class="info-pro" >
 							<img src="resources/image/${mon.getHinhAnh()}" alt="">
@@ -43,9 +42,8 @@
 		</div>
 		<div class="row">
 			<div class="col-md-12 ">
-				<ul class="products">
-					<c:set var="dsMonBanChay" value="${DanhSachMonBanChay}"></c:set>	
-					<c:forEach items="${dsMonBanChay}" var="mon">
+				<ul class="products">	
+					<c:forEach items="${DanhSachMonBanChay}" var="mon">
 					<li class="col-md-4 each-pro"> 
 						<div class="info-pro" >
 							<img src="resources/image/${mon.getHinhAnh()}" alt="">

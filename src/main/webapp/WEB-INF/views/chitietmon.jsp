@@ -68,10 +68,10 @@
 					<div class="radio">
 							<c:forEach items="${dsSize}" var="size">
 								<c:if test="${size.getGiaThem() == 0}">
-			  						<input type="radio" name="loaiSize" id="${size.getLoaiSize()}" value="${size.getLoaiSize()}" checked="checked" onclick="giaSize(${size.getLoaiSize()},${size.getGiaThem()})"><span>${size.getLoaiSize()}</span><br>
+			  						<input type="radio" name="loaiSize" id="${size.getLoaiSize()}" value="${size.getLoaiSize()}" checked="checked"><span>${size.getLoaiSize()}</span><br>
 			  					</c:if>
 			  					<c:if test="${size.getGiaThem() != 0}">
-			  						<input type="radio" name="loaiSize" id="${size.getLoaiSize()}" value="${size.getLoaiSize()}" onclick="giaSize(${size.getLoaiSize()},${size.getGiaThem()})"><span>${size.getLoaiSize()} (+<fmt:formatNumber type = "number" maxFractionDigits = "3" value ="${size.getGiaThem()}"/>₫)</span><br>
+			  						<input type="radio" name="loaiSize" id="${size.getLoaiSize()}" value="${size.getLoaiSize()}"><span>${size.getLoaiSize()} (+<fmt:formatNumber type = "number" maxFractionDigits = "3" value ="${size.getGiaThem()}"/>₫)</span><br>
 			  					</c:if>
 			  				</c:forEach>	
 		  			</div>
@@ -88,7 +88,7 @@
 					<div class="checkbox">
 					<input type="checkbox" name="topping[]" id="checkboxKhong" value="0" checked="checked"><span>Không thêm topping</span><br>
 					<c:forEach items="${dsTopping}" var="topping">
-			  			<input class="checktpoping" type="checkbox" name="topping[]" id="checkbox${topping.getIdTopping()}" value="${topping.getIdTopping()}" onclick="giaTopping(${topping.getIdTopping()},${topping.getDonGiaTopping()} )"><span>${topping.getTenTopping()} (+<fmt:formatNumber type = "number" maxFractionDigits = "3" value ="${topping.getDonGiaTopping()}"/>₫)</span><br>
+			  			<input class="checktopping" type="checkbox" name="topping[]" id="checkbox${topping.getIdTopping()}" value="${topping.getIdTopping()}" onclick="checkTopping()"><span>${topping.getTenTopping()} (+<fmt:formatNumber type = "number" maxFractionDigits = "3" value ="${topping.getDonGiaTopping()}"/>₫)</span><br>
 			  		</c:forEach>
 	  				</div>
 				</div>
@@ -138,13 +138,41 @@
 		</div>
 		<div class="row">
 			<div class="btnthem">
-				<button type="submit" id="submit" class="btn btn-danger">THÊM VÀO GIỎ&nbsp;&nbsp;&nbsp;&nbsp;<span id ="giatien">${mon.getDonGiaMon()}</span> Đ</button>		
+				<button type="submit" id="submit" class="btn btn-danger">THÊM VÀO GIỎ</button>		
 			</div>
 		</div>
 	</form>
+	<div class="duongvienct"></div>
+	<div class="row">
+		<div class="col-md-12">
+			<span class="title-cungloai">MÓN CÙNG LOẠI</span>
+		</div>
+	</div>
+	<div class="row">
+			<div class="col-md-12 ">
+				<ul class="products">
+					<c:forEach items="${dsMonCungLoai}" var="mon">
+					<li class="col-md-4 each-pro"> 
+						<div class="info-pro" >
+							<img src="resources/image/${mon.getHinhAnh()}" alt="">
+							<h3>${mon.getTenMon()}</h3>
+							<h4><fmt:formatNumber type = "number" maxFractionDigits = "3" value ="${mon.getDonGiaMon()}"/> Đ</h4>	
+						</div>
+						<div class="btn-pro">
+						<a href="/MilkTea/chitietmon?idmon=${mon.getIdMon()}" class="btn-pro-css"><span>CHỌN</span></a>
+						</div>
+					</li>
+					</c:forEach>
+				</ul>
+			</div>
+		</div>
+		<div class="xemthem">
+			<a href="/MilkTea/thucdon?iddm=${mon.getIdDMMon()}&page=1"><button type="button" class="btn btn-default">Xem thêm</button></a>
+		</div>
 	</div>
 </div>
 <script type="text/javascript">
+
 function giamSL(){
 	var soluong = document.querySelector('#soluong');
 	if (soluong.value == 1){
@@ -163,41 +191,22 @@ function tangSL(){
 		soluong.value = ++number;
 }
 
-function giaSize(id, tien){
-	let giatien = document.querySelector("#giatien");
-	let tongtien = new Number(giatien.innerHTML);
-	if(id.checked){
-		tongtien += tien;
-	}else{
-		tongtien -= tien;
-	}
-	giatien.innerHTML = tongtien;
-}
 let kochon = document.querySelector("#checkboxKhong");
 	kochon.addEventListener("click", ()=>{
 		if(kochon.checked == true){
-			let checktpoping = document.querySelectorAll(".checktpoping");
+			let checktpoping = document.querySelectorAll(".checktopping");
 			for(let i= 0; i <checktpoping.length ; i++){
 				checktpoping[i].checked = false;
 			}
 		}
 	})
 	
- function giaTopping(id, tien){
-	 let giatien = document.querySelector("#giatien");
+ function checkTopping(){
 	 kochon.checked = false;
-	 let chkTopping = document.querySelector("#checkbox"+id);
-	 let tongtien = new Number(giatien.innerHTML);
-	 if(chkTopping.checked){
-		tongtien += tien;
-	 }else{
-		tongtien -= tien;
-	 }
-	 giatien.innerHTML = tongtien;
  }
 	
 	function check(){
-		let checktpoping = document.querySelectorAll(".checktpoping");
+		let checktpoping = document.querySelectorAll(".checktopping");
 		for(let i= 0; i <checktpoping.length ; i++){
 			if (checktpoping[i].checked == true)
 			{

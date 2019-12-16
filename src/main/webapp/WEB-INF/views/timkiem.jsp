@@ -19,9 +19,8 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12 ">
-			<ul class="products">
-				<c:set var="dsMon" value="${DanhSachMonTimKiem}"></c:set>	
-				<c:forEach items="${dsMon}" var="mon">
+			<ul class="products">	
+				<c:forEach items="${DanhSachMonTimKiem}" var="mon">
 					<li class="col-md-4 each-pro"> 
 						<div class="info-pro" >
 							<img src="resources/image/${mon.getHinhAnh()}" alt="">

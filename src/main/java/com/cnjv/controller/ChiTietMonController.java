@@ -38,9 +38,11 @@ public class ChiTietMonController {
 		String idDMMon = mon.getIdDMMon();
 		List<Size> dsSize = sizedao.layDanhSachSizeTheoIdDMMon(idDMMon);
 		List<Topping> dsTopping = toppingdao.layDanhSachTopping();
+		List<Mon> dsMonCungLoai = mondao.layDanhSachMonCungLoai(idDMMon,id);
 		modelMap.addAttribute("dsTopping", dsTopping);
 		modelMap.addAttribute("mon", mon);
 		modelMap.addAttribute("dsSize", dsSize);
+		modelMap.addAttribute("dsMonCungLoai", dsMonCungLoai);
 		return "chitietmon";
 	}
 	@PostMapping("/themvaogio")
@@ -50,6 +52,7 @@ public class ChiTietMonController {
 		String idDMMon = mon.getIdDMMon();
 		List<Topping> dsTopping = toppingdao.layDanhSachTopping();
 		List<Size> dsSize = sizedao.layDanhSachSizeTheoIdDMMon(idDMMon);
+		List<Mon> dsMonCungLoai = mondao.layDanhSachMonCungLoai(idDMMon,idMon);
 		ArrayList<Topping> dsToppingMua = new ArrayList<Topping>();
 		if (dsIdToppingMua[0] !=  0)
 		{
@@ -77,6 +80,7 @@ public class ChiTietMonController {
         modelMap.addAttribute("mon", mon);
 		modelMap.addAttribute("dsTopping", dsTopping);
 		modelMap.addAttribute("dsSize", dsSize);
+		modelMap.addAttribute("dsMonCungLoai", dsMonCungLoai);
         session.setAttribute("dsGioHang", dsGioHang);
         session.setAttribute("tongTien", tongTien);
         session.setAttribute("tongMon",tongMon);
