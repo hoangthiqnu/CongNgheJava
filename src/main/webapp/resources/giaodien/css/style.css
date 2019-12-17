@@ -652,7 +652,7 @@ li.col-md-3.each-pro-menu{
 }
 
 .radio{
-  padding-left:60px;
+  margin-left:35px;
   line-height:30px;
 }
 
@@ -668,7 +668,7 @@ li.col-md-3.each-pro-menu{
   margin-left:10px;
 }
 .checkbox{
-  padding-left:60px;
+  margin-left:35px;
   line-height:30px;
 }
 
@@ -683,19 +683,8 @@ li.col-md-3.each-pro-menu{
   margin-left:10px;
 }
 
-.step-orderdaduong img{
-	margin-top:50px;
-	height:100%;
-	width:100%;	
-
-}
-.step-order img{
-	margin-bottom:20px;
-	height:100%;
-	width:100%;
-}
 .step-ordertopping img{
-	margin-top:80px;
+	margin-top:20px;
 	height:100%;
 	width:100%;	
 
