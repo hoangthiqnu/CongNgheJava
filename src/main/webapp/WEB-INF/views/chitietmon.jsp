@@ -83,7 +83,7 @@
 				<div class="col-md-5">
 					<div class="tieude-chitiet">
 					 	<img src="resources/image/check.png">
-					 	<span>Thêm Topping (nếu muốn)</span>
+					 	<span>Thêm Topping</span>
 					</div>
 					<div class="checkbox">
 					<input type="checkbox" name="topping[]" id="checkboxKhong" value="0" checked="checked"><span>Không thêm topping</span><br>
@@ -93,7 +93,8 @@
 	  				</div>
 				</div>
 				<div class="col-md-7 step-ordertopping">
-					 <img src="resources/image/chontopping.jpg">	
+					 <img src="resources/image/loaithucuong.jpg">
+					 <img src="resources/image/chontopping.jpg">
 				</div>	
 			</div>
 		</div>		
@@ -174,7 +175,7 @@
 <script type="text/javascript">
 
 function giamSL(){
-	var soluong = document.querySelector('#soluong');
+	let soluong = document.querySelector('#soluong');
 	if (soluong.value == 1){
 		soluong.value = 1;
 	}
@@ -186,9 +187,9 @@ function giamSL(){
 }
 
 function tangSL(){
-	var soluong = document.querySelector('#soluong');
-		let number = new Number(soluong.value);
-		soluong.value = ++number;
+	let soluong = document.querySelector('#soluong');
+	let number = new Number(soluong.value);
+	soluong.value = ++number;
 }
 
 let kochon = document.querySelector("#checkboxKhong");
