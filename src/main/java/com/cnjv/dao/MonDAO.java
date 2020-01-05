@@ -151,7 +151,7 @@ public class MonDAO {
 		return mon;
 	}
 	public List<Mon> layDanhSachMonCungLoai(String idDMMon, int idMon) {
-		String sql = "SELECT * FROM mon WHERE idDMMon = ? and idMon <> ? LIMIT 3";
+		String sql = "SELECT * FROM mon WHERE idDMMon = ? and idMon <> ? ORDER BY RAND ( ) LIMIT 3";
 		List<Mon> dsMonCungLoai = jdbcTemplate.query(sql, new RowMapper<Mon>() {
 
 			public Mon mapRow(ResultSet rs, int rowNum) throws SQLException {

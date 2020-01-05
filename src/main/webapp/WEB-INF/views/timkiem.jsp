@@ -13,8 +13,11 @@
 <div class="container">
 <div class="content-index">
 	<div class="row">
-		<div class="col-md-12">
-			<span class="title-pro">KẾT QUẢ TÌM KIẾM</span>
+		<div class="col-md-4">
+			<span class="title-pro">TÌM KIẾM</span>
+		</div>
+		<div class="col-md-8">
+			<h4>Tìm thấy ${soKetQua} kết quả cho từ khóa "${tuKhoa}"</h4>
 		</div>
 	</div>
 	<div class="row">
@@ -33,7 +36,7 @@
 					</li>
 				</c:forEach>
 			</ul>
-			<c:if test ="${DanhSachMonTimKiem.size()==0}">
+			<c:if test ="${soKetQua==0}">
 			 	<div class="khongtimthay">
 					<img src="resources/image/search.png">
 					<h3>Không tìm thấy kết quả!</h3>

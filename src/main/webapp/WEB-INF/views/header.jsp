@@ -7,11 +7,10 @@
 <html>
 <head>
 <meta charset="UTF-8"/>
+<link rel="shortcut icon" href="resources/image/iconsite.png">
 <title>Milk Tea</title>
-
-<link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet">
-<link href="<c:url value="/resources/css/bootstrap.css"/>" rel="stylesheet">
-
+<link href="resources/css/style.css" rel="stylesheet">
+<link href="resources/css/bootstrap.css" rel="stylesheet">
 </head>
 <body>
 
@@ -41,10 +40,10 @@
 				<div class="box-cart">
 					<div class="box-cart-1">
 					<c:if test="${sessionScope.tongMon==0 || sessionScope.tongMon==null }">
-						<a href="/MilkTea/giohang"><h4><p>Giỏ hàng</p><img src="<c:url value="/resources/image/cart.png" />" alt=""><div class="clearfix"></div></h4></a>
+						<a href="/MilkTea/giohang"><h4><p>Giỏ hàng</p><img src="resources/image/cart.png" alt=""><div class="clearfix"></div></h4></a>
 					</c:if>
 					<c:if test="${sessionScope.tongMon>0}">
-				     	<a href="/MilkTea/giohang"><h4><p>Giỏ hàng (${sessionScope.tongMon})</p><img src="<c:url value="/resources/image/cart.png" />" alt=""><div class="clearfix"></div></h4></a>
+				     	<a href="/MilkTea/giohang"><h4><p>Giỏ hàng (${sessionScope.tongMon})</p><img src="resources/image/cart.png" alt=""><div class="clearfix"></div></h4></a>
 				    </c:if>
 				    </div>
 				</div>

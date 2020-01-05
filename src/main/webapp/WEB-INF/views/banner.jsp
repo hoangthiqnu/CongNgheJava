@@ -50,13 +50,13 @@
 <div class="container-fuild">
 	<div class="slideshow-container">
 		<div class="mySlides fade">
-		    <img src="<c:url value="/resources/image/banner2.gif" />" alt="">
+		    <img src="resources/image/banner2.gif" alt="">
 		</div>
 		<div class="mySlides fade">
-		    <img src="<c:url value="/resources/image/banner3.gif" />" alt="">
+		    <img src="resources/image/banner3.gif" alt="">
 		</div>
 		<div class="mySlides fade">
-		    <img src="<c:url value="/resources/image/banner4.gif" />" alt="">
+		    <img src="resources/image/banner4.gif" alt="">
 		</div>
 	</div>
 	<div style="text-align:center">
