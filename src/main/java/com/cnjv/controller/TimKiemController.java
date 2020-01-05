@@ -21,7 +21,10 @@ public class TimKiemController {
 	@PostMapping("/timkiem")
 	public String hienThiTimKiem(@RequestParam("tim") String key,ModelMap modelMap) {
 		List<Mon> dsMonTimKiem = mondao.timKiemMon(key);
+		int soKetQua = dsMonTimKiem.size();
 		modelMap.addAttribute("DanhSachMonTimKiem", dsMonTimKiem);
+		modelMap.addAttribute("soKetQua", soKetQua);
+		modelMap.addAttribute("tuKhoa", key);
 		return "timkiem";
 	}
 

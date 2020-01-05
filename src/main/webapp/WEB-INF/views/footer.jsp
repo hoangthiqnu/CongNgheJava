@@ -15,7 +15,7 @@
               </dl>
            </address>
            <ul class="footer_social">
-			  <li><a href=""> <i class="fb"> </i> </a></li>
+			  <li><a href=""><i class="fb"> </i> </a></li>
 			  <li><a href=""><i class="tw"> </i> </a></li>
 			  <li><a href=""><i class="google"> </i> </a></li>
 			  <li><a href=""><i class="instagram"> </i> </a></li>
@@ -42,7 +42,7 @@
 		</div>
 		<div class="footer_bottom">
 			<div class="copy">
-                <p>Copyright © 2019<a href="http://w3layouts.com/" target="_blank"></a> </p>
+                <p>Copyright © 2019</p>
 	        </div>
 	    </div>
 	</div>
