@@ -29,10 +29,6 @@
 		<property name="dataSource" ref="dbTraSua" />
 	</bean>	
 	
-	<bean name="dbxulyhoadon" class="com.cnjv.dao.XuLyHoaDonDAO">
-		<property name="dataSource" ref="dbTraSua" />
-	</bean>	
-	
 	<bean name="dbtaikhoan" class="com.cnjv.dao.TaiKhoanDAO">
 		<property name="dataSource" ref="dbTraSua" />
 	</bean>

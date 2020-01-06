@@ -7,9 +7,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.cnjv.dao.ChiTietHoaDonDAO;
 import com.cnjv.dao.HoaDonDAO;
 import com.cnjv.dao.MonDAO;
-import com.cnjv.dao.XuLyHoaDonDAO;
 import com.cnjv.model.HoaDon;
 import com.cnjv.model.TaiKhoan;
 
@@ -28,8 +28,7 @@ public class QLHoaDonController {
 	HttpSession session;
 	ApplicationContext context = new ClassPathXmlApplicationContext("IoC.xml");
 	HoaDonDAO db = (HoaDonDAO) context.getBean("dbhoadon");
-	XuLyHoaDonDAO xlhdDAO = (XuLyHoaDonDAO) context.getBean("dbxulyhoadon");
-	MonDAO monDao =  (MonDAO)  context.getBean("dbmon");
+	ChiTietHoaDonDAO chitiethdDAO = (ChiTietHoaDonDAO) context.getBean("dbchitiethoadon");
 	
 	@GetMapping("/qldonhang")
 	public String hienThiHoaDonbyIDTinhTrang(@RequestParam("tinhtrang") int id, ModelMap modelMap,
@@ -42,7 +41,7 @@ public class QLHoaDonController {
 		if(tk != null) {
 			List<HoaDon> listhd = db.getListHoaDonByIDTinhTrang(id);
 			for(HoaDon hDon : listhd) {
-				int tongTien= xlhdDAO.TongTienTrenMotHoaDon(hDon.getIdHoaDon()); // Tinh tien 1 hoa don
+				int tongTien = chitiethdDAO.TongTienTrenMotHoaDon(hDon.getIdHoaDon()); // Tinh tien 1 hoa don
 				hDon.setTongTien(tongTien);
 			}
 			
@@ -67,9 +66,9 @@ public class QLHoaDonController {
 	@GetMapping("/qldonhang/thanhtoan")
 	public String thanhToanHoaDon(@RequestParam("id") int idHoaDon, ModelMap modelMap, HttpServletRequest request) {
 		session = request.getSession();
-		db.thanhToanDonHang(idHoaDon);
+		int rs = db.thanhToanDonHang(idHoaDon);
 
-		//session.setAttribute("resThanhToan", result);
+		session.setAttribute("rsThanhToan", rs);
 		referString = request.getHeader("Referer");
 		return "redirect:"+referString;
 	}
@@ -77,9 +76,10 @@ public class QLHoaDonController {
 	//Huy Don Hang
 	@GetMapping("/qldonhang/huy")
 	public String huyHoaDon(@RequestParam("id") int idHoaDon, ModelMap modelMap, HttpServletRequest request) {
-		db.huyDonHang(idHoaDon);
+		session = request.getSession();
+		int rs = db.huyDonHang(idHoaDon);
 		
-		//modelMap.addAttribute("result", result);
+		session.setAttribute("rsHuy", rs);
 		referString = request.getHeader("Referer");
 		return "redirect:"+referString;
 	}

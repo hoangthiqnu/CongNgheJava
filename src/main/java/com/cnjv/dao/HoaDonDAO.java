@@ -1,7 +1,9 @@
 package com.cnjv.dao;
 
+import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -20,26 +22,6 @@ private JdbcTemplate jdbcTemplate;
 	public void setDataSource(DataSource dbTraSua) {
 		this.jdbcTemplate = new JdbcTemplate(dbTraSua);
 	}
-/*
-	public List<HoaDon> getListHoaDon() {
-		String sql = "select * from hoadon order by ThoiGianTao ;";
-		List<HoaDon> dsHoaDon = jdbcTemplate.query(sql, new RowMapper<HoaDon>() {
-
-			public HoaDon mapRow(ResultSet rs, int rowNum) throws SQLException {
-				HoaDon hoaDon = new HoaDon();
-				hoaDon.setIdHoaDon(rs.getInt("idHoaDon"));
-				hoaDon.setThoiGianTao(rs.getDate("ThoiGianTao"));
-				hoaDon.setTenKH(rs.getString("TenKH"));
-				hoaDon.setsDT(rs.getString("SDT"));
-				hoaDon.setDiaChiGiao(rs.getString("DiaChiGiao"));
-				hoaDon.setGhiChu(rs.getString("GhiChu"));
-				hoaDon.setTinhtranghd(getTinhTrangHDByID(rs.getInt("idTinhTrangHD")));
-				return hoaDon;
-			}
-		});
-		return dsHoaDon;
-	}khong dung
-	*/ 
 	
 	public TinhTrangHD getTinhTrangHDByID(int id) {
 		String sql = "SELECT * FROM tinhtranghd where idTinhTrangHD = ?";
@@ -66,13 +48,13 @@ private JdbcTemplate jdbcTemplate;
 			sql = "select * from hoadon order by ThoiGianTao;";
 		}
 		else {
-			sql = "select * from hoadon where hoadon.idTinhTrangHD = "+id+" order by ThoiGianTao;";
+			sql = "select * from hoadon where hoadon.idTinhTrangHD = "+id+" order by ThoiGianTao";
 		}
 		List<HoaDon> dsHoaDon = jdbcTemplate.query(sql, new RowMapper<HoaDon>() {
 			public HoaDon mapRow(ResultSet rs, int rowNum) throws SQLException {
 				HoaDon hoaDon = new HoaDon();
 				hoaDon.setIdHoaDon(rs.getInt("idHoaDon"));
-				hoaDon.setThoiGianTao(rs.getDate("ThoiGianTao"));
+				hoaDon.setThoiGianTao(rs.getTimestamp("ThoiGianTao"));
 				hoaDon.setTenKH(rs.getString("TenKH"));
 				hoaDon.setsDT(rs.getString("SDT"));
 				hoaDon.setDiaChiGiao(rs.getString("DiaChiGiao"));
@@ -90,7 +72,7 @@ private JdbcTemplate jdbcTemplate;
 			public HoaDon mapRow(ResultSet rs, int rowNum) throws SQLException {
 				HoaDon hoaDon = new HoaDon();
 				hoaDon.setIdHoaDon(rs.getInt("idHoaDon"));
-				hoaDon.setThoiGianTao(rs.getDate("ThoiGianTao"));
+				hoaDon.setThoiGianTao(rs.getTimestamp("ThoiGianTao"));
 				hoaDon.setTenKH(rs.getString("TenKH"));
 				hoaDon.setsDT(rs.getString("SDT"));
 				hoaDon.setDiaChiGiao(rs.getString("DiaChiGiao"));
@@ -120,9 +102,9 @@ private JdbcTemplate jdbcTemplate;
 		return result;
 	}
 	
-	public int capNhatDonHang(int id, String tenkh, String sdt, String diachi) {
-		String sql = "UPDATE hoaDon SET `TenKH` = ? ,`SDT` = ? ,`DiaChiGiao`= ? WHERE (`idHoaDon` = ?);";
-		int result = jdbcTemplate.update(sql, tenkh, sdt, diachi, id);
+	public int capNhatDonHang(int id, String tenkh, String sdt, String diachi, String ghiChu) {
+		String sql = "UPDATE hoaDon SET `TenKH` = ? ,`SDT` = ? ,`DiaChiGiao`= ?,`GhiChu`= ? WHERE (`idHoaDon` = ?);";
+		int result = jdbcTemplate.update(sql, tenkh, sdt, diachi, ghiChu, id);
 		return result;
 	}
 	

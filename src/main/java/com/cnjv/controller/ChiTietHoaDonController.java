@@ -7,10 +7,10 @@ import javax.servlet.http.HttpSession;
 
 import com.cnjv.dao.ChiTietHoaDonDAO;
 import com.cnjv.dao.HoaDonDAO;
-import com.cnjv.dao.XuLyHoaDonDAO;
-
+import com.cnjv.dao.MonDAO;
+import com.cnjv.model.ChiTietHoaDon;
 import com.cnjv.model.HoaDon;
-import com.cnjv.model.XuLyHoaDon;
+
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -27,22 +27,23 @@ public class ChiTietHoaDonController {
 	private String referString;
 	ApplicationContext context = new ClassPathXmlApplicationContext("IoC.xml");
 	ChiTietHoaDonDAO db = (ChiTietHoaDonDAO) context.getBean("dbchitiethoadon");
+	MonDAO monDAO = (MonDAO) context.getBean("dbmon");
 	HoaDonDAO HoaDonDAO = (HoaDonDAO) context.getBean("dbhoadon");
-	XuLyHoaDonDAO xlhdDAO = (XuLyHoaDonDAO) context.getBean("dbxulyhoadon");
 	
 	@GetMapping("chitiethoadon/{id}")
 	public String trangChiTietHD(@PathVariable int id, ModelMap modelMap) {
 
-		List<XuLyHoaDon> listChiTietHoaDon = xlhdDAO.layHoaDonTheoIdHoaDon(id);
+		List<ChiTietHoaDon> listChiTietHoaDon = db.getChiTietHDById(id);
 
 		HoaDon hoaDon = HoaDonDAO.getHoaDonByIDHoaDon(id);
-		int tongTien= xlhdDAO.TongTienTrenMotHoaDon(id); // Tinh tien 1 hoa don
-		/*List<Mon> mons = monDao.getMonByIdHoaDon(id); // Danh sach mon 1 hoa don
-		cthd.setListMon(mons);
+		int tongTien= db.TongTienTrenMotHoaDon(id); // Tinh tien 1 hoa don
+		/*
+		List<Mon> mons = monDao.getMonByIdHoaDon(id); // Danh sach mon 1 hoa don
+		cthd.setListMon(mons);/*
 		List<ChiTietHoaDon> listcthd = db.getChiTietHDById(id); // Chi tiet hoa don
 		cthd.setListChiTietHD(listcthd);*/
 		
-		
+		modelMap.addAttribute("monDAO", monDAO);
 		modelMap.addAttribute("ChiTietHoaDon", listChiTietHoaDon);
 		modelMap.addAttribute("hoaDon", hoaDon);
 		modelMap.addAttribute("tongTien", tongTien);
@@ -83,9 +84,9 @@ public class ChiTietHoaDonController {
 		
 	//Cap Nhat Thong tin Khach Hang
 	@PostMapping("/chitiethoadon/{id}")
-	public String capnhatHoaDon(@PathVariable int id, String tenKH, String sdt, String diaChi, ModelMap modelMap, HttpServletRequest request) {
+	public String capnhatHoaDon(@PathVariable int id, String tenKH, String sdt, String diaChi , String ghiChu, ModelMap modelMap, HttpServletRequest request) {
 		
-		int result = HoaDonDAO.capNhatDonHang(id, tenKH, sdt, diaChi);
+		int result = HoaDonDAO.capNhatDonHang(id, tenKH, sdt, diaChi, ghiChu);
 		
 		modelMap.addAttribute("rsCapNhat", result);
 		referString = request.getHeader("Referer");

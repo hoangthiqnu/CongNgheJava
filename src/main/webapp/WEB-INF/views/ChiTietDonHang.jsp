@@ -1,4 +1,4 @@
-<%@page import="com.cnjv.model.XuLyHoaDon"%>
+
 <%@page import="com.cnjv.model.ChiTietHoaDon"%>
 <%@page import="com.cnjv.model.TinhTrangHD"%>
 <%@page import="com.cnjv.model.HoaDon"%>
@@ -39,58 +39,10 @@
 				</div>
 			</div>
 		</div>
-		<div class="chitiet-cart">
-			<div class="row">
-                <table class="table">
-                    <thead>
-                        <tr>
-                        <th>STT</th>
-                            <th>&nbsp;</th>
-                            <th>Tên món</th>
-                            <th>Đơn giá</th>
-                            <th>Số lượng</th>
-                            <th>Thành tiền</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach var="cthd" items="${ChiTietHoaDon}">
-                        <tr>
-                        <td scope="row">${i}</td>
-                            <td class="colimg">
-                            	<div class="hinh-cart">
-                            	
-                            		<a href="/MilkTea/chitietmon?id=${cthd.getIdMon()}"><img src="<c:url value="/resources/image/${ cthd.getHinhAnh()}" />" alt=""></a>
-                            	</div>
-                            </td>
-                            <td class="coltenmon" style="width:40%">
-                            	<a href="/MilkTea/chitietmon">${cthd.getTenMon()}&nbsp;[${cthd.getIdMon()}]</a>
-                            	<h5>${cthd.getGhiChuMon()} , Size ${cthd.getLoaiSize()}</h5>
-                            	<h5>${cthd.getDsTopping()}</h5>	
-                            </td>
-                            
-                            <td class="colgia" style="padding-top: 55px;">
-                            <fmt:formatNumber type = "number" maxFractionDigits = "3" value ="${cthd.getDonGia()}"/> Đ</td>
-                            <td class="colsl"  style="padding-left:35px; padding-top: 55px;">${cthd.getSoLuong()}</td>
-                            <td class="colgia" style="text-align:right !important; padding-right:15px; padding-top: 55px;">
-                            <fmt:formatNumber type = "number" maxFractionDigits = "3" value ="${cthd.getThanhTien()}"/> Đ</td>
-                        </tr>
-                        </c:forEach>
-                        <tr>
-                        <td></td>
-                            <td class="colimg">&nbsp;</td>
-                            <td class="coltenmon">&nbsp;</td>
-                            <td class="colgia">&nbsp;</td>
-                            <td class="colsl"><span>Tổng cộng:</span></td>
-                            <td class="colgia" ><span><fmt:formatNumber type = "number" maxFractionDigits = "3" value ="${tongTien}"/> Đ</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-		</div>
 		<div class="ttdonhang">
 			<div class="tieude-chitiet">
 				<img src="<c:url value="/resources/image/check.png" />" alt="">
-				<span>Thông tin khách hàng</span>
+				<span>Thông tin đơn hàng</span>
 			</div>
 			<div style="margin-bottom:20px">
 				<form name ="thongtin" action="/MilkTea/chitiethoadon/${hoaDon.getIdHoaDon()}" method="post">
@@ -98,7 +50,7 @@
 	    				<label>Thời gian tạo đơn hàng:</label>
 					</div>
 					<div class="col-md-7 form-group">
-	    				<p>${hoaDon.getThoiGianTao()}</p>
+	    				<input type="text" class="form-control" value="${hoaDon.getThoiGianTao()}" readonly>
 					</div>
 					<div class="col-md-3 form-group">
 	    				<label>Tên người nhận:</label>
@@ -125,36 +77,107 @@
 					    <label>Ghi chú:</label>
 					</div>
 					<div class="col-md-7 form-group">
-	    				<textarea class="form-control" rows="3" >${hoaDon.getGhiChu()}</textarea>
+	    				<textarea class="form-control" name="ghiChu" rows="3">${hoaDon.getGhiChu()}</textarea>
 					</div>
-					<%
-						if( ((Integer) request.getAttribute("rsCapNhat")) == 1 ){
-					%>
-						<div class="alert alert-success" role="alert">
-						 Cập nhật thông tin khách hàng thành công.
-						</div>
-					<%
-						}
-					%>
+					
 					<div class="col-md-12 btnempty" style="display: flex; justify-content: center; padding-bottom: 20px">
-							<a href="/MilkTea/chitiethoadon/capnhat?id=${ hoaDon.getIdHoaDon()}"><button type="submit" class="btn btn-warning ">Cập nhật</button></a>
-						
-										    ${hoaDon.getTinhtranghd().getIdTinhTrangHD()}
-						<c:if test="${hoaDon.getTinhtranghd().getIdTinhTrangHD()==1 || hoaDon.getTinhtranghd().getIdTinhTrangHD()==0} ">
-					       <a href="/MilkTea/chitiethoadon/huy?id=${ hoaDon.getIdHoaDon()}"><button type="button" class="btn btn-danger">Hủy Đơn Hàng</button></a>
+						<c:if test="${hoaDon.getTinhtranghd().getIdTinhTrangHD() == 1 || hoaDon.getTinhtranghd().getIdTinhTrangHD()==0}">
+					 		<div class = "khoangtrang">	
+					 		<a href="/MilkTea/chitiethoadon/capnhat?id=${ hoaDon.getIdHoaDon()}"><button type="submit" class="btn btn-warning "  onclick="return AlertCapNhat()">Cập nhật</button></a>
+				 		</div>
+				 		</c:if>
+									   
+						<c:if test="${hoaDon.getTinhtranghd().getIdTinhTrangHD()==1 || hoaDon.getTinhtranghd().getIdTinhTrangHD()==0}">
+					      <div class = "khoangtrang">	
+					       <a href="/MilkTea/chitiethoadon/huy?id=${ hoaDon.getIdHoaDon()}"><button type="button" class="btn btn-danger" onclick="return AlertHuy()">Hủy Đơn Hàng</button></a>
+					    </div>
 					    </c:if>
+					   
+					    
 					    <c:if test="${hoaDon.getTinhtranghd().getIdTinhTrangHD()==0}">
+					    <div class = "khoangtrang">
 					       	<a href="/MilkTea/chitiethoadon/xacnhan?id=${ hoaDon.getIdHoaDon()}"><button type="button" class="btn btn-success">Xác nhận</button></a>
+					       	</div>
 					    </c:if>
+					    
+					    <div class = "khoangtrang">
 					    <c:if test="${hoaDon.getTinhtranghd().getIdTinhTrangHD()==1}">
+					    <div class = "khoangtrang">
 					        <a href="/MilkTea/chitiethoadon/thanhtoan?id=${ hoaDon.getIdHoaDon()}"><button type="button" class="btn btn-primary" name="btnThanhToan" onClick="ThanhToan">Thanh Toán</button></a>
+					        </div>
 					    </c:if>
+					    
 
 					</div>
 				</form>
 				</div>
 		</div>
+		<div class="chitiet-cart">
+			<div class="row">
+                <table class="table">
+                    <thead>
+                        <tr>
+                        <th>STT</th>
+                            <th>&nbsp;</th>
+                            <th>Tên món</th>
+                            <th>Đơn giá</th>
+                            <th>Số lượng</th>
+                            <th>Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <c:set var="i" value="1"></c:set>
+                    <c:forEach var="cthd" items="${ChiTietHoaDon}">
+                       
+                        <tr>
+                        <c:set var="mon" value="${monDAO.layMonTheoId(cthd.getIdMon())}"></c:set>
+                        <td scope="row" style="padding-top: 55px;">${i}</td>
+                            <td class="colimg">
+                            	<div class="hinh-cart">
+                            	
+                            	
+                            		<img src="<c:url value="/resources/image/${mon.getHinhAnh()}" />" alt="">
+                            	</div>
+                            </td>
+                            <td class="coltenmon" style="width:40%">
+                            	<p style="font-weight: bold;">${mon.getTenMon()}&nbsp;[${mon.getIdMon()}]<p>
+                            	<h5>${cthd.getGhiChuMon()} , Size ${cthd.getLoaiSize()}</h5>
+                            	<h5>${cthd.getDsTopping()}</h5>	
+                            </td>
+                            
+                            <td class="colgia" style="padding-top: 55px;">
+                            <fmt:formatNumber type = "number" maxFractionDigits = "3" value ="${mon.getDonGiaMon()}"/> Đ</td>
+                            <td class="colsl"  style="padding-left:35px; padding-top: 55px;">${cthd.getSoLuong()}</td>
+                            <td class="colgia" style="text-align:right !important; padding-right:15px; padding-top: 55px;">
+                            <fmt:formatNumber type = "number" maxFractionDigits = "3" value ="${cthd.getThanhTien()}"/> Đ</td>
+                        </tr>
+                        <c:set var="i" value="${i+1}"></c:set>
+                        </c:forEach>
+                        <tr>
+                        <td></td>
+                            <td class="colimg">&nbsp;</td>
+                            <td class="coltenmon">&nbsp;</td>
+                            <td class="colgia">&nbsp;</td>
+                            <td class="colsl"><span>Tổng cộng:</span></td>
+                            <td class="colgia" ><span><fmt:formatNumber type = "number" maxFractionDigits = "3" value ="${tongTien}"/> Đ</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+		</div>
 	</div>
+	<script language="javascript">
+			function AlertHuy(){
+				return confirm("Bạn có chắc chắn muốn hủy đơn hàng này không?");
+			}
+           		 
+			function AlertCapNhat(){
+				return confirm("Bạn có chắc chắn muốn cập nhật thông tin cho đơn hàng này không?");
+			}
+        	</script>
+        	<% request.getSession().removeAttribute("rsXacNhan");
+			request.getSession().removeAttribute("rsHuy");
+			request.getSession().removeAttribute("rsThanhToan");%>
 </div>
 <div class="clearfix"></div>
 </body>

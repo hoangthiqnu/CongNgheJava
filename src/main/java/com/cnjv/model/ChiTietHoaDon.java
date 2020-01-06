@@ -28,15 +28,17 @@ public class ChiTietHoaDon {
 		this.thanhTien = thanhTien;
 	}
 
+
+
 	public int getIdMon() {
-        return idMon;
-    }
+		return idMon;
+	}
 
-    public void setIdMon(int idMon) {
-        this.idMon = idMon;
-    }
+	public void setIdMon(int idMon) {
+		this.idMon = idMon;
+	}
 
-    public String getLoaiSize() {
+	public String getLoaiSize() {
         return loaiSize;
     }
 
@@ -67,7 +69,6 @@ public class ChiTietHoaDon {
 	public void setDsTopping(String dsTopping) {
 		this.dsTopping = dsTopping;
 	}
-
     
 }
 

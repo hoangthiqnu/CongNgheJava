@@ -11,10 +11,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.cnjv.model.ChiTietHoaDon;
-import com.cnjv.model.DMMon;
 import com.cnjv.model.HoaDon;
-import com.cnjv.model.Mon;
+
 import com.cnjv.model.TinhTrangHD;
+
 
 public class ChiTietHoaDonDAO {
 private JdbcTemplate jdbcTemplate;
@@ -23,6 +23,7 @@ private JdbcTemplate jdbcTemplate;
 	public void setDataSource(DataSource dbTraSua) {
 		this.jdbcTemplate = new JdbcTemplate(dbTraSua);
 	}
+	
 	
 	
 	public TinhTrangHD getTinhTrangHDByID(int id) {
@@ -38,23 +39,6 @@ private JdbcTemplate jdbcTemplate;
 		return tthd;
 	}
 
-	 public List<ChiTietHoaDon> getListChiTietHoaDon() {
-			String sql = "select * from chitiethd ;";
-			List<ChiTietHoaDon> dscthd = jdbcTemplate.query(sql, new RowMapper<ChiTietHoaDon>() {
-
-				public ChiTietHoaDon mapRow(ResultSet rs, int rowNum) throws SQLException {
-					ChiTietHoaDon cthd = new ChiTietHoaDon();
-					cthd.setIdhoaDon(rs.getInt("idHoaDon"));
-					cthd.setIdMon(rs.getInt("idMon")); /// edit fail
-					cthd.setLoaiSize(rs.getString("LoaiSize"));
-					cthd.setGhiChuMon(rs.getString("GhiChuMon"));
-					cthd.setSoLuong(rs.getInt("SoLuong"));
-					//cthd.setToppingMon(rs.getInt("idToppingMon")); SAI CHUA SUA
-					return cthd;
-				}
-			});
-			return dscthd;
-		}
 
 	public List<ChiTietHoaDon> getChiTietHDById(int id) {
 		
@@ -64,7 +48,7 @@ private JdbcTemplate jdbcTemplate;
 			public ChiTietHoaDon mapRow(ResultSet rs, int rowNum) throws SQLException {
 				ChiTietHoaDon cthd = new ChiTietHoaDon();
 				cthd.setIdhoaDon(rs.getInt("idHoaDon"));
-				cthd.setIdMon(rs.getInt("idMon")); /// edit fail
+				cthd.setIdMon(rs.getInt("idMon"));
 				cthd.setLoaiSize(rs.getString("LoaiSize"));
 				cthd.setGhiChuMon(rs.getString("GhiChuMon"));
 				cthd.setSoLuong(rs.getInt("SoLuong"));
@@ -92,6 +76,13 @@ private JdbcTemplate jdbcTemplate;
             }
 		}, idHoaDon);
 		return hd;
+	}
+	
+	public int TongTienTrenMotHoaDon(int idHoaDon) {
+		int tien = 0;
+		String sqlString = "SELECT sum(thanhtien) FROM trasua.chitiethd where idHoaDon = ?";
+		tien = jdbcTemplate.queryForObject(sqlString, Integer.class, idHoaDon);
+		return tien;
 	}
 	
 	
