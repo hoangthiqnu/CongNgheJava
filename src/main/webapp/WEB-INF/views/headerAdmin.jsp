@@ -22,12 +22,12 @@
 	<div class="header-top">
 		<div class="row">
 			<div class="col-md-11 header-top-left">
-				<div class="col-md-3 logo">
+				<div class="col-md-2 logo">
 					<h1><a href="/MilkTea/admin"><span>MilkTea</span> admin</a></h1>
 				</div>
-				<div class="col-md-4 menu">
+				<div class="col-md-9 menu">
 				    <ul class="megamenu skyblue">
-						<li><a class="color1" href="#">QL DANH MỤC</a></li>				
+						<li><a class="color1" href="#">QL DANH MỤC MÓN</a></li>				
 						<li><a class="color1" href="#">QL MÓN</a></li>
 						<li><a class="color1" href="#">QL SIZE</a></li>
 						<li><a class="color1" href="#">QL TOPPING</a></li>
@@ -36,7 +36,7 @@
 					</ul> 
 				</div>
 			</div>
-			<div class="col-md-1 header-top-right">
+			<div class="col-xs-1 header-top-right">
 			    <a href="/MilkTea/admin/logout"><button type="button" class="btn btn-danger">Đăng xuất</button></a>
 			</div>
 		</div>

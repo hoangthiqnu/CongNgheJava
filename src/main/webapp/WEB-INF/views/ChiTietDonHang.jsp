@@ -141,8 +141,8 @@
                             </td>
                             <td class="coltenmon" style="width:40%">
                             	<p style="font-weight: bold;">${mon.getTenMon()}&nbsp;[${mon.getIdMon()}]<p>
-                            	<h5>${cthd.getGhiChuMon()} , Size ${cthd.getLoaiSize()}</h5>
-                            	<h5>${cthd.getDSTopping()}</h5>	
+                            	<h5>Size ${cthd.getLoaiSize()}, ${cthd.getGhiChuMon()}</h5>
+                            	<h5>Topping: ${cthd.getDSTopping()}</h5>	
                             </td>
                             
                             <td class="colgia" style="padding-top: 55px;">
