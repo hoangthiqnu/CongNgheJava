@@ -8,10 +8,10 @@
 <div class="container">
 	<div class="content-index">
 		<div class="row">
-			<div class="col-xs-8">
+			<div class="col-md-8">
 				<span class="title-pro">MÓN MỚI</span>
 			</div>
-			<div class="col-xs-4">
+			<div class="col-md-4">
 				<div class="btn-all">
 				     <a href="/MilkTea/thucdon?iddm=tatcamon&page=1" class="btn-all-css"><span>XEM THÊM TẤT CẢ MÓN</span></a>
 				</div>
@@ -20,8 +20,7 @@
 		<div class="row">
 			<div class="col-md-12 ">
 				<ul class="products">
-					<c:set var="dsMonMoi" value="${DanhSachMonMoi}"></c:set>	
-					<c:forEach items="${dsMonMoi}" var="mon">
+					<c:forEach items="${DanhSachMonMoi}" var="mon">
 					<li class="col-md-4 each-pro"> 
 						<div class="info-pro" >
 							<img src="resources/image/${mon.getHinhAnh()}" alt="">
@@ -29,7 +28,7 @@
 							<h4><fmt:formatNumber type = "number" maxFractionDigits = "3" value ="${mon.getDonGiaMon()}"/> Đ</h4>	
 						</div>
 						<div class="btn-pro">
-						<a href="/MilkTea/chitietmon" class="btn-pro-css"><span>CHỌN</span></a>
+						<a href="/MilkTea/chitietmon?idmon=${mon.getIdMon()}" class="btn-pro-css"><span>CHỌN</span></a>
 						</div>
 					</li>
 					</c:forEach>
@@ -43,9 +42,8 @@
 		</div>
 		<div class="row">
 			<div class="col-md-12 ">
-				<ul class="products">
-					<c:set var="dsMonBanChay" value="${DanhSachMonBanChay}"></c:set>	
-					<c:forEach items="${dsMonBanChay}" var="mon">
+				<ul class="products">	
+					<c:forEach items="${DanhSachMonBanChay}" var="mon">
 					<li class="col-md-4 each-pro"> 
 						<div class="info-pro" >
 							<img src="resources/image/${mon.getHinhAnh()}" alt="">
@@ -53,7 +51,7 @@
 							<h4><fmt:formatNumber type = "number" maxFractionDigits = "3" value ="${mon.getDonGiaMon()}"/> Đ</h4>	
 						</div>
 						<div class="btn-pro">
-						<a href="/MilkTea/chitietmon" class="btn-pro-css"><span>CHỌN</span></a>
+						<a href="/MilkTea/chitietmon?idmon=${mon.getIdMon()}" class="btn-pro-css"><span>CHỌN</span></a>
 						</div>
 					</li>
 					</c:forEach>

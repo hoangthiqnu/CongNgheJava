@@ -15,29 +15,18 @@
 			<div class="col-md-3">
 				<div class="danh_muc">
 					<ul>
-						<li><a href="/MilkTea/thucdon?iddm=tatcamon&page=1">TẤT CẢ</a></li>
-						<c:set var="dsDMMon" value="${DanhSachDanhMuc}"></c:set>	
-						<c:forEach items="${dsDMMon}" var="danhmuc">
+						<li><a href="/MilkTea/thucdon?iddm=tatcamon&page=1">TẤT CẢ</a></li>	
+						<c:forEach items="${DanhSachDanhMuc}" var="danhmuc">
 							<li><a href="/MilkTea/thucdon?iddm=${danhmuc.getIdDMMon()}&page=1">${danhmuc.getTenDMMon()}</a></li> 
 						</c:forEach>
 					</ul>	
 				</div>
-			</div>
-			<c:set var="tieude" value="KẾT QUẢ TÌM"></c:set>	
-			<c:if test ="${TenDM != null}">
-				<c:set var="tieude" value="${TenDM}"></c:set>
-			</c:if>
+			</div>	
 			<div class="col-md-9 title-danhmuc">
-				<span>${tieude}</span>
+				<span>${TenDM}</span>
 			</div>
 			<ul class="col-md-9 products-menu">
-				<c:if test ="${DanhSachMon != null}">
-					<c:set var="dsMon" value="${DanhSachMon}"></c:set>	
-				</c:if>
-				<c:if test ="${DanhSachMonTimKiem != null}">
-					<c:set var="dsMon" value="${DanhSachMonTimKiem}"></c:set>	
-				</c:if>
-				<c:forEach items="${dsMon}" var="mon">
+				<c:forEach items="${DanhSachMon}" var="mon">
 					<li class="col-md-3 each-pro-menu"> 
 						<div class="info-pro-menu" >
 							<img src="resources/image/${mon.getHinhAnh()}" alt="">
@@ -45,16 +34,13 @@
 							<h4><fmt:formatNumber type = "number" maxFractionDigits = "3" value ="${mon.getDonGiaMon()}"/> Đ</h4>
 						</div>
 						<div class="btn-pro-menu">
-							<a href="/MilkTea/chitietmon" class="btn-pro-css"><span>CHỌN</span></a>
+							<a href="/MilkTea/chitietmon?idmon=${mon.getIdMon()}" class="btn-pro-css"><span>CHỌN</span></a>
 						</div>
 					</li>		
 				</c:forEach>
-				<c:if test ="${DanhSachMonTimKiem.size()==0}">
-			 		<span class="title-tim">Không tìm thấy kết quả!</span>
-				</c:if>
 			</ul>
 			<div class="col-md-3"></div>
-			<c:if test ="${DanhSachMonTimKiem == null && SoTrang != 1 }">
+			<c:if test ="${SoTrang != 1 }">
 			<div class="col-md-9 pagination-0">
 				<nav aria-label="Page navigation example">
 				  <ul class="pagination">

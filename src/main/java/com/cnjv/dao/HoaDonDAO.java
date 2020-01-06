@@ -1,10 +1,8 @@
 package com.cnjv.dao;
 
-import java.util.Date;
+import java.util.List;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -16,25 +14,14 @@ import com.cnjv.model.HoaDon;
 import com.cnjv.model.TinhTrangHD;
 
 public class HoaDonDAO {
-private JdbcTemplate jdbcTemplate;
+	private JdbcTemplate jdbcTemplate;
 	
 	@Autowired
 	public void setDataSource(DataSource dbTraSua) {
 		this.jdbcTemplate = new JdbcTemplate(dbTraSua);
 	}
 	
-	public TinhTrangHD getTinhTrangHDByID(int id) {
-		String sql = "SELECT * FROM tinhtranghd where idTinhTrangHD = ?";
-		TinhTrangHD tthd = jdbcTemplate.queryForObject(sql, new RowMapper<TinhTrangHD>() {
-			public TinhTrangHD mapRow(ResultSet rs, int rowNum) throws SQLException {
-                TinhTrangHD tt = new TinhTrangHD();
-                tt.setIdTinhTrangHD(rs.getInt("idTinhTrangHD"));
-				tt.setTenTinhTrang(rs.getString("TenTinhTrang"));
-                return tt;
-            }
-		}, id);
-		return tthd;
-	}
+	
 	
 	public String layTenTinhTrang(int id) {
 		String sql = "SELECT TenTinhTrang FROM tinhtranghd where idTinhTrangHD = ?";
@@ -55,11 +42,11 @@ private JdbcTemplate jdbcTemplate;
 				HoaDon hoaDon = new HoaDon();
 				hoaDon.setIdHoaDon(rs.getInt("idHoaDon"));
 				hoaDon.setThoiGianTao(rs.getTimestamp("ThoiGianTao"));
-				hoaDon.setTenKH(rs.getString("TenKH"));
-				hoaDon.setsDT(rs.getString("SDT"));
+				hoaDon.setTenKhachHang(rs.getString("TenKH"));
+				hoaDon.setSoDienThoai(rs.getString("SDT"));
 				hoaDon.setDiaChiGiao(rs.getString("DiaChiGiao"));
 				hoaDon.setGhiChu(rs.getString("GhiChu"));
-				hoaDon.setTinhtranghd(getTinhTrangHDByID(rs.getInt("idTinhTrangHD")));
+				hoaDon.setIdTinhTrangHD(rs.getInt("idTinhTrangHD"));
 				return hoaDon;
 			}
 		});
@@ -73,11 +60,11 @@ private JdbcTemplate jdbcTemplate;
 				HoaDon hoaDon = new HoaDon();
 				hoaDon.setIdHoaDon(rs.getInt("idHoaDon"));
 				hoaDon.setThoiGianTao(rs.getTimestamp("ThoiGianTao"));
-				hoaDon.setTenKH(rs.getString("TenKH"));
-				hoaDon.setsDT(rs.getString("SDT"));
+				hoaDon.setTenKhachHang(rs.getString("TenKH"));
+				hoaDon.setSoDienThoai(rs.getString("SDT"));
 				hoaDon.setDiaChiGiao(rs.getString("DiaChiGiao"));
 				hoaDon.setGhiChu(rs.getString("GhiChu"));
-				hoaDon.setTinhtranghd(getTinhTrangHDByID(rs.getInt("idTinhTrangHD")));
+				hoaDon.setIdTinhTrangHD(rs.getInt("idTinhTrangHD"));
 				return hoaDon;
             }
 		}, idHoaDon);
@@ -110,4 +97,15 @@ private JdbcTemplate jdbcTemplate;
 	
 	
 	
+	public void themHoaDon(HoaDon hoaDon) {
+		String sql = " INSERT INTO `trasua`.`hoadon` (`ThoiGianTao`, `TenKH`, `SDT`, `DiaChiGiao`, `GhiChu`, `idTinhTrangHD`) VALUES (?, ?, ?, ?, ?, ?)";
+		jdbcTemplate.update(sql, hoaDon.getThoiGianTao(), hoaDon.getTenKhachHang(), hoaDon.getSoDienThoai(), hoaDon.getDiaChiGiao(), hoaDon.getGhiChu(), hoaDon.getIdTinhTrangHD());
+	}
+	
+	public int layMaHoaDon() {
+		String sql = "SELECT max(idHoaDon) FROM hoadon";
+		int id =jdbcTemplate.queryForObject(sql, Integer.class);
+		return id;
+	}
+
 }

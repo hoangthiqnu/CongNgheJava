@@ -7,11 +7,10 @@
 <html>
 <head>
 <meta charset="UTF-8"/>
+<link rel="shortcut icon" href="resources/image/iconsite.png">
 <title>Milk Tea</title>
-
-<link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
+<link href="resources/css/style.css" rel="stylesheet">
+<link href="resources/css/bootstrap.css" rel="stylesheet">
 </head>
 <body>
 
@@ -33,18 +32,24 @@
 			</div>
 			<div class="col-md-4 header-top-right">	
 			    <div class="search">
-				 	<form name ="timkiem" action="timkiem" method="post" onsubmit="return checkTim()" >	  
-						<input type="text" name="tim" class="textbox" placeholder="Tìm thức uống">
+				 	<form name ="timkiem" action="timkiem" method="post">	  
+						<input type="text" name="tim" class="textbox" placeholder="Tìm thức uống" required>
 						<input type="submit" id="submit" name="submit">
 					</form>
 				</div>
 				<div class="box-cart">
 					<div class="box-cart-1">
-				     	<a href="/MilkTea/giohang"><h4><p>Giỏ hàng (0)</p><img src="<c:url value="/resources/image/cart.png" />" alt=""><div class="clearfix"></div></h4></a>
+					<c:if test="${sessionScope.tongMon==0 || sessionScope.tongMon==null }">
+						<a href="/MilkTea/giohang"><h4><p>Giỏ hàng</p><img src="resources/image/cart.png" alt=""><div class="clearfix"></div></h4></a>
+					</c:if>
+					<c:if test="${sessionScope.tongMon>0}">
+				     	<a href="/MilkTea/giohang"><h4><p>Giỏ hàng (${sessionScope.tongMon})</p><img src="resources/image/cart.png" alt=""><div class="clearfix"></div></h4></a>
+				    </c:if>
 				    </div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
 

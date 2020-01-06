@@ -134,6 +134,42 @@ public class MonDAO {
 		
 		return dem;
 	}
+	public Mon layMonTheoId(int id) {
+		String sql = "SELECT * FROM mon  WHERE 	idMon = ?";
+		Mon mon = jdbcTemplate.queryForObject(sql, new RowMapper<Mon>() {
+
+			public Mon mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Mon mon = new Mon();
+				mon.setIdMon(rs.getInt("idMon"));
+				mon.setIdDMMon(rs.getString("idDMMon"));
+				mon.setTenMon(rs.getString("TenMon"));
+				mon.setDonGiaMon(rs.getInt("DonGiaMon"));
+				mon.setHinhAnh(rs.getString("HinhAnh"));
+				mon.setMoTa(rs.getString("MoTa"));
+				mon.setChiDa(rs.getBoolean("ChiDa"));
+				return mon;
+			}
+		},id);
+		return mon;
+	}
+	public List<Mon> layDanhSachMonCungLoai(String idDMMon, int idMon) {
+		String sql = "SELECT * FROM mon WHERE idDMMon = ? and idMon <> ? ORDER BY RAND ( ) LIMIT 3";
+		List<Mon> dsMonCungLoai = jdbcTemplate.query(sql, new RowMapper<Mon>() {
+
+			public Mon mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Mon mon = new Mon();
+				mon.setIdMon(rs.getInt("idMon"));
+				mon.setIdDMMon(rs.getString("idDMMon"));
+				mon.setTenMon(rs.getString("TenMon"));
+				mon.setDonGiaMon(rs.getInt("DonGiaMon"));
+				mon.setHinhAnh(rs.getString("HinhAnh"));
+				mon.setMoTa(rs.getString("MoTa"));
+				mon.setChiDa(rs.getBoolean("ChiDa"));
+				return mon;
+			}
+		},idDMMon,idMon);
+		return dsMonCungLoai;
+	}
 	
 	public int getDonGiaByID(int id) {
 		String sql = "SELECT DonGia FROM mon where idMon = ?;";

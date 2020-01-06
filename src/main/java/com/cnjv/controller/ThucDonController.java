@@ -7,8 +7,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cnjv.dao.DMMonDAO;
@@ -24,7 +23,7 @@ public class ThucDonController {
 	MonDAO mondao = (MonDAO) context.getBean("dbmon");
 	
 	
-	@GetMapping("/thucdon")
+	@RequestMapping("/thucdon")
 	public String hienThiMon(@RequestParam("iddm") String id,@RequestParam("page") int page,ModelMap modelMap) {
 		List<Mon> dsMon;
 		List<DMMon> dsDMMon = dmdao.layDanhSachDMMon();
@@ -60,16 +59,5 @@ public class ThucDonController {
 		modelMap.addAttribute("DanhSachMon", dsMon);
 		return "thucdon";
 	}
-	@PostMapping("/timkiem")
-	public String hienThiTimKiem(@RequestParam("tim") String key,ModelMap modelMap) {
-		List<DMMon> dsDMMon = dmdao.layDanhSachDMMon();
-		modelMap.addAttribute("DanhSachDanhMuc", dsDMMon);
-		List<Mon> dsMonTimKiem = mondao.timKiemMon(key);
-		modelMap.addAttribute("DanhSachMonTimKiem", dsMonTimKiem);
-		return "thucdon";
-	}
-	
-	
-	
 
 }

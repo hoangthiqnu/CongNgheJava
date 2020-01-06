@@ -15,7 +15,7 @@
               </dl>
            </address>
            <ul class="footer_social">
-			  <li><a href=""> <i class="fb"> </i> </a></li>
+			  <li><a href=""><i class="fb"> </i> </a></li>
 			  <li><a href=""><i class="tw"> </i> </a></li>
 			  <li><a href=""><i class="google"> </i> </a></li>
 			  <li><a href=""><i class="instagram"> </i> </a></li>
@@ -42,55 +42,11 @@
 		</div>
 		<div class="footer_bottom">
 			<div class="copy">
-                <p>Copyright © 2019<a href="http://w3layouts.com/" target="_blank"></a> </p>
+                <p>Copyright © 2019</p>
 	        </div>
 	    </div>
 	</div>
 </div>
 
 </body>
-<script>
-  //khai báo biến slideIndex đại diện cho slide hiện tại
-  var slideIndex;
-  // KHai bào hàm hiển thị slide
-  function showSlides() {
-      var i;
-      var slides = document.getElementsByClassName("mySlides");
-      var dots = document.getElementsByClassName("dot");
-      for (i = 0; i < slides.length; i++) {
-         slides[i].style.display = "none";  
-      }
-      for (i = 0; i < dots.length; i++) {
-          dots[i].className = dots[i].className.replace(" active", "");
-      }
- 
-      slides[slideIndex].style.display = "block";  
-      dots[slideIndex].className += " active";
-      //chuyển đến slide tiếp theo
-      slideIndex++;
-      //nếu đang ở slide cuối cùng thì chuyển về slide đầu
-      if (slideIndex > slides.length - 1) {
-        slideIndex = 0
-      }    
-      //tự động chuyển đổi slide sau 5s
-      setTimeout(showSlides, 3000);
-  }
-  //mặc định hiển thị slide đầu tiên 
-  showSlides(slideIndex = 0);
- 
- 
-  function currentSlide(n) {
-    showSlides(slideIndex = n);
-  }
-  
-  function checkTim(){
-	  var value = document.forms["timkiem"]["tim"].value;
-	  console.log(value);
-	  if(value === "")
-	  {
-	        alert("Vui lòng nhập tên món cần tìm!");
-	        return false;
-	  }
-  }
-</script>
 </html>

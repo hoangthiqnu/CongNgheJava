@@ -17,17 +17,21 @@
 		<property name="dataSource" ref="dbTraSua" />
 	</bean>
 	
+	<bean name="dbsize" class="com.cnjv.dao.SizeDAO">
+		<property name="dataSource" ref="dbTraSua" />
+	</bean>
+	
+	<bean name="dbtopping" class="com.cnjv.dao.ToppingDAO">
+		<property name="dataSource" ref="dbTraSua" />
+	</bean>
+	
 	<bean name="dbhoadon" class="com.cnjv.dao.HoaDonDAO">
 		<property name="dataSource" ref="dbTraSua" />
-	</bean>	
+	</bean>
 	
 	<bean name="dbchitiethoadon" class="com.cnjv.dao.ChiTietHoaDonDAO">
 		<property name="dataSource" ref="dbTraSua" />
-	</bean>	
-	
-	<bean name="dbsize" class="com.cnjv.dao.SizeDAO">
-		<property name="dataSource" ref="dbTraSua" />
-	</bean>	
+	</bean>
 	
 	<bean name="dbtaikhoan" class="com.cnjv.dao.TaiKhoanDAO">
 		<property name="dataSource" ref="dbTraSua" />

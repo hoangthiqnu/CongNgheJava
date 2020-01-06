@@ -25,12 +25,12 @@ DROP TABLE IF EXISTS `chitiethd`;
 CREATE TABLE `chitiethd` (
   `idHoaDon` int(11) NOT NULL,
   `idMon` int(11) NOT NULL,
-  `idSize` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `LoaiSize` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `GhiChuMon` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `DSTopping` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `SoLuong` int(11) DEFAULT NULL,
-  `TrangThaiMon` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `MucDuong` int(11) DEFAULT NULL,
-  `MucDa` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idHoaDon`,`idMon`)
+  `ThanhTien` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idHoaDon`,`idMon`,`LoaiSize`,`GhiChuMon`,`DSTopping`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -40,7 +40,7 @@ CREATE TABLE `chitiethd` (
 
 LOCK TABLES `chitiethd` WRITE;
 /*!40000 ALTER TABLE `chitiethd` DISABLE KEYS */;
-INSERT INTO `chitiethd` VALUES (1,1,'M',5,'Lạnh',50,50),(1,2,'M',2,'Lạnh',50,50),(1,3,'M',1,'Lạnh',30,30),(1,4,'M',1,'Lạnh',50,50),(2,5,'M',3,'Lạnh',30,50),(2,6,'M',2,'Lạnh',30,30),(2,7,'M',3,'Lạnh',30,50),(2,8,'M',2,'Lạnh',30,50);
+INSERT INTO `chitiethd` VALUES (4,1,'Lớn','Nóng,100% Đường,50% Đá','Không',1,36000),(4,29,'Lớn','Lạnh,100% Đường,100% Đá','Thạch Dừa, Thạch Đen, ',2,124000),(4,29,'Vừa','Lạnh,100% Đường,100% Đá','Không',1,40000),(6,28,'Vừa','Lạnh,100% Đường,100% Đá','Không',2,80000),(6,28,'Vừa','Lạnh,100% Đường,100% Đá','Pudding, Thạch Dừa, ',1,56000),(6,28,'Vừa','Lạnh,100% Đường,100% Đá','Trân Châu Trắng, Trân Châu Đen, ',1,56000),(6,28,'Vừa','Lạnh,100% Đường,50% Đá','Không',1,40000),(7,17,'Lớn','Lạnh,70% Đường,100% Đá','Nha Đam, ',3,171000),(7,17,'Vừa','Lạnh,100% Đường,100% Đá','Không',2,86000),(8,15,'Lớn','Lạnh,100% Đường,100% Đá','Không',5,265000),(9,10,'Lớn','Nóng,70% Đường,0% Đá','Kem Sữa, Pudding, ',6,396000),(10,24,'Vừa','Lạnh,100% Đường,100% Đá','Không',1,38000);
 /*!40000 ALTER TABLE `chitiethd` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,7 +84,7 @@ CREATE TABLE `hoadon` (
   `GhiChu` longtext COLLATE utf8_unicode_ci,
   `idTinhTrangHD` int(11) DEFAULT NULL,
   PRIMARY KEY (`idHoaDon`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,7 +93,7 @@ CREATE TABLE `hoadon` (
 
 LOCK TABLES `hoadon` WRITE;
 /*!40000 ALTER TABLE `hoadon` DISABLE KEYS */;
-INSERT INTO `hoadon` VALUES (1,'2019-11-28 08:00:00','Hoàng Thi','0353488887','960/23 trần hưng đạo',NULL,2),(2,'2019-11-28 09:00:00','Văn A','0353487878','920 trần hưng đạo',NULL,2);
+INSERT INTO `hoadon` VALUES (4,'2019-12-14 13:18:31','Hoàng Thi','0353488887','Quy Nhơn','Giao nhanh',0),(6,'2019-12-16 09:41:26','Hoàng Thi','0353488887','Quy Nhơn','Giao nhanh nha',0),(7,'2019-12-16 10:44:06','Thúc Tùng','0353488888','386 Nguyễn Thái Học','Giao nhanh nha',0),(8,'2019-12-16 10:46:07','Văn Sướng','0353488089','Quy Nhơn','',0),(9,'2019-12-16 10:47:13','Văn Sướng','0353488806','Quy Nhơn','Giao nhanh',0),(10,'2019-12-16 10:56:34','Hoàng Thi','0353488887','Quy Nhơn','Giao nhanh',0);
 /*!40000 ALTER TABLE `hoadon` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,7 +113,7 @@ CREATE TABLE `mon` (
   `MoTa` longtext COLLATE utf8_unicode_ci,
   `ChiDa` tinyint(4) NOT NULL,
   PRIMARY KEY (`idMon`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -122,7 +122,7 @@ CREATE TABLE `mon` (
 
 LOCK TABLES `mon` WRITE;
 /*!40000 ALTER TABLE `mon` DISABLE KEYS */;
-INSERT INTO `mon` VALUES (1,'tranguyenchat','Trà Đen',30000,'traden.png','Vị trà Đen (Hồng Trà) đặc trưng, đậm trà và thơm nồng nàn.',0),(2,'tranguyenchat','Trà Xanh',30000,'traxanh.png','Vị trà Xanh (Lục Trà) thơm nhẹ và thanh mát',0),(3,'tranguyenchat','Trà Oolong',33000,'traolong.png','Vị trà đậm và có mùi thơm đặc trưng.',0),(4,'tranguyenchat','Trà Bí Đao',30000,'trabidao.png','Trà bí đao ngọt ngào, thanh mát, giúp giải nhiệt tốt.',1),(5,'trasua','Trà Sữa Trà Xanh',38000,'tstraxanh.png','Trà Xanh nguyên chất (Lục Trà) được pha với sữa làm nên món trà sữa thanh mát thơm nhẹ.',0),(6,'trasua','Trà Sữa Trà Đen',38000,'tstraden.png','Vị trà Đen (Hồng Trà) đậm đà quen thuộc pha chung với sữa tạo nên mùi vị thơm ngon.',0),(7,'trasua','Trà Sữa Oolong',40000,'tsolong.png','Vị trà Oolong đậm đà cùng hương thơm đặc trưng được hòa chung với sữa đem lại hương vị nồng nàn.',0),(8,'trasua','Trà Sữa Khoai Môn',43000,'tskhoaimon.png','Hương vị Khoai Môn được hòa cùng với sữa tạo nên thức uống thơm béo.',1),(9,'trasua','Trà Sữa Cà Phê',40000,'tscaphe.png','Trà Sữa Trà Đen tuyệt hảo kết hợp cùng cà phê, tạo nên sự hài hòa thơm ngon.',0),(10,'trasua','Trà Sữa Chocolate',40000,'tschocolate.png','Hương vị Chocolate đậm đà hòa tan sâu trong vị sữa hảo hạng.',0),(11,'trasua','Trà Sữa Hokkaido',43000,'tshokkaido.png','Vị kẹo bơ cứng (Toffee) hòa quyện với trà sữa Earl Grey tạo nên mùi thơm đặc trưng của Hokkaido.',0),(12,'trasua','Trà Sữa Trân Châu Đen',47000,'tstranchauden.png','Là sự kết hợp truyền thống giữa trân châu đen dai cùng vị trà sữa trà đen. Thức uống quen thuộc với mọi lứa tuổi.',0),(13,'trasua','Trà Sữa Okinawa',43000,'tsokinawa.png','Thức uống béo ngậy cùng lớp trân châu dẻo dai, cộng hưởng cùng vị đường nâu thay vì đường thông thường. Trà sữa sẽ thơm và ngậy hơn nhiều nhưng vẫn có vị ngọt dịu, thanh mát.',1),(14,'trasua','Trà Sữa Xoài Trân Châu Đen',47000,'tsxoaitranchau.png','Sự hòa quyện giữa trà sữa trà xanh cùng syrup xoài thơm ngọt, thêm chút dai dai từ trân châu đen, giúp sản phẩm có màu sắc và hương vị tươi mới.',1),(15,'latte','Strawberry Earl Grey Latte',47000,'lattestra.png','Lớp sữa tươi thanh mát được kết hợp với dòng trà bá tước có chiết xuất từ tinh dầu cây bergamot (cây thuộc họ cam). Ngoài ra, Strawberry earl grey latte được bao bọc bởi lớp mứt dâu óng ánh quanh ly.',1),(16,'latte','Okinawa Latte',43000,'latteoki.png','Okinawa Latte dành cho những thực khách vừa muốn thưởng thức trà sữa, vừa muốn giữ dáng, đẹp da. Sữa tươi và trà đen được kết hợp với vị thơm của đường mật mang lại vị giác mới lạ, là lựa chọn cho khách hàng yêu thích sự tươi mát, nhẹ nhàng lại không quá đậm đà của trà.',1),(17,'latte','Mango Matcha Latte',43000,'latteman.png','Mứt sệt vị xoài ngọt ngào, sữa tươi thanh dịu cùng bột trà xanh matcha với vị đắng dịu nhẹ.',1),(18,'thucuongdaxay','Xoài Đá Xay',48000,'xoaidaxay.png','Vị xoài ngọt ngào dùng kèm với Thạch Dừa dai và thơm.',1),(19,'thucuongdaxay','Yakult Đào Đá Xay',48000,'daodaxay.png','Sữa Yakult xay cùng với hương Đào thơm ngọt, cho ra ly đá xay ngon miệng vừa có chua, có ngọt, vừa tốt cho sức khỏe, dùng kèm với Thạch Trái cây.',1),(20,'thucuongdaxay','Matcha Đá Xay',45000,'matdaxay.png','Matcha xay cùng với sữa, kết hợp với lớp Kem (Whipping Cream) phía trên.',1),(21,'thucuongdaxay','Khoai Môn Đá Xay',45000,'khoaidaxay.png','Khoai môn ngọt ngào được xay chung với sữa, có thể dùng kèm với Kem (Whipping Cream) hoặc Trân Châu Đen.',1),(22,'thucuongdaxay','Chocolate Đá Xay',45000,'socodaxay.png','Vị Socola thơm ngon được xay chung với sữa cho ra ly đá xay Socola ngọt ngào.',1),(23,'thucuongdaxay','Strawberry Oreo Smoothie',50000,'straoreo.png','Strawberry oreo smoothie mang lại 3 tầng cảm xúc cho người thưởng thức với lớp mứt dâu chua ngọt phủ lên chiếc ly xinh xắn, hoà quyện cùng đá xay mịn màng từ trà bá tước và sữa.',1),(24,'thucuongsangtao','Trà Oolong Vải',38000,'olongvai.png','Trà Oolong thơm ngon hòa cùng với vị Vải thanh mát.',1),(25,'thucuongsangtao','Trà Xanh Chanh Dây',38000,'xanhchanhday.png','Trà xanh dịu dàng, thanh mát hòa cùng vị Chanh Dây chua ngọt.',0),(26,'thucuongsangtao','Trà Xanh Đào',38000,'xanhdao.png','Trà xanh thanh mát, hòa cùng hương vị Đào ngọt ngào.',0),(27,'thucuongsangtao','Trà Đen Đào',38000,'dendao.png','Trà đen thơm đặc trưng hòa cùng hương vị Đào ngọt ngào.',0),(28,'thucuongsangtao','Đào Hồng Mận Hạt É',40000,'daohong.png','Vị thanh mát, chua ngọt thơm ngon, dùng với hạt é.',1),(29,'thucuongsangtao','QQ Chanh Dây Trà Xanh',40000,'chanhdayxanh.png','Trà Xanh Chanh Dây chua ngọt uống cùng topping trân châu đen dai và thạch dừa tươi mát.',1);
+INSERT INTO `mon` VALUES (1,'tranguyenchat','Trà Đen',30000,'traden.png','Vị trà Đen (Hồng Trà) đặc trưng, đậm trà và thơm nồng nàn.',0),(2,'tranguyenchat','Trà Xanh',30000,'traxanh.png','Vị trà Xanh (Lục Trà) thơm nhẹ và thanh mát',0),(3,'tranguyenchat','Trà Oolong',33000,'traolong.png','Vị trà đậm và có mùi thơm đặc trưng.',0),(4,'tranguyenchat','Trà Bí Đao',30000,'trabidao.png','Trà bí đao ngọt ngào, thanh mát, giúp giải nhiệt tốt.',1),(5,'trasua','Trà Sữa Trà Xanh',38000,'tstraxanh.png','Trà Xanh nguyên chất (Lục Trà) được pha với sữa làm nên món trà sữa thanh mát thơm nhẹ.',0),(6,'trasua','Trà Sữa Trà Đen',38000,'tstraden.png','Vị trà Đen (Hồng Trà) đậm đà quen thuộc pha chung với sữa tạo nên mùi vị thơm ngon.',0),(7,'trasua','Trà Sữa Oolong',40000,'tsolong.png','Vị trà Oolong đậm đà cùng hương thơm đặc trưng được hòa chung với sữa đem lại hương vị nồng nàn.',0),(8,'trasua','Trà Sữa Khoai Môn',43000,'tskhoaimon.png','Hương vị Khoai Môn được hòa cùng với sữa tạo nên thức uống thơm béo.',1),(9,'trasua','Trà Sữa Cà Phê',40000,'tscaphe.png','Trà Sữa Trà Đen tuyệt hảo kết hợp cùng cà phê, tạo nên sự hài hòa thơm ngon.',0),(10,'trasua','Trà Sữa Chocolate',40000,'tschocolate.png','Hương vị Chocolate đậm đà hòa tan sâu trong vị sữa hảo hạng.',0),(11,'trasua','Trà Sữa Hokkaido',43000,'tshokkaido.png','Vị kẹo bơ cứng (Toffee) hòa quyện với trà sữa Earl Grey tạo nên mùi thơm đặc trưng của Hokkaido.',0),(12,'trasua','Trà Sữa Trân Châu Đen',47000,'tstranchauden.png','Là sự kết hợp truyền thống giữa trân châu đen dai cùng vị trà sữa trà đen. Thức uống quen thuộc với mọi lứa tuổi.',0),(13,'trasua','Trà Sữa Okinawa',43000,'tsokinawa.png','Thức uống béo ngậy cùng lớp trân châu dẻo dai, cộng hưởng cùng vị đường nâu thay vì đường thông thường. Trà sữa sẽ thơm và ngậy hơn nhiều nhưng vẫn có vị ngọt dịu, thanh mát.',1),(14,'trasua','Trà Sữa Xoài Trân Châu Đen',47000,'tsxoaitranchau.png','Sự hòa quyện giữa trà sữa trà xanh cùng syrup xoài thơm ngọt, thêm chút dai dai từ trân châu đen, giúp sản phẩm có màu sắc và hương vị tươi mới.',1),(15,'latte','Strawberry Earl Grey Latte',47000,'lattestra.png','Lớp sữa tươi thanh mát được kết hợp với dòng trà bá tước có chiết xuất từ tinh dầu cây bergamot (cây thuộc họ cam). Ngoài ra, Strawberry earl grey latte được bao bọc bởi lớp mứt dâu óng ánh quanh ly.',1),(16,'latte','Okinawa Latte',43000,'latteoki.png','Okinawa Latte dành cho những thực khách vừa muốn thưởng thức trà sữa, vừa muốn giữ dáng, đẹp da. Sữa tươi và trà đen được kết hợp với vị thơm của đường mật mang lại vị giác mới lạ, là lựa chọn cho khách hàng yêu thích sự tươi mát, nhẹ nhàng lại không quá đậm đà của trà.',1),(17,'latte','Mango Matcha Latte',43000,'latteman.png','Mứt sệt vị xoài ngọt ngào, sữa tươi thanh dịu cùng bột trà xanh matcha với vị đắng dịu nhẹ.',1),(18,'thucuongdaxay','Xoài Đá Xay',48000,'xoaidaxay.png','Vị xoài ngọt ngào dùng kèm với Thạch Dừa dai và thơm.',1),(19,'thucuongdaxay','Yakult Đào Đá Xay',48000,'daodaxay.png','Sữa Yakult xay cùng với hương Đào thơm ngọt, cho ra ly đá xay ngon miệng vừa có chua, có ngọt, vừa tốt cho sức khỏe, dùng kèm với Thạch Trái cây.',1),(20,'thucuongdaxay','Matcha Đá Xay',45000,'matdaxay.png','Matcha xay cùng với sữa, kết hợp với lớp Kem (Whipping Cream) phía trên.',1),(21,'thucuongdaxay','Khoai Môn Đá Xay',45000,'khoaidaxay.png','Khoai môn ngọt ngào được xay chung với sữa, có thể dùng kèm với Kem (Whipping Cream) hoặc Trân Châu Đen.',1),(22,'thucuongdaxay','Chocolate Đá Xay',45000,'socodaxay.png','Vị Socola thơm ngon được xay chung với sữa cho ra ly đá xay Socola ngọt ngào.',1),(23,'thucuongdaxay','Strawberry Oreo Smoothie',50000,'straoreo.png','Strawberry oreo smoothie mang lại 3 tầng cảm xúc cho người thưởng thức với lớp mứt dâu chua ngọt phủ lên chiếc ly xinh xắn, hoà quyện cùng đá xay mịn màng từ trà bá tước và sữa.',1),(24,'thucuongsangtao','Trà Oolong Vải',38000,'olongvai.png','Trà Oolong thơm ngon hòa cùng với vị Vải thanh mát.',1),(25,'thucuongsangtao','Trà Xanh Chanh Dây',38000,'xanhchanhday.png','Trà xanh dịu dàng, thanh mát hòa cùng vị Chanh Dây chua ngọt.',0),(26,'thucuongsangtao','Trà Xanh Đào',38000,'xanhdao.png','Trà xanh thanh mát, hòa cùng hương vị Đào ngọt ngào.',0),(27,'thucuongsangtao','Trà Đen Đào',38000,'dendao.png','Trà đen thơm đặc trưng hòa cùng hương vị Đào ngọt ngào.',0),(28,'thucuongsangtao','Đào Hồng Mận Hạt É',40000,'daohong.png','Vị thanh mát, chua ngọt thơm ngon, dùng với hạt é.',1),(29,'thucuongsangtao','QQ Chanh Dây Trà Xanh',40000,'chanhdayxanh.png','Trà Xanh Chanh Dây chua ngọt uống cùng topping trân châu đen dai và thạch dừa tươi mát.',1),(30,'trasua','Trà Sữa Matcha Đậu Đỏ',45000,'matchadaudo.png','Vị chát của trà xanh Nhật Bản (Matcha) pha chút ngọt ngào của sữa dùng kèm Đậu Đỏ bùi và béo sẽ làm bạn bất ngờ.',0),(31,'trasua','Trà Sữa Pudding Đậu Đỏ',43000,'puddingdaudo.png','Trà Sữa Trà Đen kết hợp cùng Topping Đậu đỏ ngọt ngào cùng Pudding trứng mềm mại.',1),(32,'tranguyenchat','Trà Bí Đao Alisan',35000,'bidaoalisan.png','Trà bí đao ngọt ngào kết hợp với trà Alisan, cho ra ly trà thơm, ngọt dịu dễ uống.',1),(33,'tranguyenchat','Trà Alisan',30000,'traalisan.png','Loại trà đặc trưng của vùng đồi núi A Lý ở Đài Loan, vị trà thanh nhẹ, hơi chát.',0),(34,'tranguyenchat','Trà Earl Grey',30000,'traearlgrey.png','Trà Bá Tước chiết xuất từ hương thảo mộc của quả Bergamot (loại quả lai giữa Cam và Chanh), có vị thơm nồng.',0),(35,'thucuongsangtao','Trà Chanh Ai-yu',47000,'chanhaiyu.png','Vị chanh muối dùng kèm với thạch Ai-yu thanh mát và hạt trân châu trắng.',1),(36,'trasua','Trà Sữa Earl Grey',45000,'trasuaearlgrey.png','Sự kết hợp độc đáo giữa trà Bá Tước (Earl Grey) thơm nồng trứ danh cùng với sữa.',0),(37,'latte','Matcha Latte',41000,'matchalatte.png','Matcha Latte mang trong mình vị thơm đậm của matcha hòa quyện cùng vị thanh nhẹ từ sữa tươi. Điểm nhấn của sản phẩm nằm ở loại topping mới – thạch matcha. Thạch mềm, vị thanh mát ắt hẳn sẽ mang đến cho các Fan một trải nghiệm hoàn toàn mới lạ ngay từ những ngụm đầu tiên.',1),(38,'trasua','Trà Sữa Gạo Rang',45000,'trasuagaorang.png','Trà Sữa Gạo Rang sở hữu mùi vị như một chiếc bánh mì nướng thơm ngon, các hạt gạo được rang thơm thơm mang đến cảm giác thanh nhẹ nhưng tròn vị.',0),(39,'trasua','Trà Sữa Matcha Strawberry',45000,'matchadau.png','Sự kết hợp khéo léo giữa matcha, sữa vị dâu và kem sữa matcha sẽ là một lựa chọn mới mẻ cho các Fan khi đã quá quen thuộc với trà sữa. Vị dâu ngọt ngào pha chút đắng nhẹ của matcha và béo ngậy của milkfoam tạo nên một loại thức uống tuy lạ miệng nhưng khó mà cưỡng lại được.',1),(40,'thucuongsangtao','Trà Xanh Long Nhãn Táo Đỏ',47000,'traxanhlongnhan.png','Nhãn là trái cây phổ biến của mùa hè ở một số quốc gia châu Á, có thể ăn tươi hoặc sấy khô. Long nhãn khô là phần cùi nhãn (sau khi đã tách ra khỏi vỏ và hạt) sấy khô ở nhiệt độ cao trong khoảng thời gian dài mà vẫn được mùi vị thơm ngon cùng thành phần dinh dưỡng cao. Táo đỏ Hàn Quốc được mệnh danh là thần dược của sắc đẹp, là bí quyết sống khỏe của dân gian. Táo đỏ có vị chua ngọt, thơm đặc trưng và giàu chất dinh dưỡng. Trong long nhãn giàu Vitamin C nhưng lại có thể sinh nhiệt khi dùng quá nhiều, ngược lại, táo đỏ lại có tính hàn, giúp bổ sung khí huyết. Hai nguyên liệu này khi nấu chung sẽ có vị thanh ngọt cùng hàm lượng dinh dưỡng cao, vô cùng thích hợp để uống vào ngày hè.',1),(41,'thucuongdaxay','Caramel Oolong Smoothie',53000,'caramelolong.png','Kem sữa béo mịn, trân châu dẻo dai, Oolong đậm vị lại còn được “xoáy” trong cơn lốc Caramel đá xay mát lạnh!',1),(42,'thucuongdaxay','Caramel Coffee Smoothie',53000,'caramelcoffee.png','Thức uống với lớp đá xay mịn màng, cà phê thơm lừng, topping whipping cream béo ngậy được “xoáy” trong cơn lốc Caramel.',1),(43,'thucuongsangtao','Trà Oolong Long Nhãn ',47000,'olonglongnhan.png','Nhãn là trái cây phổ biến của mùa hè ở một số quốc gia châu Á, có thể ăn tươi hoặc sấy khô. Long nhãn khô là phần cùi nhãn (sau khi đã tách ra khỏi vỏ và hạt) sấy khô ở nhiệt độ cao trong khoảng thời gian dài mà vẫn được mùi vị thơm ngon cùng thành phần dinh dưỡng cao.',1);
 /*!40000 ALTER TABLE `mon` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -134,9 +134,10 @@ DROP TABLE IF EXISTS `size`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `size` (
-  `idSize` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
-  `TenSize` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`idSize`)
+  `idDMMon` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `LoaiSize` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `GiaThem` int(11) NOT NULL,
+  PRIMARY KEY (`idDMMon`,`LoaiSize`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -146,33 +147,8 @@ CREATE TABLE `size` (
 
 LOCK TABLES `size` WRITE;
 /*!40000 ALTER TABLE `size` DISABLE KEYS */;
-INSERT INTO `size` VALUES ('L','Lớn'),('M','Vừa');
+INSERT INTO `size` VALUES ('latte','Lớn',6000),('latte','Vừa',0),('thucuongdaxay','Vừa',0),('thucuongsangtao','Lớn',6000),('thucuongsangtao','Vừa',0),('tranguyenchat','Lớn',6000),('tranguyenchat','Vừa',0),('trasua','Lớn',6000),('trasua','Vừa',0);
 /*!40000 ALTER TABLE `size` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `sizekem`
---
-
-DROP TABLE IF EXISTS `sizekem`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `sizekem` (
-  `idDMMon` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `idSize` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
-  `GiaThem` int(11) NOT NULL,
-  PRIMARY KEY (`idDMMon`,`idSize`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `sizekem`
---
-
-LOCK TABLES `sizekem` WRITE;
-/*!40000 ALTER TABLE `sizekem` DISABLE KEYS */;
-INSERT INTO `sizekem` VALUES ('latte','L',6000),('latte','M',0),('thucuongdaxay','M',0),('thucuongsangtao','L',6000),('thucuongsangtao','M',0),('tranguyenchat','L',6000),('tranguyenchat','M',0),('trasua','L',6000),('trasua','M',0);
-/*!40000 ALTER TABLE `sizekem` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -235,7 +211,7 @@ CREATE TABLE `topping` (
   `TenTopping` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `DonGiaTopping` int(11) NOT NULL,
   PRIMARY KEY (`idTopping`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -244,32 +220,8 @@ CREATE TABLE `topping` (
 
 LOCK TABLES `topping` WRITE;
 /*!40000 ALTER TABLE `topping` DISABLE KEYS */;
-INSERT INTO `topping` VALUES (1,'Kem Sữa',12000),(2,'Pudding',8000),(3,'Thạch Dừa',8000),(4,'Thạch Đen',8000),(5,'Thạch Trái Cây',8000),(6,'Trân Châu Trắng',8000),(7,'Trân Châu Đen',8000),(8,'Nha Đam',8000);
+INSERT INTO `topping` VALUES (1,'Kem Sữa',12000),(2,'Pudding',8000),(3,'Thạch Dừa',8000),(4,'Thạch Đen',8000),(5,'Thạch Trái Cây',8000),(6,'Trân Châu Trắng',8000),(7,'Trân Châu Đen',8000),(8,'Nha Đam',8000),(11,'Thạch Matcha',8000),(12,'Đậu Đỏ',8000);
 /*!40000 ALTER TABLE `topping` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `toppingmon`
---
-
-DROP TABLE IF EXISTS `toppingmon`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `toppingmon` (
-  `idHoaDon` int(11) NOT NULL,
-  `idMon` int(11) NOT NULL,
-  `idTopping` int(11) NOT NULL,
-  PRIMARY KEY (`idHoaDon`,`idMon`,`idTopping`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `toppingmon`
---
-
-LOCK TABLES `toppingmon` WRITE;
-/*!40000 ALTER TABLE `toppingmon` DISABLE KEYS */;
-/*!40000 ALTER TABLE `toppingmon` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -281,4 +233,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-29 18:14:22
+-- Dump completed on 2019-12-17 21:00:56

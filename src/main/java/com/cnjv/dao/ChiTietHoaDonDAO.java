@@ -1,5 +1,4 @@
 package com.cnjv.dao;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -16,8 +15,9 @@ import com.cnjv.model.HoaDon;
 import com.cnjv.model.TinhTrangHD;
 
 
+
 public class ChiTietHoaDonDAO {
-private JdbcTemplate jdbcTemplate;
+	private JdbcTemplate jdbcTemplate;
 	
 	@Autowired
 	public void setDataSource(DataSource dbTraSua) {
@@ -47,12 +47,12 @@ private JdbcTemplate jdbcTemplate;
 
 			public ChiTietHoaDon mapRow(ResultSet rs, int rowNum) throws SQLException {
 				ChiTietHoaDon cthd = new ChiTietHoaDon();
-				cthd.setIdhoaDon(rs.getInt("idHoaDon"));
+				cthd.setIdHoaDon(rs.getInt("idHoaDon"));
 				cthd.setIdMon(rs.getInt("idMon"));
 				cthd.setLoaiSize(rs.getString("LoaiSize"));
 				cthd.setGhiChuMon(rs.getString("GhiChuMon"));
 				cthd.setSoLuong(rs.getInt("SoLuong"));
-				cthd.setDsTopping(rs.getString("DSTopping"));
+				cthd.setDSTopping(rs.getString("DSTopping"));
 				cthd.setThanhTien(rs.getInt("ThanhTien"));
 				return cthd;
 			}
@@ -67,11 +67,11 @@ private JdbcTemplate jdbcTemplate;
 				HoaDon hoaDon = new HoaDon();
 				hoaDon.setIdHoaDon(rs.getInt("idHoaDon"));
 				hoaDon.setThoiGianTao(rs.getDate("ThoiGianTao"));
-				hoaDon.setTenKH(rs.getString("TenKH"));
-				hoaDon.setsDT(rs.getString("SDT"));
+				hoaDon.setTenKhachHang(rs.getString("TenKH"));
+				hoaDon.setSoDienThoai(rs.getString("SDT"));
 				hoaDon.setDiaChiGiao(rs.getString("DiaChiGiao"));
 				hoaDon.setGhiChu(rs.getString("GhiChu"));
-				hoaDon.setTinhtranghd(getTinhTrangHDByID(rs.getInt("idTinhTrangHD")));
+				hoaDon.setIdTinhTrangHD(rs.getInt("idTinhTrangHD"));
 				return hoaDon;
             }
 		}, idHoaDon);
@@ -85,5 +85,9 @@ private JdbcTemplate jdbcTemplate;
 		return tien;
 	}
 	
-	
+	public void themChiTietHoaDon(ChiTietHoaDon chiTietHoaDon) {
+		String sql = "INSERT INTO `trasua`.`chitiethd` (`idHoaDon`, `idMon`, `LoaiSize`, `GhiChuMon`, `DSTopping`, `SoLuong`, `ThanhTien`) VALUES (?, ?, ?, ?, ?, ?, ?)";
+		jdbcTemplate.update(sql, chiTietHoaDon.getIdHoaDon(), chiTietHoaDon.getIdMon(), chiTietHoaDon.getLoaiSize(),chiTietHoaDon.getGhiChuMon(),chiTietHoaDon.getDSTopping(),chiTietHoaDon.getSoLuong(),chiTietHoaDon.getThanhTien());
+	}
+
 }
