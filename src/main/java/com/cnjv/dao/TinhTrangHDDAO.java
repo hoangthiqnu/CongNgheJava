@@ -21,21 +21,6 @@ public class TinhTrangHDDAO {
 		this.jdbcTemplate = new JdbcTemplate(dbTraSua);
 	}
 
-	public List<TinhTrangHD> getListTinhTrangHD() {
-		String sql = "select * from tinhtranghd ;";
-		List<TinhTrangHD> dsTinhTrang = jdbcTemplate.query(sql, new RowMapper<TinhTrangHD>() {
-
-			public TinhTrangHD mapRow(ResultSet rs, int rowNum) throws SQLException {
-				TinhTrangHD tt = new TinhTrangHD();
-				tt.setIdTinhTrangHD(rs.getInt("idTinhTrangHD"));
-				tt.setTenTinhTrang(rs.getString("TenTinhTrang"));
-				
-				return tt;
-			}
-		});
-		return dsTinhTrang;
-	}
-	
 	public TinhTrangHD getTinhTrangHDByID(int id) {
 		String sql = "SELECT * FROM tinhtranghd where idTinhTrangHD = ?";
 		TinhTrangHD tthd = jdbcTemplate.queryForObject(sql, new RowMapper<TinhTrangHD>() {
@@ -47,5 +32,17 @@ public class TinhTrangHDDAO {
             }
 		}, id);
 		return tthd;
+	}
+	
+	public String layTenTinhTrang(int id) {
+		String sql = "SELECT TenTinhTrang FROM tinhtranghd where idTinhTrangHD = ?";
+		String tenTT = jdbcTemplate.queryForObject(sql, String.class, id);
+		return tenTT;
+	}
+	
+	public int layMaTinhTrangByID(int idhoadon) {
+		String sql = "SELECT idTinhTrangHD FROM hoadon where idHoaDon = ?";
+		int maTT = jdbcTemplate.queryForObject(sql, Integer.class, idhoadon);
+		return maTT;
 	}
 }

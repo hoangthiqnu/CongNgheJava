@@ -22,13 +22,6 @@ public class HoaDonDAO {
 	}
 	
 	
-	
-	public String layTenTinhTrang(int id) {
-		String sql = "SELECT TenTinhTrang FROM tinhtranghd where idTinhTrangHD = ?";
-		String tenTT = jdbcTemplate.queryForObject(sql, String.class, id);
-		return tenTT;
-	}
-	
 	public List<HoaDon> getListHoaDonByIDTinhTrang(int id) {
 		String sql ="";
 		if(id == 4) { // id == 4 lay tat ca cac tinh trang hoa don
@@ -94,8 +87,6 @@ public class HoaDonDAO {
 		int result = jdbcTemplate.update(sql, tenkh, sdt, diachi, ghiChu, id);
 		return result;
 	}
-	
-	
 	
 	public void themHoaDon(HoaDon hoaDon) {
 		String sql = " INSERT INTO `trasua`.`hoadon` (`ThoiGianTao`, `TenKH`, `SDT`, `DiaChiGiao`, `GhiChu`, `idTinhTrangHD`) VALUES (?, ?, ?, ?, ?, ?)";

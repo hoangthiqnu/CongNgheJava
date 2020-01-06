@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import com.cnjv.dao.ChiTietHoaDonDAO;
 import com.cnjv.dao.HoaDonDAO;
 import com.cnjv.dao.MonDAO;
+import com.cnjv.dao.TinhTrangHDDAO;
 import com.cnjv.model.HoaDon;
 import com.cnjv.model.TaiKhoan;
 
@@ -28,6 +29,7 @@ public class QLHoaDonController {
 	HttpSession session;
 	ApplicationContext context = new ClassPathXmlApplicationContext("IoC.xml");
 	HoaDonDAO db = (HoaDonDAO) context.getBean("dbhoadon");
+	TinhTrangHDDAO tinhTrangHDDAO = (TinhTrangHDDAO) context.getBean("dbtinhtranghd");
 	ChiTietHoaDonDAO chitiethdDAO = (ChiTietHoaDonDAO) context.getBean("dbchitiethoadon");
 	
 	@GetMapping("/qldonhang")
@@ -46,6 +48,7 @@ public class QLHoaDonController {
 			}
 			
 			modelMap.addAttribute("listHoaDon", listhd);
+			modelMap.addAttribute("ttDAO", tinhTrangHDDAO);
 			return "QLDonHang";
 		}else {
 			return "LoginAdmin";
