@@ -1,6 +1,7 @@
 package com.cnjv.model;
 
 public class Size {
+
 	private String loaiSize;
 	private String idDMMon;
 	private int giaThem;

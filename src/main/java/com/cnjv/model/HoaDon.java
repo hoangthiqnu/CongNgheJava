@@ -10,6 +10,7 @@ public class HoaDon {
 	private String diaChiGiao;
 	private String ghiChu;
 	private int idTinhTrangHD;
+	private int tongTien;
 	public HoaDon()
 	{
 		
@@ -24,6 +25,13 @@ public class HoaDon {
 		this.diaChiGiao = diaChiGiao;
 		this.ghiChu = ghiChu;
 		this.idTinhTrangHD = idTinhTrangHD;
+	}
+	
+	public int getTongTien() {
+		return tongTien;
+	}
+	public void setTongTien(int tongTien) {
+		this.tongTien = tongTien;
 	}
 	public int getIdHoaDon() {
 		return idHoaDon;
