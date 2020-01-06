@@ -37,12 +37,6 @@ public class ChiTietHoaDonController {
 
 		HoaDon hoaDon = HoaDonDAO.getHoaDonByIDHoaDon(id);
 		int tongTien= db.TongTienTrenMotHoaDon(id); // Tinh tien 1 hoa don
-		/*
-		List<Mon> mons = monDao.getMonByIdHoaDon(id); // Danh sach mon 1 hoa don
-		cthd.setListMon(mons);/*
-		List<ChiTietHoaDon> listcthd = db.getChiTietHDById(id); // Chi tiet hoa don
-		cthd.setListChiTietHD(listcthd);*/
-		
 		modelMap.addAttribute("monDAO", monDAO);
 		modelMap.addAttribute("ChiTietHoaDon", listChiTietHoaDon);
 		modelMap.addAttribute("hoaDon", hoaDon);

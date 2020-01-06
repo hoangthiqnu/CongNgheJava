@@ -35,4 +35,17 @@ public class TinhTrangHDDAO {
 		});
 		return dsTinhTrang;
 	}
+	
+	public TinhTrangHD getTinhTrangHDByID(int id) {
+		String sql = "SELECT * FROM tinhtranghd where idTinhTrangHD = ?";
+		TinhTrangHD tthd = jdbcTemplate.queryForObject(sql, new RowMapper<TinhTrangHD>() {
+			public TinhTrangHD mapRow(ResultSet rs, int rowNum) throws SQLException {
+                TinhTrangHD tt = new TinhTrangHD();
+                tt.setIdTinhTrangHD(rs.getInt("idTinhTrangHD"));
+				tt.setTenTinhTrang(rs.getString("TenTinhTrang"));
+                return tt;
+            }
+		}, id);
+		return tthd;
+	}
 }
