@@ -31,7 +31,7 @@
 					<a href="/MilkTea/qldonhang?tinhtrang=4"><button type="button" class="btn btn-default"> << Trở lại trang quản lý đơn hàng</button></a>
 				</div>
 				<div class="col-md-4 tieude-chitiet">
-					<span>Tình trạng đơn hàng:&nbsp;${tinhtrang}</span>
+					<span>Tình trạng đơn hàng:&nbsp;${tenTT}</span>
 				</div>
 				
 				<div class="col-md-4 tieude-cart">
@@ -146,7 +146,7 @@
                             </td>
                             
                             <td class="colgia" style="padding-top: 55px;">
-                            <fmt:formatNumber type = "number" maxFractionDigits = "3" value ="${mon.getDonGiaMon()}"/> Đ</td>
+                            <fmt:formatNumber type = "number" maxFractionDigits = "3" value ="${cthd.getThanhTien()/cthd.getSoLuong()}"/> Đ</td>
                             <td class="colsl"  style="padding-left:35px; padding-top: 55px;">${cthd.getSoLuong()}</td>
                             <td class="colgia" style="text-align:right !important; padding-right:15px; padding-top: 55px;">
                             <fmt:formatNumber type = "number" maxFractionDigits = "3" value ="${cthd.getThanhTien()}"/> Đ</td>
