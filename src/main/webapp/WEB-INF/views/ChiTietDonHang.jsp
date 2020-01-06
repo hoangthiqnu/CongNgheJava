@@ -31,7 +31,7 @@
 					<a href="/MilkTea/qldonhang?tinhtrang=4"><button type="button" class="btn btn-default"> << Trở lại trang quản lý đơn hàng</button></a>
 				</div>
 				<div class="col-md-4 tieude-chitiet">
-					<span>Tình trạng đơn hàng:&nbsp;${tinhtrang}</span>
+					<span>Tình trạng đơn hàng:&nbsp;${tenTT}</span>
 				</div>
 				
 				<div class="col-md-4 tieude-cart">
