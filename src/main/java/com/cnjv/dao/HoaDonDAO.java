@@ -20,7 +20,7 @@ private JdbcTemplate jdbcTemplate;
 	public void setDataSource(DataSource dbTraSua) {
 		this.jdbcTemplate = new JdbcTemplate(dbTraSua);
 	}
-
+/*
 	public List<HoaDon> getListHoaDon() {
 		String sql = "select * from hoadon order by ThoiGianTao ;";
 		List<HoaDon> dsHoaDon = jdbcTemplate.query(sql, new RowMapper<HoaDon>() {
@@ -38,8 +38,8 @@ private JdbcTemplate jdbcTemplate;
 			}
 		});
 		return dsHoaDon;
-	}
-	
+	}khong dung
+	*/ 
 	
 	public TinhTrangHD getTinhTrangHDByID(int id) {
 		String sql = "SELECT * FROM tinhtranghd where idTinhTrangHD = ?";
@@ -66,7 +66,7 @@ private JdbcTemplate jdbcTemplate;
 			sql = "select * from hoadon order by ThoiGianTao;";
 		}
 		else {
-			sql = "select * from hoadon where idTinhTrangHD = ? order by ThoiGianTao;";
+			sql = "select * from hoadon where hoadon.idTinhTrangHD = "+id+" order by ThoiGianTao;";
 		}
 		List<HoaDon> dsHoaDon = jdbcTemplate.query(sql, new RowMapper<HoaDon>() {
 			public HoaDon mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -82,8 +82,6 @@ private JdbcTemplate jdbcTemplate;
 			}
 		});
 		return dsHoaDon;
-		
-		
 	}
 	
 	public HoaDon getHoaDonByIDHoaDon(int idHoaDon) {
@@ -121,5 +119,13 @@ private JdbcTemplate jdbcTemplate;
 		int result = jdbcTemplate.update(sql,id);
 		return result;
 	}
+	
+	public int capNhatDonHang(int id, String tenkh, String sdt, String diachi) {
+		String sql = "UPDATE hoaDon SET `TenKH` = ? ,`SDT` = ? ,`DiaChiGiao`= ? WHERE (`idHoaDon` = ?);";
+		int result = jdbcTemplate.update(sql, tenkh, sdt, diachi, id);
+		return result;
+	}
+	
+	
 	
 }
