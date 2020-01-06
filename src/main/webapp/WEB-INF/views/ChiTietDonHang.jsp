@@ -31,7 +31,7 @@
 					<a href="/MilkTea/qldonhang?tinhtrang=4"><button type="button" class="btn btn-default"> << Trở lại trang quản lý đơn hàng</button></a>
 				</div>
 				<div class="col-md-4 tieude-chitiet">
-					<span>Tình trạng đơn hàng:&nbsp;${hoaDon.getTinhtranghd().getTenTinhTrang()}</span>
+					<span>Tình trạng đơn hàng:&nbsp;${tinhtrang}</span>
 				</div>
 				
 				<div class="col-md-4 tieude-cart">
@@ -56,14 +56,14 @@
 	    				<label>Tên người nhận:</label>
 					</div>
 					<div class="col-md-7 form-group">
-	    				<input type="text" class="form-control" name="tenKH" id="exampleInputEmail1" placeholder="Nhập họ và tên" value="${hoaDon.getTenKH()}" required>
+	    				<input type="text" class="form-control" name="tenKH" id="exampleInputEmail1" placeholder="Nhập họ và tên" value="${hoaDon.getTenKhachHang()}" required>
 					</div>
 
 					<div class="col-md-3 form-group"> 
 	    				<label>Điện thoại:</label>
 					</div>
 					<div class="col-md-7 form-group">
-	    				<input type="text" class="form-control" name="sdt" id="exampleInputEmail1" placeholder="Nhập số điện thoại" value="${hoaDon.getsDT()}" required>
+	    				<input type="text" class="form-control" name="sdt" id="exampleInputEmail1" placeholder="Nhập số điện thoại" value="${hoaDon.getSoDienThoai()}" required>
 					</div>
 
 					<div class="col-md-3 form-group">
@@ -81,27 +81,27 @@
 					</div>
 					
 					<div class="col-md-12 btnempty" style="display: flex; justify-content: center; padding-bottom: 20px">
-						<c:if test="${hoaDon.getTinhtranghd().getIdTinhTrangHD() == 1 || hoaDon.getTinhtranghd().getIdTinhTrangHD()==0}">
+						<c:if test="${hoaDon.getIdTinhTrangHD() == 1 || hoaDon.getIdTinhTrangHD()==0}">
 					 		<div class = "khoangtrang">	
 					 		<a href="/MilkTea/chitiethoadon/capnhat?id=${ hoaDon.getIdHoaDon()}"><button type="submit" class="btn btn-warning "  onclick="return AlertCapNhat()">Cập nhật</button></a>
 				 		</div>
 				 		</c:if>
 									   
-						<c:if test="${hoaDon.getTinhtranghd().getIdTinhTrangHD()==1 || hoaDon.getTinhtranghd().getIdTinhTrangHD()==0}">
+						<c:if test="${hoaDon.getIdTinhTrangHD()==1 || hoaDon.getIdTinhTrangHD()==0}">
 					      <div class = "khoangtrang">	
 					       <a href="/MilkTea/chitiethoadon/huy?id=${ hoaDon.getIdHoaDon()}"><button type="button" class="btn btn-danger" onclick="return AlertHuy()">Hủy Đơn Hàng</button></a>
 					    </div>
 					    </c:if>
 					   
 					    
-					    <c:if test="${hoaDon.getTinhtranghd().getIdTinhTrangHD()==0}">
+					    <c:if test="${hoaDon.getIdTinhTrangHD()==0}">
 					    <div class = "khoangtrang">
 					       	<a href="/MilkTea/chitiethoadon/xacnhan?id=${ hoaDon.getIdHoaDon()}"><button type="button" class="btn btn-success">Xác nhận</button></a>
 					       	</div>
 					    </c:if>
 					    
 					    <div class = "khoangtrang">
-					    <c:if test="${hoaDon.getTinhtranghd().getIdTinhTrangHD()==1}">
+					    <c:if test="${hoaDon.getIdTinhTrangHD()==1}">
 					    <div class = "khoangtrang">
 					        <a href="/MilkTea/chitiethoadon/thanhtoan?id=${ hoaDon.getIdHoaDon()}"><button type="button" class="btn btn-primary" name="btnThanhToan" onClick="ThanhToan">Thanh Toán</button></a>
 					        </div>
@@ -142,7 +142,7 @@
                             <td class="coltenmon" style="width:40%">
                             	<p style="font-weight: bold;">${mon.getTenMon()}&nbsp;[${mon.getIdMon()}]<p>
                             	<h5>${cthd.getGhiChuMon()} , Size ${cthd.getLoaiSize()}</h5>
-                            	<h5>${cthd.getDsTopping()}</h5>	
+                            	<h5>${cthd.getDSTopping()}</h5>	
                             </td>
                             
                             <td class="colgia" style="padding-top: 55px;">

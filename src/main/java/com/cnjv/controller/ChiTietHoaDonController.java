@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import com.cnjv.dao.ChiTietHoaDonDAO;
 import com.cnjv.dao.HoaDonDAO;
 import com.cnjv.dao.MonDAO;
+import com.cnjv.dao.TinhTrangHDDAO;
 import com.cnjv.model.ChiTietHoaDon;
 import com.cnjv.model.HoaDon;
 
@@ -27,6 +28,7 @@ public class ChiTietHoaDonController {
 	private String referString;
 	ApplicationContext context = new ClassPathXmlApplicationContext("IoC.xml");
 	ChiTietHoaDonDAO db = (ChiTietHoaDonDAO) context.getBean("dbchitiethoadon");
+	TinhTrangHDDAO tinhTrangHDDAO = (TinhTrangHDDAO) context.getBean("dbtinhtranghd");
 	MonDAO monDAO = (MonDAO) context.getBean("dbmon");
 	HoaDonDAO HoaDonDAO = (HoaDonDAO) context.getBean("dbhoadon");
 	
@@ -37,11 +39,15 @@ public class ChiTietHoaDonController {
 
 		HoaDon hoaDon = HoaDonDAO.getHoaDonByIDHoaDon(id);
 		int tongTien= db.TongTienTrenMotHoaDon(id); // Tinh tien 1 hoa don
+		
+		int matt = tinhTrangHDDAO.layMaTinhTrangByID(id);
+		String tinhtrang = tinhTrangHDDAO.layTenTinhTrang(matt);
+		
 		modelMap.addAttribute("monDAO", monDAO);
 		modelMap.addAttribute("ChiTietHoaDon", listChiTietHoaDon);
 		modelMap.addAttribute("hoaDon", hoaDon);
 		modelMap.addAttribute("tongTien", tongTien);
-		modelMap.addAttribute("rsCapNhat", 0);
+		modelMap.addAttribute("tenTT", tinhtrang);
 		return "ChiTietDonHang";
 	}
 	

@@ -57,31 +57,31 @@
 			    </tr>
 			  </thead>
 		    	<c:forEach var = "hd" items="${listHoaDon}">
-		    	
+		    	<c:set var="tinhtrang" value="${ttDAO}"></c:set>
 			   <tbody>
 					<tr>
 						<th scope="row" >${ hd.getIdHoaDon()}</th>
 						<td>${hd.getThoiGianTao()}</td>
-						<td>${hd.getTenKH()}</td>
-						<td>${hd.getsDT()}</td>
+						<td>${hd.getTenKhachHang()}</td>
+						<td>${hd.getSoDienThoai()}</td>
 						<td>${hd.getDiaChiGiao()}</td>
 						<td style="text-align:right !important; padding-right:15px;"><fmt:formatNumber type = "number" maxFractionDigits = "3" value ="${hd.getTongTien()}"/> đ</td>
-						<td>${hd.getTinhtranghd().getTenTinhTrang()}</td>
+						<td>${tinhtrang.layTenTinhTrang(hd.getIdTinhTrangHD())}</td>
 						<td style="text-align:center !important;">
 						<div class="btn-group">
 					      		<a href="chitiethoadon/${hd.getIdHoaDon()}"><button type="button" class="btn btn-default">Xem</button></a>
 					      	</div>
-						<c:if test="${hd.getTinhtranghd().getIdTinhTrangHD() == 1 || hd.getTinhtranghd().getIdTinhTrangHD()==0}">
+						<c:if test="${hd.getIdTinhTrangHD() == 1 || hd.getIdTinhTrangHD()==0}">
 					      	<div class="btn-group">
 					      		<a href="/MilkTea/qldonhang/huy?id=${ hd.getIdHoaDon()}"><button type="button" class="btn btn-danger" onclick="return AlertHuy()">Hủy</button></a>
 					      	</div>
 					    </c:if>
-						<c:if test="${hd.getTinhtranghd().getIdTinhTrangHD()==0}">
+						<c:if test="${hd.getIdTinhTrangHD()==0}">
 							<div class="btn-group">
 					      		<a href="/MilkTea/qldonhang/xacnhan?id=${ hd.getIdHoaDon()}"><button type="button" class="btn btn-success">Xác nhận</button></a>
 					      	</div>
 					     </c:if>
-					     <c:if test="${hd.getTinhtranghd().getIdTinhTrangHD()==1}">
+					     <c:if test="${hd.getIdTinhTrangHD()==1}">
 					      	<div class="btn-group">
 					      		<a href="/MilkTea/qldonhang/thanhtoan?id=${ hd.getIdHoaDon()}"><button type="button" class="btn btn-primary">Thanh Toán</button></a>
 					      	</div>
