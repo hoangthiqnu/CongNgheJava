@@ -11,7 +11,7 @@ import com.cnjv.dao.MonDAO;
 import com.cnjv.dao.TinhTrangHDDAO;
 import com.cnjv.model.ChiTietHoaDon;
 import com.cnjv.model.HoaDon;
-
+import com.cnjv.model.TaiKhoan;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ChiTietHoaDonController {
+	HttpSession session;
 	private String referString;
 	ApplicationContext context = new ClassPathXmlApplicationContext("IoC.xml");
 	ChiTietHoaDonDAO db = (ChiTietHoaDonDAO) context.getBean("dbchitiethoadon");
@@ -33,8 +34,13 @@ public class ChiTietHoaDonController {
 	HoaDonDAO HoaDonDAO = (HoaDonDAO) context.getBean("dbhoadon");
 	
 	@GetMapping("chitiethoadon/{id}")
-	public String trangChiTietHD(@PathVariable int id, ModelMap modelMap) {
+	public String trangChiTietHD(@PathVariable int id, ModelMap modelMap, HttpServletRequest request) {
 
+		session = request.getSession();
+		TaiKhoan tk = new TaiKhoan();
+		tk = (TaiKhoan) session.getAttribute("TaiKhoan");
+		
+		if(tk != null) {
 		List<ChiTietHoaDon> listChiTietHoaDon = db.getChiTietHDById(id);
 
 		HoaDon hoaDon = HoaDonDAO.getHoaDonByIDHoaDon(id);
@@ -49,6 +55,11 @@ public class ChiTietHoaDonController {
 		modelMap.addAttribute("tongTien", tongTien);
 		modelMap.addAttribute("tenTT", tinhtrang);
 		return "ChiTietDonHang";
+		}
+		else
+		{
+			return "LoginAdmin";
+		}
 	}
 	
 	//Xac Nhan Don Hang
