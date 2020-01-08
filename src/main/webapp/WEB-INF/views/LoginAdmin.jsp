@@ -6,10 +6,11 @@
 <!DOCTYPE HTML>
 <html style=" height: 100% !important">
 <head>
-<title>Login Admin</title>
 <meta charset="UTF-8"/>
+<link rel="shortcut icon" href="resources/image/iconsite.png">
+<title>Login Admin</title>
 <link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link href="<c:url value="/resources/css/bootstrap.css"/>" rel="stylesheet">
 </head>
 <body style=" height: 100% !important">
 <div class="bannerLogin" style=" height: 100% !important">

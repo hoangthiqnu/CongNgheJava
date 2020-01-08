@@ -11,10 +11,11 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link rel="shortcut icon" href="resources/image/iconsite.png">
 <title>Insert title here</title>
 
 <link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link href="<c:url value="/resources/css/bootstrap.css"/>" rel="stylesheet">
 
 </head>
 <body>

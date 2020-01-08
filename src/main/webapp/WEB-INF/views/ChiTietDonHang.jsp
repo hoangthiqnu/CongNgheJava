@@ -1,4 +1,3 @@
-
 <%@page import="com.cnjv.model.ChiTietHoaDon"%>
 <%@page import="com.cnjv.model.TinhTrangHD"%>
 <%@page import="com.cnjv.model.HoaDon"%>
@@ -10,11 +9,13 @@
 <%@taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
+<link rel="shortcut icon" href="resources/image/iconsite.png">
 <title>Chi tiết đơn hàng</title>
 <meta charset="UTF-8"/>
 
 <link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link href="<c:url value="/resources/css/bootstrap.css"/>" rel="stylesheet">
+
 
 </head>
 <body>
@@ -182,3 +183,4 @@
 <div class="clearfix"></div>
 </body>
 </html>		
+<%@ include file="footer.jsp" %>
